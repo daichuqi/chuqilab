@@ -17,6 +17,7 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
+    "heroku-postbuild": "gatsby build",
     "start": "gatsby serve",
     "develop": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
