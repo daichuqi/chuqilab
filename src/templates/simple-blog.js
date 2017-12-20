@@ -1,6 +1,7 @@
-import React from 'react';
-import Link from 'gatsby-link';
-import Helmet from 'react-helmet';
+import React from 'react'
+import Link from 'gatsby-link'
+import Helmet from 'react-helmet'
+import NextPrevButton from '../components/next-prev-button'
 
 const Template = ({ data, location, pathContext }) => {
   const { markdownRemark: post } = data
@@ -16,24 +17,11 @@ const Template = ({ data, location, pathContext }) => {
         <h3>{date}</h3>
 
         <div dangerouslySetInnerHTML={{ __html: html }} />
-        <p>
-          {prev && (
-            <Link to={prev.frontmatter.path}>
-              Previous: {prev.frontmatter.title}
-            </Link>
-          )}
-        </p>
-        <p>
-          {next && (
-            <Link to={next.frontmatter.path}>
-              Next: {next.frontmatter.title}
-            </Link>
-          )}
-        </p>
+        <NextPrevButton prev={prev} next={next} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String) {
@@ -49,4 +37,4 @@ export const pageQuery = graphql`
     }
   }
 `
-export default Template;
+export default Template

@@ -2,18 +2,16 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 const IndexPage = ({ data }) => {
-  const { edges: posts } = data.allMarkdownRemark  
+  const { edges: posts, totalCount } = data.allMarkdownRemark
   return (
     <div>
       {posts.map(({ node: post }, index) => {
         const { frontmatter } = post
 
         return (
-          <div key={index} >
+          <div key={index}>
             <h2>
-              <Link to={frontmatter.path}>
-                {frontmatter.title}
-              </Link>
+              <Link to={frontmatter.path}>{frontmatter.title}</Link>
             </h2>
             <p>{frontmatter.date}</p>
             <p>{frontmatter.excerpt}</p>
@@ -22,7 +20,6 @@ const IndexPage = ({ data }) => {
       })}
     </div>
   )
-
 }
 
 export const query = graphql`
