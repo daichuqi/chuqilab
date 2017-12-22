@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "PingFang-SC";
+  font-weight: 100;
+  src: local("PingFang SC Thin");
+}
+
+@font-face {
+  font-family: "PingFang-SC";
+  font-weight: 300;
+  src: local("PingFang SC Light");
+}
+
+@font-face {
+  font-family: "PingFang-SC";
+  font-weight: 400;
+  src: local("PingFang SC Regular");
+}
+
+@font-face {
+  font-family: "PingFang-SC";
+  font-weight: 500;
+  src: local("PingFang SC Medium");
+}
+
+@font-face {
+  font-family: "PingFang-SC";
+  font-weight: 700;
+  src: local("PingFang SC Semibold");
+}
+
+@font-face {
+  font-family: "PingFang-SC";
+  font-weight: 800;
+  src: local("PingFang SC Heavy");
+}
+
+body {
+  font-family:"PingFang-SC", Helvetica;
+}

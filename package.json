@@ -1,5 +1,5 @@
 {
-  "name": "chuqi-blog",
+  "name": "chuqi-gatsby",
   "description": "a blog",
   "version": "1.0.0",
   "author": "Chuqi Dai <daichuqi@gmail.com>",
@@ -12,6 +12,7 @@
     "gatsby-plugin-postcss-sass": "^1.0.15",
     "gatsby-plugin-react-helmet": "^1.0.8",
     "gatsby-plugin-sharp": "^1.6.24",
+    "gatsby-plugin-typography": "^1.7.10",
     "gatsby-source-filesystem": "^1.5.11",
     "gatsby-transformer-remark": "^1.7.25",
     "gatsby-transformer-sharp": "^1.6.16",

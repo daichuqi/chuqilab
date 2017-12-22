@@ -12,7 +12,10 @@ const Header = () => (
   <div className="top-banner">
     <div className="wrapper">
       <h1 style={{ margin: 0 }}>
-        <Link className="site-name" to="/"> Chuqi </Link>
+        <Link className="site-name" to="/">
+          {' '}
+          楚奇{' '}
+        </Link>
       </h1>
     </div>
   </div>
@@ -20,11 +23,9 @@ const Header = () => (
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet title="Chuqi's Lab" meta={config.meta}/>
+    <Helmet title="Chuqi's Lab" meta={config.meta} />
     <Header />
-    <div className="template-wrapper">
-      {children()}
-    </div>
+    <div className="template-wrapper">{children()}</div>
   </div>
 )
 

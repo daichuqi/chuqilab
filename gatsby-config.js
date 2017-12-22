@@ -10,6 +10,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-offline`,
     {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography.js`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-postcss-sass`,
       options: {
         postCssPlugins: [lost()],
@@ -25,7 +31,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `CHUQI`,
+        name: `chuqi`,
         short_name: `chuqi`,
         start_url: `/`,
         background_color: `#f7f7f7`,
