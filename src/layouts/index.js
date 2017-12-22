@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 
-import '../styles/default.css'
-import './style.css'
+import '../styles/default.scss'
+import './style.scss'
 
 import config from './config.json'
 

@@ -1,19 +1,20 @@
 const path = require('path')
 const createPaginatedPages = require('gatsby-paginate')
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators
-  const blogPostTemplate = path.resolve(`src/templates/simple-blog.js`)
+exports.createPages = ({ boundActionCreators: { createPage }, graphql }) => {
+  const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
+  const pageTemplate = 'src/templates/page.js'
 
   return graphql(`
     {
       allMarkdownRemark {
+        totalCount
         edges {
           node {
-            html
             id
+            html
             frontmatter {
-              date
+              date(formatString: "MMMM DD, YYYY")
               path
               title
               excerpt
@@ -30,10 +31,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
     createPaginatedPages({
       edges: result.data.allMarkdownRemark.edges,
-      createPage: createPage,
-      pageTemplate: 'src/templates/index.js',
-      pageLength: 2, // This is optional and defaults to 10 if not used
-      pathPrefix: '', // This is optional and defaults to an empty sctring if not used
+      createPage,
+      pageTemplate,
+      pageLength: 10,
+      pathPrefix: '',
     })
 
     const posts = result.data.allMarkdownRemark.edges
