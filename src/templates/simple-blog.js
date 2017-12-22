@@ -5,8 +5,7 @@ import NextPrevButton from '../components/next-prev-button'
 
 const Template = ({ data, location, pathContext }) => {
   const { markdownRemark: post } = data
-  const { frontmatter, html } = post
-  const { title, date } = frontmatter
+  const { frontmatter: { title, date }, html } = post
   const { prev, next } = pathContext
 
   return (
@@ -15,7 +14,6 @@ const Template = ({ data, location, pathContext }) => {
       <div>
         <h1>{title}</h1>
         <h3>{date}</h3>
-
         <div dangerouslySetInnerHTML={{ __html: html }} />
         <NextPrevButton prev={prev} next={next} />
       </div>
