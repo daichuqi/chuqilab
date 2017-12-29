@@ -5,14 +5,14 @@
 .blog-detail-header {
   margin-bottom: 20px;
   .title {
-    font-size: 20px;
+    font-size: 32px;
     font-weight: bold;
-    display: inline-block;
+    // display: inline-block;
   }
   .date {
     font-size: 14px;
+    margin-top: 5px;
     display: inline-block;
-    margin-left: 10px;
     color: #902400;
   }
 }
