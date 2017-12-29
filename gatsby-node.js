@@ -14,7 +14,7 @@ exports.createPages = ({ boundActionCreators: { createPage }, graphql }) => {
             id
             html
             frontmatter {
-              date(formatString: "MMM DD YYYY")
+              date
               path
               title
               excerpt

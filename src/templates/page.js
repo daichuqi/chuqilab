@@ -23,9 +23,7 @@ const IndexPage = ({
 
   return (
     <div>
-      {group
-        // .sort(sortPost)
-        .map(({ node }) => <BlogItem key={node.id} node={node} />)}
+      {group.map(({ node }) => <BlogItem key={node.id} node={node} />)}
       <NavLink show={showPrev} url={previousUrl} text="Prev" />
       <NavLink show={showNext} url={nextUrl} text="Next" />
     </div>
