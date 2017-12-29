@@ -13,8 +13,10 @@ const Template = ({ data, location, pathContext }) => {
     <div>
       <Helmet title={`${title} - My Blog`} />
       <div>
-        <h1>{title}</h1>
-        <h3>{date}</h3>
+        <div className="blog-detail-header">
+          <div className="title">{title}</div>
+          <div className="date">{date}</div>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: html }} />
         <NextPrevButtons prev={prev} next={next} />
       </div>
@@ -28,7 +30,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM, DD, YYYY")
+        date(formatString: "MMM DD YYYY")
         path
         tags
         excerpt

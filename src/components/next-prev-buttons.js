@@ -5,11 +5,11 @@ const NextPrevButton = ({ next, prev }) => {
   let nextButton, prevButton
   if (next) {
     const { frontmatter: { path: nextPath, title: nextTitle } } = next
-    nextButton = <Link to={nextPath}>Next: {nextTitle}</Link>
+    nextButton = <Link to={nextPath}>Next Post: {nextTitle}</Link>
   }
   if (prev) {
     const { frontmatter: { path: prevPath, title: prevTitle } } = prev
-    prevButton = <Link to={prevPath}>Previous: {prevTitle}</Link>
+    prevButton = <Link to={prevPath}>Prev Post: {prevTitle}</Link>
   }
   return (
     <div>

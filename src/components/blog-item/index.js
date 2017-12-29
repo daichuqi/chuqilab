@@ -6,10 +6,12 @@ const BlogItem = ({
   node: { frontmatter: { path, excerpt, title, date } },
 }) => (
   <div className="blog-item">
-    <Link className="blog-title" to={path}>
-      {title}
-    </Link>
-    <span className="blog-date">{date}</span>
+    <div className="blog-header">
+      <Link className="blog-title" to={path}>
+        {title}
+      </Link>
+      <span className="blog-date">{date}</span>
+    </div>
     <div className="blog-excerpt">{excerpt}</div>
   </div>
 )
