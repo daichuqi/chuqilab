@@ -1,37 +1,7 @@
-.top-banner {
-  margin-bottom: 2rem;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: hsla(0, 0%, 98%, 0.9);
-  box-shadow: 0 0 10px hsla(0, 0%, 5%, 0.26);
-}
-.wrapper {
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 1rem 1.0875rem;
-  h1 {
-    margin: 0;
-  }
-}
-.site-name {
-  color: rgb(121, 121, 121);
-  text-decoration: none;
-  font-weight: 100;
-}
+
 .template-wrapper {
   margin: 0 auto;
   max-width: 960px;
-  padding: 0px 1.0875rem 1.45rem;
+  padding: 0px 3rem 1.45rem;
   padding-top: 0;
-}
-
-@media only screen and (min-width: 768px) {
-  .wrapper {
-    padding: 1rem 3rem;
-  }
-  .template-wrapper {
-    padding: 0px 3rem 1.45rem;
-  }
 }

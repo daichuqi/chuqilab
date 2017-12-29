@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
-import NextPrevButtons from '../components/next-prev-buttons'
+import NextPrevButtons from '../components/NextPrevButtons'
 import '../styles/blog-post.scss'
 import moment from 'moment-timezone'
 import getDateString from '../utils/date-string'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
-import BlogItem from '../components/blog-item'
+import BlogItem from '../components/BlogItem'
 
 const NavLink = ({ text, url, show }) => {
   return show ? <Link to={url}>{text}</Link> : null

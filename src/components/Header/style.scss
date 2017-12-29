@@ -1,0 +1,27 @@
+.header-component {
+  margin-bottom: 2rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: hsla(0, 0%, 98%, 0.9);
+  box-shadow: 0 0 10px hsla(0, 0%, 5%, 0.26);
+  .wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+    height: 46px;
+    .site-name {
+      .site-name-text {
+        text-decoration: none;
+        color: rgb(121, 121, 121);
+        font-weight: 100;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+      }
+      display: inline-block;
+      padding: 13px 3rem;
+      font-size: 22px;
+    }
+  }
+}
+
