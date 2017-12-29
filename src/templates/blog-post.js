@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
-import NextPrevButton from '../components/next-prev-button'
+import NextPrevButtons from '../components/next-prev-buttons'
+import '../styles/blog-post.scss'
 
 const Template = ({ data, location, pathContext }) => {
   const { markdownRemark: post } = data
@@ -15,7 +16,7 @@ const Template = ({ data, location, pathContext }) => {
         <h1>{title}</h1>
         <h3>{date}</h3>
         <div dangerouslySetInnerHTML={{ __html: html }} />
-        <NextPrevButton prev={prev} next={next} />
+        <NextPrevButtons prev={prev} next={next} />
       </div>
     </div>
   )

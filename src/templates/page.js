@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
-import './page.scss'
+import BlogItem from '../components/blog-item'
 
 const NavLink = ({ text, url, show }) => {
   return show ? <Link to={url}>{text}</Link> : null
@@ -16,15 +16,9 @@ const IndexPage = ({
 
   return (
     <div>
-      {group.map(({ node }) => (
-        <div key={node.id} className="blog-item">
-          <div className="date">{node.frontmatter.date}</div>
-          <Link className="blog-url" to={node.frontmatter.path}>
-            {node.frontmatter.title}
-          </Link>
-          <div>{node.frontmatter.excerpt}</div>
-        </div>
-      ))}
+      {group.map(({ node }) => 
+        <BlogItem key={node.id} node={node}/>
+      )}
       <NavLink show={showPrev} url={previousUrl} text="Prev" />
       <NavLink show={showNext} url={nextUrl} text="Next" />
     </div>

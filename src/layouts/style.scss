@@ -1,20 +1,28 @@
 .top-banner {
-    background: rgb(155, 155, 155);
-    margin-bottom: 1.45rem;
+  margin-bottom: 1.45rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: hsla(0, 0%, 98%, 0.9);
+  box-shadow: 0 0 10px hsla(0, 0%, 5%, 0.26);
 }
 .wrapper {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 1.45rem 1.0875rem;
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1rem 1.0875rem;
+  h1 {
+    margin: 0;
+  }
 }
 .site-name {
-    color: white;
-    text-decoration: none;
-    font-weight: 100;
+  color: rgb(121, 121, 121);
+  text-decoration: none;
+  font-weight: 100;
 }
 .template-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 0px 1.0875rem 1.45rem;
-    padding-top: 0;
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0px 1.0875rem 1.45rem;
+  padding-top: 0;
 }

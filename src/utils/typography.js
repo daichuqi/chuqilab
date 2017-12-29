@@ -11,7 +11,7 @@ const typography = new Typography({
     'Arial',
     'sans-serif',
   ],
-  bodyFontFamily: ['Helvetica', 'PingFang-SC'],
+  bodyFontFamily: ['PingFang-SC', 'Helvetica'],
 })
 
 export default typography

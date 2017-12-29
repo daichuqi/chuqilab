@@ -11,10 +11,9 @@ import config from './config.json'
 const Header = () => (
   <div className="top-banner">
     <div className="wrapper">
-      <h1 style={{ margin: 0 }}>
+      <h1>
         <Link className="site-name" to="/">
-          {' '}
-          楚奇{' '}
+          Richie's Blog
         </Link>
       </h1>
     </div>
