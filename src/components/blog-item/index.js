@@ -9,7 +9,7 @@ const BlogItem = ({
     <Link className="blog-title" to={path}>
       {title}
     </Link>
-    <div className="blog-date">{date}</div>
+    <span className="blog-date">{date}</span>
     <div className="blog-excerpt">{excerpt}</div>
   </div>
 )

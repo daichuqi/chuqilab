@@ -14,7 +14,7 @@ exports.createPages = ({ boundActionCreators: { createPage }, graphql }) => {
             id
             html
             frontmatter {
-              date(formatString: "MMMM DD, YYYY")
+              date(formatString: "MMM DD YYYY")
               path
               title
               excerpt
@@ -29,8 +29,15 @@ exports.createPages = ({ boundActionCreators: { createPage }, graphql }) => {
       return Promise.reject(result.errors)
     }
 
+    const sortPost = (a, b) => {
+      const prevPost = b.node.frontmatter.date
+      const nextPost = a.node.frontmatter.date
+      const getTime = postDate => new Date(postDate).getTime()
+      return getTime(prevPost) - getTime(nextPost)
+    }
+    
     createPaginatedPages({
-      edges: result.data.allMarkdownRemark.edges,
+      edges: result.data.allMarkdownRemark.edges.sort(sortPost),
       createPage,
       pageTemplate,
       pageLength: 10,

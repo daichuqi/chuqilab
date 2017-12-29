@@ -2,11 +2,16 @@
     font-size: 18px;
     text-transform: capitalize;
     text-decoration: none;
-    color: #666;
+    color: #333;
+    font-weight: 600;
 }
 
 .blog-item {
     margin: 30px 0;
+    .blog-date {
+        margin-left: 10px;
+        color: #902400;
+    }
 }
 
 .blog-excerpt {

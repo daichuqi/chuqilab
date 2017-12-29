@@ -6,6 +6,13 @@ const NavLink = ({ text, url, show }) => {
   return show ? <Link to={url}>{text}</Link> : null
 }
 
+const sortPost = (a, b) => {
+  const prevPost = b.node.frontmatter.date
+  const nextPost = a.node.frontmatter.date
+  const getTime = postDate => new Date(postDate).getTime()
+  return getTime(prevPost) - getTime(nextPost)
+}
+
 const IndexPage = ({
   pathContext: { group, index, pageCount, pathPrefix },
 }) => {
@@ -16,9 +23,9 @@ const IndexPage = ({
 
   return (
     <div>
-      {group.map(({ node }) => 
-        <BlogItem key={node.id} node={node}/>
-      )}
+      {group
+        // .sort(sortPost)
+        .map(({ node }) => <BlogItem key={node.id} node={node} />)}
       <NavLink show={showPrev} url={previousUrl} text="Prev" />
       <NavLink show={showNext} url={nextUrl} text="Next" />
     </div>
