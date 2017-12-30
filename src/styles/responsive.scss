@@ -8,6 +8,8 @@
   .login-dropdown {
       top: 38%;
       width: 90%;
-      height: 60%;
+      .crop {
+          margin-bottom: 0;
+      }
   }
 }

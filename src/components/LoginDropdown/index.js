@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as actions from '../../state/actions'
 import './style.scss'
 import backgroundImage from '../../assets/images/skull.jpg'
+import { FaClose } from 'react-icons/lib/fa'
 
 class LoginDropdown extends Component {
   constructor(props) {
@@ -17,15 +18,22 @@ class LoginDropdown extends Component {
 
   render() {
     return (
-    <div className="login-dropdown">
-      <img className="background-image" src={backgroundImage}/>
-      <div className="login-panel">
-        <input className="username" type="text" placeholder="username" />
-        <input className="password" type="password" placeholder="password"/>
-        <button className="login-button">Login</button>
-        <div className="notice">*registration by invitation only</div>
+      <div className="login-dropdown">
+        <div
+          className="close-button"
+          onClick={() => { this.props.toggleLogin(false) }}>
+          <FaClose size={24} />
+        </div>
+        <div className="crop">
+          <img className="background-image" src={backgroundImage} />
+        </div>
+        <div className="login-panel">
+          <input className="username" type="text" placeholder="username" />
+          <input className="password" type="password" placeholder="password" />
+          <button className="login-button">Login</button>
+          <div className="notice">*registration by invitation only</div>
+        </div>
       </div>
-    </div>
     )
   }
 }
