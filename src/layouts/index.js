@@ -9,7 +9,6 @@ import '../styles/libs/prism-darcula.css'
 import '../styles/default.scss'
 import '../styles/responsive.scss'
 import './style.scss'
-
 import config from './config.json'
 
 const mapStateToProps = ({ show }) => {
