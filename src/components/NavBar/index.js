@@ -3,7 +3,7 @@ import Link from 'gatsby-link'
 import Login from '../Login'
 import './style.scss'
 
-const Header = () => (
+const NavBar = () => (
   <div className="header-component">
     <div className="wrapper">
       <div className="site-name">
@@ -16,4 +16,4 @@ const Header = () => (
   </div>
 )
 
-export default Header
+export default NavBar
