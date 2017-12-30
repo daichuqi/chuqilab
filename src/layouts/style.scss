@@ -5,3 +5,24 @@
   padding: 0px 3rem 1.45rem;
   padding-top: 0;
 }
+.login-enter {
+  opacity: 0.01;
+}
+.login-enter.login-enter-active {
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
+}
+.login-leave {
+  opacity: 1;
+}
+.login-leave.login-leave-active {
+  opacity: 0.01;
+  transition: opacity 100ms ease-in-out;
+}
+.login-appear {
+  opacity: 0.01;
+}
+.login-appear.login-appear-active {
+  opacity: 1;
+  transition: opacity 150ms ease-in-out;
+}

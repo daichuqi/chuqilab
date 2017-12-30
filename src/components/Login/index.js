@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { FaUser } from 'react-icons/lib/fa'
-import LoginDropdown from './LoginDropdown'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../state/actions';
@@ -23,7 +22,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div onClick={this.handleOnClick} className="login-button">
+      <div onClick={this.handleOnClick} className="header-login-button-component">
         <FaUser className="user-icon" />
         <span>Login</span>
       </div>

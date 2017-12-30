@@ -8,7 +8,7 @@ const Header = () => (
     <div className="wrapper">
       <div className="site-name">
         <Link className="site-name-text" to="/">
-          Richie's Blog
+          CQ
         </Link>
       </div>
       <Login />

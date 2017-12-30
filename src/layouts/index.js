@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import Header from '../components/Header'
 import LoginDropdown from '../components/LoginDropdown'
+import ReactTransitionGroup from 'react-addons-css-transition-group'
 import '../styles/libs/prism-darcula.css'
 import '../styles/default.scss'
 import '../styles/responsive.scss'
@@ -30,7 +31,12 @@ class TemplateWrapper extends Component {
         <Helmet title="Chuqi's Lab" meta={config.meta} />
         <Header />
         <div className="template-wrapper">{this.props.children()}</div>
-        {this.props.show && <LoginDropdown />}
+        <ReactTransitionGroup
+          transitionEnterTimeout={150}
+          transitionLeaveTimeout={100}
+          transitionName="login">
+          {this.props.show && <LoginDropdown />}
+        </ReactTransitionGroup>
       </div>
     )
   }
