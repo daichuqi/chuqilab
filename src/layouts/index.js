@@ -20,7 +20,6 @@ const mapDispatchToProps = dispatch => {
   return {}
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
 class TemplateWrapper extends Component {
   constructor(props) {
     super(props)
@@ -46,4 +45,4 @@ TemplateWrapper.propTypes = {
   children: PropTypes.func,
 }
 
-export default TemplateWrapper
+export default connect(mapStateToProps, mapDispatchToProps)(TemplateWrapper)
