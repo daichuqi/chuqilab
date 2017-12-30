@@ -4,7 +4,7 @@ import Login from '../Login'
 import './style.scss'
 
 const NavBar = () => (
-  <div className="header-component">
+  <div className="nav-component">
     <div className="wrapper">
       <div className="site-name">
         <Link className="site-name-text" to="/">

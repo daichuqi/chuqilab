@@ -20,6 +20,7 @@
     text-align: center;
     .password,
     .username {
+      text-align: center;
       display: block;
       margin: 0 auto 10px;
       width: 100%;
@@ -32,6 +33,7 @@
     .notice {
       color: #b9b9b9;
       font-weight: 100;
+      font-size: 11px;
     }
     .login-button {
       border: white solid 1px;
