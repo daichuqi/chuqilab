@@ -17,6 +17,9 @@ import config from './config.json'
 class TemplateWrapper extends Component {
   constructor(props) {
     super(props)
+    if ('ontouchstart' in document.documentElement) {
+      document.body.style.cursor = 'pointer';
+    }
   }
   render() {
     return (
