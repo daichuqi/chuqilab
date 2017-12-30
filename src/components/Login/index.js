@@ -9,7 +9,6 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({ ...actions }, dispatch)
 }
 
-@connect(null, mapDispatchToProps)
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -30,4 +29,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default connect(null, mapDispatchToProps)(Login)
