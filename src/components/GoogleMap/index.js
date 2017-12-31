@@ -7,7 +7,7 @@ class GoogleMap extends Component {
   componentWillMount() {
     if (typeof window !== 'undefined') {
       const loader = require('scriptjs');
-      loader(`https://maps.googleapis.com/maps/api/js`, () => {
+      loader(`https://maps.googleapis.com/maps/api/js?key=AIzaSyBrUFUbL2fJBsKBjDrdwSepNPpF9t6OZmA`, () => {
         this.initMap()
       })
     }
