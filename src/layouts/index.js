@@ -19,18 +19,24 @@ class TemplateWrapper extends Component {
     super(props)
   }
   render() {
+    console.log(this.props.data)
     return (
       <div>
-        {this.props.show && <div className="dark-overlay"></div>}
+        {this.props.show && <div className="dark-overlay" />}
         <Helmet title="CQ" meta={config.meta} />
         <NavBar />
         <div className="template-wrapper">{this.props.children()}</div>
         <ReactTransitionGroup
-          style={{postion:'absolute'}}
+          style={{ postion: 'absolute' }}
           transitionEnterTimeout={150}
           transitionLeaveTimeout={100}
-          transitionName="login">
-          {this.props.show && <LoginDropdown />}
+          transitionName="login"
+        >
+          {this.props.show && (
+            <LoginDropdown
+              background={this.props.data.resolution.resolutions.src}
+            />
+          )}
         </ReactTransitionGroup>
       </div>
     )
@@ -50,3 +56,13 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TemplateWrapper)
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    resolution: imageSharp(id: { regex: "/skull.jpg/" }) {
+      resolutions(width: 600) {
+        src
+      }
+    }
+  }
+`

@@ -3,9 +3,8 @@ import enhanceWithClickOutside from 'react-click-outside'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as actions from '../../state/actions'
-import './style.scss'
-import backgroundImage from '../../assets/images/skull.jpg'
 import { FaClose } from 'react-icons/lib/fa'
+import './style.scss'
 
 class LoginDropdown extends Component {
   constructor(props) {
@@ -21,11 +20,14 @@ class LoginDropdown extends Component {
       <div className="login-dropdown">
         <div
           className="close-button"
-          onClick={() => {this.props.toggleLogin(false)}}>
+          onClick={() => {
+            this.props.toggleLogin(false)
+          }}
+        >
           <FaClose size={24} />
         </div>
         <div className="crop">
-          <img className="background-image" src={backgroundImage} />
+          <img className="background-image" src={this.props.background} />
         </div>
         <div className="login-panel">
           <input className="username" type="text" placeholder="username" />
