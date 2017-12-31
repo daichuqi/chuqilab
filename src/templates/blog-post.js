@@ -12,7 +12,7 @@ const Template = ({ data, location, pathContext }) => {
   const { prev, next } = pathContext
   const d = getDateString(date)
   return (
-    <div>
+    <div className="blog-post-page template-wrapper">
       <Helmet title={`${title} - My Blog`} />
       <div>
         <div className="blog-detail-header">

@@ -4,7 +4,7 @@ import Login from '../Login'
 import './style.scss'
 
 const NavBar = () => (
-  <div className="nav-component">
+  <div className="nav-component pattern">
     <div className="wrapper">
       <div className="site-name">
         <Link className="site-name-text" to="/">
@@ -12,6 +12,9 @@ const NavBar = () => (
         </Link>
       </div>
       <Login />
+      <Link className="nav-item" to="/about">
+        About
+      </Link>
     </div>
   </div>
 )

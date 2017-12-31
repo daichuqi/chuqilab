@@ -16,6 +16,7 @@ class LoginDropdown extends Component {
   }
 
   render() {
+    const background = 'https://s3-us-west-1.amazonaws.com/chuqi-gatsby/skull.jpg';
     return (
       <div className="login-dropdown">
         <div
@@ -27,7 +28,7 @@ class LoginDropdown extends Component {
           <FaClose size={24} />
         </div>
         <div className="crop">
-          <img className="background-image" src={this.props.background} />
+          <img className="background-image" src={background} />
         </div>
         <div className="login-panel">
           <input className="username" type="text" placeholder="username" />

@@ -1,0 +1,10 @@
+#GoogleMap {
+  height: 400px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+  #GoogleMap {
+    height: 200px;
+  }
+}

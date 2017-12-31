@@ -1,5 +1,5 @@
 ---
-path: "/2017-12-22"
+path: "/2017-12-22-apple-offer"
 date: "2017-12-22T21:57:13.050Z"
 title: "Bye 2017, Hello 2018"
 tags: ['tech']
