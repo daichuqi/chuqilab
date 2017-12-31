@@ -1,15 +1,16 @@
 @media only screen and (max-width: 480px) {
   .site-name {
-      padding: 13px 1rem;
+    padding: 13px 1rem;
   }
   .template-wrapper {
     padding: 0px 1rem 1.45rem;
   }
   .login-dropdown {
-      top: 38%;
-      width: 94%;
-      .crop {
-          margin-bottom: 0;
-      }
+    transition: all 0.2s ease-in-out;
+    top: 40%;
+    width: 72%;
+    .crop {
+      margin-bottom: 0;
+    }
   }
 }

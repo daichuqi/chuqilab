@@ -5,6 +5,16 @@
   padding: 0px 3rem 1.45rem;
   padding-top: 0;
 }
+
+.dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 9998;
+}
 .login-enter {
   opacity: 0.01;
 }

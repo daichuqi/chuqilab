@@ -21,10 +21,12 @@ class TemplateWrapper extends Component {
   render() {
     return (
       <div>
+        {this.props.show && <div className="dark-overlay"></div>}
         <Helmet title="CQ" meta={config.meta} />
         <NavBar />
         <div className="template-wrapper">{this.props.children()}</div>
         <ReactTransitionGroup
+          style={{postion:'absolute'}}
           transitionEnterTimeout={150}
           transitionLeaveTimeout={100}
           transitionName="login">

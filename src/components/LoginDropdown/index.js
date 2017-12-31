@@ -21,7 +21,7 @@ class LoginDropdown extends Component {
       <div className="login-dropdown">
         <div
           className="close-button"
-          onClick={() => { this.props.toggleLogin(false) }}>
+          onClick={() => {this.props.toggleLogin(false)}}>
           <FaClose size={24} />
         </div>
         <div className="crop">

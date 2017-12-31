@@ -1,17 +1,12 @@
 .normal {
+  max-width: 500px;
   width: 100%;
 }
-@media only screen and (min-width: 768px) {
-  .normal {
-    width: 60%;
-  }
-  pre[class*='language-'] {
-    width: 70%;
-  }
-}
-pre[class*="language-"] {
-    border: none;
-    margin-bottom: 1.45rem;
+pre[class*='language-'] {
+  width: 100%;
+  border: none;
+  max-width: 550px;
+  margin-bottom: 1.45rem;
 }
 .quote {
   font-style: italic;

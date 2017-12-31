@@ -11,6 +11,9 @@
     max-width: 960px;
     height: 46px;
     .site-name {
+      @media only screen and (max-width: 480px) {
+        padding: 13px 1rem;
+      }
       .site-name-text {
         text-decoration: none;
         color: rgb(121, 121, 121);
@@ -24,4 +27,3 @@
     }
   }
 }
-

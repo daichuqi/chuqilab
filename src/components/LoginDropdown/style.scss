@@ -1,11 +1,12 @@
+
 .login-dropdown {
   z-index: 9999;
   position: absolute;
   top: 45%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -52%);
   width: 400px;
-  height: 500px;
+  height: 480px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -20,7 +21,7 @@
     }
   }
   .crop {
-    max-height: 300px;
+    max-height: 290px;
     overflow: hidden;
     margin-bottom: 1rem;
   }
