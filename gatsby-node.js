@@ -19,6 +19,8 @@ exports.createPages = ({ boundActionCreators: { createPage }, graphql }) => {
               title
               excerpt
               tags
+              image
+              imagePosition
             }
           }
         }
@@ -35,13 +37,13 @@ exports.createPages = ({ boundActionCreators: { createPage }, graphql }) => {
       const getTime = postDate => new Date(postDate).getTime()
       return getTime(prevPost) - getTime(nextPost)
     }
-    
+
     createPaginatedPages({
       edges: result.data.allMarkdownRemark.edges.sort(sortPost),
       createPage,
       pageTemplate,
       pageLength: 10,
-      pathPrefix: '',
+      pathPrefix: ''
     })
 
     const posts = result.data.allMarkdownRemark.edges
@@ -51,8 +53,8 @@ exports.createPages = ({ boundActionCreators: { createPage }, graphql }) => {
         component: blogPostTemplate,
         context: {
           prev: index === 0 ? null : posts[index - 1].node,
-          next: index === posts.length - 1 ? null : posts[index + 1].node,
-        },
+          next: index === posts.length - 1 ? null : posts[index + 1].node
+        }
       })
     })
   })

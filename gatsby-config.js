@@ -2,7 +2,7 @@ const lost = require(`lost`)
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Gatsby Default Starter`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,30 +15,30 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: "language-",
-            },
-          },
-        ],
-      },
+              classPrefix: 'language-'
+            }
+          }
+        ]
+      }
     },
     {
       resolve: `gatsby-plugin-typography`,
       options: {
-        pathToConfigModule: `src/utils/typography.js`,
-      },
+        pathToConfigModule: `src/utils/typography.js`
+      }
     },
     {
       resolve: `gatsby-plugin-postcss-sass`,
       options: {
-        postCssPlugins: [lost()],
-      },
+        postCssPlugins: [lost()]
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `src`,
-        path: `${__dirname}/src`,
-      },
+        path: `${__dirname}/src`
+      }
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -48,8 +48,8 @@ module.exports = {
         start_url: `/`,
         background_color: `#f7f7f7`,
         theme_color: `#191919`,
-        display: `minimal-ui`,
-      },
-    },
-  ],
+        display: `minimal-ui`
+      }
+    }
+  ]
 }

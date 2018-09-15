@@ -1,22 +1,24 @@
 .blog-title {
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
     color: #333;
-    font-weight: 600;
+    font-weight: 100;
 }
 .blog-header {
-    margin-bottom: 2px;
+    // margin-bottom: 2px;
 }
 
 .blog-item {
     margin: 0 0 30px;
     .blog-date {
-        font-size: 14px;
+        font-size: 12px;
         margin-left: 10px;
         color: #902400;
     }
 }
 
 .blog-excerpt {
-    
+  font-size: 12px;
+    color: #b6b6b6;
+    font-weight: 100;
 }

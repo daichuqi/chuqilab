@@ -1,8 +1,18 @@
+.background-image-container {
+  img {
+    height: 100%;
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+  }
+}
 .blog-post-page {
   margin-top: 20px;
   .normal {
-    max-width: 500px;
+    margin-bottom: 10px;
+    white-space: pre-line;
     width: 100%;
+    max-width: 1200px;
   }
   pre[class*='language-'] {
     width: 100%;

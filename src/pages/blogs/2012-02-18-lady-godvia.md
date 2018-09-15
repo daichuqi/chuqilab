@@ -4,9 +4,9 @@ date: "2012-02-18T08:00:16.904Z"
 title: "Lady Godvia"
 tags: ['painting']
 excerpt: "Godiva, the gift from God."
+image: "https://s3-us-west-1.amazonaws.com/chuqi-gatsby/ladygodvia.jpg"
+imagePosition: '0% 30%'
 ---
-
-<img style="width:600px;" src="https://s3-us-west-1.amazonaws.com/chuqi-gatsby/ladygodvia.jpg"/>
 
 <p class="normal">
   白马披着皇室的华丽红袍，仰首并节奏轻盈地走在巷子里，</br>

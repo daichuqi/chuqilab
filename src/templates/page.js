@@ -15,7 +15,7 @@ const sortPost = (a, b) => {
 }
 
 const IndexPage = ({
-  pathContext: { group, index, pageCount, pathPrefix },
+  pathContext: { group, index, pageCount, pathPrefix }
 }) => {
   const showPrev = index !== 1
   const showNext = index !== pageCount
@@ -24,7 +24,9 @@ const IndexPage = ({
 
   return (
     <div className="blog-pages template-wrapper">
-      {group.map(({ node }) => <BlogItem key={node.id} node={node} />)}
+      {group.map(({ node }) => (
+        <BlogItem key={node.id} node={node} />
+      ))}
       <NavLink show={showPrev} url={previousUrl} text="Prev" />
       <NavLink show={showNext} url={nextUrl} text="Next" />
     </div>

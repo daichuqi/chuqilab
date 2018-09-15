@@ -4,13 +4,15 @@ date: "2017-12-22T21:57:13.050Z"
 title: "Bye 2017, Hello 2018"
 tags: ['tech']
 excerpt: "If you’re offered a seat on a rocket ship, you don’t ask what seat. You just get on."
+image: "https://i1.wp.com/512pixels.net/downloads/macos-wallpapers-thumbs/10-12--thumb.jpg"
 ---
 
-<p class="normal">
-  2017还剩大概一周, 随便写写我今年最重要的一个大事件吧。
-  离职了Symphony Commerce, 面了9轮试, 混进了FLAG圈中的A. 
-  对于工作不到两年的小白, 还是挺开心的. 
-  在此之前每当别人问我是干啥的, 基本上都要这样说: 
+<p class="normal"> 
+  2017还剩大概一周, 记录下我今年最重要的一个大事件吧。
+  离职了Symphony Commerce, 过了9轮面试, API, 算法, 数据库..etc
+  混进了FLAG圈中的A. 对于工作不到两年的小白, 还是挺开心的 🤓
+  以后可以很简单的说: yea I work for Apple.
+  在此之前每当别人问我在哪工作, 基本上都要这样说: 
 </p>
 
 <p class="normal quote">
@@ -19,23 +21,20 @@ excerpt: "If you’re offered a seat on a rocket ship, you don’t ask what seat
 </p>
 
 <p class="normal">
-  记得拿到 offer 之后, 我跟 HR 说让我考虑一下, 
-  后来几经证实 H1B 在生效前没法转, 就很平静的在跟 HR 的电话里拒掉了 offer. 
-  确实啊, H1B 都抽到了, 现公司又待我不薄. 面试 apple 也仅为证明一下实力。
+  另外一个插曲是, Apple 给我发 offer 之前一周我刚好抽中了H1B. 后来几经证实 H1B 在生效前没法转, 
+  就很平静的在跟 HR 的电话里拒绝掉了 offer. HR表示理解和可惜. 
 </p>
 
 <p class="normal">
-  出乎意料的是, 拒掉offer 的当天下午apple的manager私下短信邀请我周六喝茶,
-  聊了很多事情关于carrer path, 关于apple, 最inspiring的一句话是:
+ 至此本以为尘埃落定, 一个陌名短信又让事件360°翻转.
+</p>
+
+<p class="normal">
+  Apple 的 manager私下短信邀请我周六喝茶, 同行来的还有同team的另外一个同事, 
+  85°C, 三个人, 三杯奶茶. 聊了很多事情. 有关于carrer path, 关于Apple,
+  最inspiring的一句话是:
 </p>
 
 <p class="normal quote">
   If you’re offered a seat on a rocket ship, you don’t ask what seat. You just get on.
 </p>
-
-<p class="normal">
-  这段话绝对是公司挖人金句.
-  也够我吹好一阵子牛逼了.LOL
-</p>
-
-<img style="width:400px;"  src="https://images.apple.com/ae/apple-events/september-2017/video/poster_medium.jpg"/>
