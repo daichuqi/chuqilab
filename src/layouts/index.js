@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 import NavBar from '../components/NavBar'
-import LoginDropdown from '../components/LoginDropdown'
 
 import '../styles/libs/prism-darcula.css'
 import '../styles/default.scss'
@@ -31,7 +30,6 @@ class TemplateWrapper extends Component {
           transitionLeaveTimeout={100}
           transitionName="login"
         >
-          {this.props.show && <LoginDropdown />}
         </ReactTransitionGroup>
       </div>
     )

@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import Login from '../Login'
 import './style.scss'
 
 const NavBar = () => (
@@ -11,7 +10,6 @@ const NavBar = () => (
           CQ
         </Link>
       </div>
-      <Login />
       <Link className="nav-item" to="/about">
         About
       </Link>
