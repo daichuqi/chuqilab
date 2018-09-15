@@ -64,8 +64,46 @@ module.exports = {
             src: `/icons/logo-64.png`,
             sizes: `64x64`,
             type: `image/png`
+          },
+          {
+            src: '/icons/logo-32.png',
+            sizes: '32x32',
+            type: 'image/png'
+          },
+          {
+            src: '/icons/logo-16.png',
+            sizes: '16x16',
+            type: 'image/png'
           }
         ]
+      }
+    },
+    `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-favicon',
+      options: {
+        logo: './src/favicon.png',
+        injectHTML: true,
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: false,
+          favicons: true,
+          firefox: true,
+          twitter: false,
+          yandex: false,
+          windows: false
+        }
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-125866345-1',
+        head: false,
+        anonymize: true,
+        respectDNT: true
       }
     }
   ]
