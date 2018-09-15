@@ -1,17 +1,11 @@
 import React, { Component } from 'react'
 import Link from 'gatsby-link'
+
 import BlogItem from '../components/BlogItem'
 import '../styles/blog-pages.scss'
 
 const NavLink = ({ text, url, show }) => {
   return show ? <Link to={url}>{text}</Link> : null
-}
-
-const sortPost = (a, b) => {
-  const prevPost = b.node.frontmatter.date
-  const nextPost = a.node.frontmatter.date
-  const getTime = postDate => new Date(postDate).getTime()
-  return getTime(prevPost) - getTime(nextPost)
 }
 
 const IndexPage = ({

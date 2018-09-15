@@ -5,8 +5,7 @@ const initialState = {
   show: false
 }
 
-const reducer = (state, action) => {
-  const { type, payload } = action
+const reducer = (state, { type, payload }) => {
   switch (type) {
     case actions.TOGGLE_LOGIN:
       return {

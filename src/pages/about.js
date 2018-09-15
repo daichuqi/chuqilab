@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import Link from 'gatsby-link'
 import '../styles/about.scss'
 import GoogleMap from '../components/GoogleMap'
 
-class About extends Component {
+export default class About extends Component {
   render() {
     return (
       <div className="about-page">
@@ -12,5 +11,3 @@ class About extends Component {
     )
   }
 }
-
-export default About

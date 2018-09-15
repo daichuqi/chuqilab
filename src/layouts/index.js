@@ -29,15 +29,14 @@ class TemplateWrapper extends Component {
           transitionEnterTimeout={150}
           transitionLeaveTimeout={100}
           transitionName="login"
-        >
-        </ReactTransitionGroup>
+        />
       </div>
     )
   }
 }
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.func
 }
 
 const mapStateToProps = ({ show }) => {
@@ -48,7 +47,10 @@ const mapDispatchToProps = dispatch => {
   return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TemplateWrapper)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TemplateWrapper)
 
 // export const pageQuery = graphql`
 //   query IndexQuery {

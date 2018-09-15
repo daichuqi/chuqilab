@@ -9,9 +9,9 @@ const typography = new Typography({
     'Segoe UI',
     'Helvetica',
     'Arial',
-    'sans-serif',
+    'sans-serif'
   ],
-  bodyFontFamily: ['PingFang-SC', 'Helvetica'],
+  bodyFontFamily: ['PingFang-SC', 'Helvetica']
 })
 
 export default typography
