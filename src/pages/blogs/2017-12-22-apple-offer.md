@@ -2,7 +2,7 @@
 path: "/2017-12-22-apple-offer"
 date: "2017-12-22T21:57:13.050Z"
 title: "Bye 2017, Hello 2018"
-tags: ['tech']
+tags: ['carrer', 'apple']
 excerpt: "If you’re offered a seat on a rocket ship, you don’t ask what seat. You just get on."
 image: "https://i1.wp.com/512pixels.net/downloads/macos-wallpapers-thumbs/10-12--thumb.jpg"
 ---

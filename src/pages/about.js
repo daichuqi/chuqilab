@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import '../styles/about.scss'
 import GoogleMap from '../components/GoogleMap'
+import '../styles/about.scss'
 
 export default class About extends Component {
   render() {

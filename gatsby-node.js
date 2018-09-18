@@ -20,6 +20,7 @@ exports.createPages = ({ boundActionCreators: { createPage }, graphql }) => {
               excerpt
               tags
               image
+              imageMin
               imagePosition
             }
           }

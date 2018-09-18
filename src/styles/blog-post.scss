@@ -5,9 +5,19 @@
     max-height: 300px;
     object-fit: cover;
   }
+
+  .progressive-image {
+    &.loading {
+      opacity: 0.9;
+      filter: blur(2px) grayscale(30%);
+    }
+    transition: 0.2s -webkit-filter linear;
+    opacity: 1;
+    filter: none;
+  }
 }
 .blog-post-page {
-  margin-top: 20px;
+  margin-bottom: 40px;
   .normal {
     margin-bottom: 10px;
     white-space: pre-line;
@@ -33,7 +43,7 @@
       line-height: 34px;
     }
     .date {
-      font-size: 14px;
+      font-size: 12px;
       margin-top: 5px;
       display: inline-block;
       color: #902400;

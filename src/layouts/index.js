@@ -6,6 +6,7 @@ import Helmet from 'react-helmet'
 
 import NavBar from '../components/NavBar'
 
+import 'antd/dist/antd.css'
 import '../styles/libs/prism-darcula.css'
 import '../styles/default.scss'
 import './style.scss'
