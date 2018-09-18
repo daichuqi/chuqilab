@@ -26,6 +26,7 @@
     "moment-timezone": "^0.5.14",
     "npm": "^5.6.0",
     "react-addons-css-transition-group": "^15.6.2",
+    "react-browser-detection": "^1.2.0",
     "react-click-outside": "^3.0.0",
     "react-easy-swipe": "^0.0.13",
     "react-icons": "^2.2.7",
