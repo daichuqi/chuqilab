@@ -29,11 +29,9 @@ const NextPrevButton = ({ next, prev }) => {
     )
   }
   return (
-    <div style={{ marginTop: 50 }}>
-      {/* <Button.Group size="small"> */}
+    <div style={{ margin: '50px 0 40px', paddingBottom: 1 }}>
       {prevButton}
       {nextButton}
-      {/* </Button.Group> */}
     </div>
   )
 }

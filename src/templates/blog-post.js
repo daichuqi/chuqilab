@@ -2,10 +2,10 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { Divider } from 'antd'
 import moment from 'moment-timezone'
-import ProgressiveImage from 'react-progressive-image'
 
 import getDateString from '../utils/date-string'
 import NextPrevButtons from '../components/NextPrevButtons'
+import HeaderImage from '../components/HeaderImage/'
 import TagsLabel from '../components/Tags/TagsLabel'
 
 import '../styles/blog-post.scss'
@@ -18,26 +18,17 @@ const Template = ({ data, location, pathContext }) => {
   } = post
   const { prev, next } = pathContext
 
-  console.log('imageMin', imageMin)
-
   return (
     <div>
-      <div className="background-image-container">
-        <ProgressiveImage src={image} placeholder={imageMin || image}>
-          {(src, loading) => (
-            <img
-              className={`progressive-image ${loading ? 'loading' : ''}`}
-              style={{ objectPosition: imagePosition }}
-              src={src}
-            />
-          )}
-        </ProgressiveImage>
-      </div>
+      <HeaderImage
+        imagePosition={imagePosition}
+        image={image}
+        imageMin={imageMin}
+      />
       <div className="blog-post-page template-wrapper">
         <Helmet title={`${title} - My Blog`} />
         <div>
           <div className="blog-detail-header">
-            {/* <div className="title">{title}</div> */}
             <Divider orientation="left" className="title">
               {title}
             </Divider>

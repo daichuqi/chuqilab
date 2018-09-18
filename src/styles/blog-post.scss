@@ -1,23 +1,4 @@
-.background-image-container {
-  img {
-    height: 100%;
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-  }
-  .progressive-image {
-    &.loading {
-      opacity: 0.9;
-      filter: blur(2px) grayscale(30%);
-    }
-    transition: 0.2s -webkit-filter linear;
-    opacity: 1;
-    filter: none;
-  }
-}
-
 .blog-post-page {
-  margin-bottom: 40px;
   .normal-article {
     white-space: pre-line;
     max-width: 1200px;
@@ -41,8 +22,9 @@
       font-size: 32px;
       font-weight: bold;
       line-height: 34px;
-      margin-left: -5%;
+      margin-left: -4.5%;
       width: 105%;
+      margin-bottom: 5px;
     }
     .date {
       font-size: 12px;
