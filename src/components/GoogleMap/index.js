@@ -1,37 +1,41 @@
 import React, { Component } from 'react'
-import './style.scss'
+
 // import MapStyles from './map-style.json'
 import MapStylesWhite from './map-style-white.json'
+import './style.scss'
 
-class GoogleMap extends Component {
+const GOOGLE_MAP_API = 'AIzaSyBrUFUbL2fJBsKBjDrdwSepNPpF9t6OZmA'
+const GOOGLE_MAP_URL = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API}`
+
+export default class GoogleMap extends Component {
   componentWillMount() {
     if (typeof window !== 'undefined') {
-      const loader = require('scriptjs');
-      loader(`https://maps.googleapis.com/maps/api/js?key=AIzaSyBrUFUbL2fJBsKBjDrdwSepNPpF9t6OZmA`, () => {
-        this.initMap()
-      })
+      const loader = require('scriptjs')
+      loader(GOOGLE_MAP_URL, () => this.initMap())
     }
   }
 
   initMap() {
-    const myhome = { lat: 37.38, lng: -121.99 }
+    const myhome = { lat: 37.3875665, lng: -121.99419 }
     const map = new google.maps.Map(
       document && document.getElementById('GoogleMap'),
       {
         zoom: 11,
         center: myhome,
         styles: MapStylesWhite,
-        zoomControl: true,
+        zoomControl: false,
         mapTypeControl: false,
         scaleControl: false,
         streetViewControl: false,
         rotateControl: false,
-        fullscreenControl: false,
+        fullscreenControl: false
       }
     )
     const marker = new google.maps.Marker({
       position: myhome,
-      map,
+      icon:
+        'https://s3.amazonaws.com/sneakpeeq-sites/jacklinks/images/marker.png',
+      map
     })
   }
 
@@ -39,5 +43,3 @@ class GoogleMap extends Component {
     return <div id="GoogleMap" className="google-map-component" />
   }
 }
-
-export default GoogleMap

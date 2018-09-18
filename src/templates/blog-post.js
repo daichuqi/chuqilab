@@ -1,10 +1,12 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import NextPrevButtons from '../components/NextPrevButtons'
+import { Divider } from 'antd'
 import moment from 'moment-timezone'
-import getDateString from '../utils/date-string'
-import TagsLabel from '../components/Tags/TagsLabel'
 import ProgressiveImage from 'react-progressive-image'
+
+import getDateString from '../utils/date-string'
+import NextPrevButtons from '../components/NextPrevButtons'
+import TagsLabel from '../components/Tags/TagsLabel'
 
 import '../styles/blog-post.scss'
 
@@ -35,7 +37,10 @@ const Template = ({ data, location, pathContext }) => {
         <Helmet title={`${title} - My Blog`} />
         <div>
           <div className="blog-detail-header">
-            <div className="title">{title}</div>
+            {/* <div className="title">{title}</div> */}
+            <Divider orientation="left" className="title">
+              {title}
+            </Divider>
             <div className="date">{getDateString(date)}</div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: html }} />
