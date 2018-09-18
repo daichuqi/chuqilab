@@ -1,4 +1,5 @@
 .blog-post-page {
+  color: rgba(0, 0, 0, 0.8);
   .normal-article {
     white-space: pre-line;
     max-width: 1200px;
@@ -6,7 +7,6 @@
   .quote {
     font-style: italic;
     padding: 0 20px;
-    color: #333;
   }
   
   pre[class*='language-'] {
@@ -20,7 +20,8 @@
     margin-bottom: 20px;
     .title {
       font-size: 32px;
-      font-weight: bold;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.8);
       line-height: 34px;
       margin-left: -4.5%;
       width: 105%;
