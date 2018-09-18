@@ -1,12 +1,17 @@
 import React from 'react'
 import ProgressiveImage from 'react-progressive-image'
-import BrowserDetection from 'react-browser-detection'
+// import BrowserDetection from 'react-browser-detection'
 
 import './style.scss'
 
 const HeaderImage = ({ imagePosition, image, imageMin }) => (
   <div className="background-image-container">
-    <BrowserDetection>
+    <img
+      className={`progressive-image`}
+      style={{ objectPosition: imagePosition }}
+      src={image}
+    />
+    {/* <BrowserDetection>
       {{
         safari: () => (
           <img
@@ -27,7 +32,7 @@ const HeaderImage = ({ imagePosition, image, imageMin }) => (
           </ProgressiveImage>
         )
       }}
-    </BrowserDetection>
+    </BrowserDetection> */}
   </div>
 )
 
