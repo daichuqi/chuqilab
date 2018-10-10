@@ -1,5 +1,6 @@
 .blog-post-page {
   color: rgba(0, 0, 0, 0.8);
+  color: #ccc; //dark mode
   .normal-article {
     white-space: pre-line;
     max-width: 1200px;
@@ -22,16 +23,16 @@
       font-size: 32px;
       font-weight: 500;
       color: rgba(0, 0, 0, 0.8);
+      color: white; //dark mode
       line-height: 34px;
-      margin-left: -4.5%;
-      width: 105%;
+      width: 100%;
       margin-bottom: 5px;
     }
     .date {
       font-size: 12px;
       margin-top: 0px;
       display: inline-block;
-      color: #902400;
+      color: #ff6e6e; //dark mode
     }
   }
 }

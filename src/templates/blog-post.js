@@ -1,6 +1,5 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Divider } from 'antd'
 import moment from 'moment-timezone'
 
 import getDateString from '../utils/date-string'
@@ -29,9 +28,7 @@ const Template = ({ data, location, pathContext }) => {
         <Helmet title={`${title} - My Blog`} />
         <div>
           <div className="blog-detail-header">
-            <Divider orientation="left" className="title">
-              {title}
-            </Divider>
+            <div className="title">{title}</div>
             <div className="date">{getDateString(date)}</div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: html }} />

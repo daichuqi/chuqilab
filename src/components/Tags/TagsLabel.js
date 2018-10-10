@@ -7,7 +7,14 @@ const TagsLabel = props => {
       <div style={props.style}>
         <span style={{ marginRight: 5 }}>Tags: </span>
         {props.tags.map(tag => (
-          <Tag key={tag} color="magenta">
+          <Tag
+            key={tag}
+            className="dark-tag"
+            style={{
+              color: '#f1f1f1',
+              background: '#555',
+              borderColor: '#7f7f7f'
+            }}>
             {tag}
           </Tag>
         ))}
