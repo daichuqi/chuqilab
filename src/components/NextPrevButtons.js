@@ -1,12 +1,13 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import { Button, Icon } from 'antd'
 
 const NextPrevButton = ({ next, prev }) => {
   let nextButton, prevButton
   if (prev) {
     const {
-      frontmatter: { path: prevPath, title: prevTitle }
+      fields: { slug: prevPath },
+      frontmatter: { title: prevTitle }
     } = prev
     prevButton = (
       <Button type="primary" style={{ float: 'left' }} size="small">
@@ -18,7 +19,8 @@ const NextPrevButton = ({ next, prev }) => {
   }
   if (next) {
     const {
-      frontmatter: { path: nextPath, title: nextTitle }
+      fields: { slug: nextPath },
+      frontmatter: { title: nextTitle }
     } = next
     nextButton = (
       <Button type="primary" style={{ float: 'right' }} size="small">

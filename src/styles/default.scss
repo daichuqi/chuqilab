@@ -45,6 +45,10 @@ html {
   a:hover {
     outline-width: 0;
   }
+  a{
+    box-shadow: none;
+  }
+
   abbr[title] {
     border-bottom: none;
     text-decoration: underline;

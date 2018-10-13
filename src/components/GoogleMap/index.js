@@ -8,7 +8,7 @@ const GOOGLE_MAP_API = 'AIzaSyBrUFUbL2fJBsKBjDrdwSepNPpF9t6OZmA'
 const GOOGLE_MAP_URL = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API}`
 
 export default class GoogleMap extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (typeof window !== 'undefined') {
       const loader = require('scriptjs')
       loader(GOOGLE_MAP_URL, () => this.initMap())
@@ -17,7 +17,7 @@ export default class GoogleMap extends Component {
 
   initMap() {
     const myhome = { lat: 37.3875665, lng: -121.99419 }
-    const map = new google.maps.Map(
+    const map = new window.google.maps.Map(
       document && document.getElementById('GoogleMap'),
       {
         zoom: 11,
@@ -31,7 +31,7 @@ export default class GoogleMap extends Component {
         fullscreenControl: false
       }
     )
-    const marker = new google.maps.Marker({
+    new window.google.maps.Marker({
       position: myhome,
       icon:
         'https://s3.amazonaws.com/sneakpeeq-sites/jacklinks/images/marker.png',
