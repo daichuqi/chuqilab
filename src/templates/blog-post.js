@@ -3,7 +3,6 @@ import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 
-import getDateString from '../utils/date-string'
 import NextPrevButtons from '../components/NextPrevButtons'
 import HeaderImage from '../components/HeaderImage/'
 import TagsLabel from '../components/Tags/TagsLabel'
@@ -46,7 +45,7 @@ class BlogPostTemplate extends React.Component {
             <div>
               <div className="blog-detail-header">
                 <div className="title">{title}</div>
-                <div className="date">{getDateString(date)}</div>
+                <div className="date">{date}</div>
               </div>
               <div
                 className="blog-content"

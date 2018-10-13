@@ -4,7 +4,7 @@ import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 import BlogItem from '../components/BlogItem'
-import '../styles/blog-pages.scss'
+import '../styles/blog-list.scss'
 
 const NavLink = ({ text, url, show }) => {
   return show ? <Link to={url}>{text}</Link> : null
