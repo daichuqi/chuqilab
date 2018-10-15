@@ -54,6 +54,9 @@
     "type": "git",
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
+  "engines": {
+    "yarn": "^1.9.4"
+  },
   "scripts": {
     "heroku-postbuild": "gatsby build",
     "dev": "gatsby develop",
