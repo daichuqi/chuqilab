@@ -55,18 +55,15 @@
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
   "engines": {
-    "yarn": "^1.9.4"
+    "node": "^8.0.0",
+    "yarn": "^1.2.1"
   },
   "scripts": {
-    "heroku-postbuild": "gatsby build",
-    "dev": "gatsby develop",
-    "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
-    "develop": "gatsby develop",
     "build": "gatsby build",
-    "start": "gatsby build && gatsby serve",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+    "heroku-postbuild": "gatsby build",
+    "start": "gatsby serve",
+    "develop": "gatsby develop",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
