@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import './style.scss'
+import './Navbar.scss'
 
 const NavBar = () => (
   <div className="nav-component pattern">
