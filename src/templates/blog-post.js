@@ -1,7 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { graphql } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 import get from 'lodash/get'
+import keydown, { Keys } from 'react-keydown'
 
 import NextPrevButtons from '../components/NextPrevButtons'
 import HeaderImage from '../components/HeaderImage/'
@@ -9,8 +10,29 @@ import TagsLabel from '../components/Tags/TagsLabel'
 import Layout from '../components/layout'
 
 import '../styles/blog-post.scss'
+const { LEFT, RIGHT } = Keys
 
 class BlogPostTemplate extends React.Component {
+  UNSAFE_componentWillReceiveProps({ keydown }) {
+    if (keydown.event) {
+      const { prev, next } = this.props.pageContext
+      const key = keydown.event.which
+      if (prev && key === LEFT) {
+        const {
+          fields: { slug: nextPath }
+        } = prev
+        navigate(nextPath)
+      }
+
+      if (next && key === RIGHT) {
+        const {
+          fields: { slug: prevPath }
+        } = next
+        navigate(prevPath)
+      }
+    }
+  }
+
   render() {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const { prev, next } = this.props.pageContext
@@ -61,7 +83,7 @@ class BlogPostTemplate extends React.Component {
   }
 }
 
-export default BlogPostTemplate
+export default keydown(LEFT, RIGHT)(BlogPostTemplate)
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
