@@ -6,13 +6,14 @@ import '../styles/libs/prism-darcula.css'
 import '../styles/default.scss'
 import '../styles/responsive.scss'
 import '../styles/style.scss'
+import '../styles/birthday.scss'
 
 class Template extends React.Component {
   render() {
     const { children } = this.props
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         {children}
       </div>
     )

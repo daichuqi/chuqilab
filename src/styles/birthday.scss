@@ -1,0 +1,23 @@
+.birthday {
+  margin-top: 60px;
+  font-size: 56px;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #ff274d;
+}
+.lottery-btn:hover{
+  cursor: pointer;
+}
+.subtext {
+  text-align: center;
+  font-size: 12px;
+}
+.pick-up {
+  text-align: center;
+  
+  &:hover{
+    cursor: pointer;
+    color:pink
+  }
+
+}
