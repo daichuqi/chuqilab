@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Navbar from './Navbar'
 
 import 'antd/dist/antd.css'
@@ -8,12 +8,12 @@ import '../styles/responsive.scss'
 import '../styles/style.scss'
 import '../styles/birthday.scss'
 
-class Template extends React.Component {
+class Template extends Component {
   render() {
     const { children } = this.props
     return (
       <div>
-        {/* <Navbar /> */}
+        <Navbar />
         {children}
       </div>
     )
