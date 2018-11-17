@@ -101,12 +101,12 @@ export default class Draw extends Component {
   /* 根据概率计算奖品index */
   calculateRatio() {
     let totalRatio = 0 //总概率
-    data.map(item => {
+    data.forEach(item => {
       totalRatio += item.ratio
     })
 
     let temp = []
-    data.map((item, index) => {
+    data.forEach((item, index) => {
       for (let i = 0; i < Math.round((item.ratio / totalRatio) * 100); i++) {
         temp.push(index)
       }

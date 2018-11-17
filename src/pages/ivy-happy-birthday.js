@@ -39,10 +39,15 @@ export default class Birthdy extends Component {
           }
           title="Basic Modal"
           visible={this.state.visible}>
-          <img src={order} />
+          <img src={order} alt="order" />
         </Modal>
 
-        <div className="birthday">Ivy, Happy Birthday! 🎁</div>
+        <div className="birthday">
+          Ivy, Happy Birthday!
+          <span role="img" aria-label="gift">
+            🎁
+          </span>
+        </div>
         <div className="subtext">请抽取你的26岁生日礼物， 只有一次机会哦!</div>
         <div className="subtext">点击完之后系统会自动记录结果,</div>
         <div className="subtext">多次点击的结果将不会被改变。</div>
@@ -71,7 +76,10 @@ export default class Birthdy extends Component {
                 visible: true
               })
             }>
-            领取礼物 ❤️
+            领取礼物{' '}
+            <span role="img" aria-label="heart">
+              ❤️
+            </span>
           </div>
         ) : null}
       </Layout>

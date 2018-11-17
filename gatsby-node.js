@@ -4,12 +4,14 @@ const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const createPaginatedPages = require('gatsby-paginate')
 const blogListTemplate = './src/templates/blog-list.js'
+const blogPostTemplate = './src/templates/blog-post.js'
+const home = './src/templates/home.js'
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
+    // const blogPost = path.resolve('./src/templates/blog-post.js')
     resolve(
       graphql(
         `
@@ -43,6 +45,11 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
+        createPage({
+          path: '/',
+          component: path.resolve(home)
+        })
+
         const posts = result.data.allMarkdownRemark.edges
         const postsPerPage = 10
         const numPages = Math.ceil(posts.length / postsPerPage)
@@ -51,7 +58,7 @@ exports.createPages = ({ graphql, actions }) => {
         _.each(posts, (post, index) => {
           createPage({
             path: post.node.fields.slug,
-            component: blogPost,
+            component: path.resolve(blogPostTemplate),
             context: {
               slug: post.node.fields.slug,
               prev: index === 0 ? null : posts[index - 1].node,
@@ -62,7 +69,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         _.times(numPages, i => {
           createPage({
-            path: i === 0 ? `/` : `/${i + 1}`,
+            path: i === 0 ? `/page` : `/page/${i + 1}`,
             component: path.resolve(blogListTemplate),
             context: {
               limit: postsPerPage,
