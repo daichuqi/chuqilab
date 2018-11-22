@@ -3,7 +3,6 @@ import { Upload, Icon, message, Button } from 'antd'
 import photoMagician from 'photo-magician'
 import Layout from '../components/layout'
 import notme from '../assets/notme.png'
-import Helmet from 'react-helmet'
 import { isMobile } from 'react-device-detect'
 import '../styles/notme.scss'
 
@@ -31,6 +30,11 @@ export default class Notme extends Component {
       const { url } = info.file.response
       this.setState({ url })
 
+      if (isMobile) {
+        this.setState({ loading: false })
+        return
+      }
+
       const magician = new photoMagician()
       magician
         .addWaterMark({
@@ -51,13 +55,13 @@ export default class Notme extends Component {
   render() {
     return (
       <Layout hide>
-        <Helmet>
+        {/* <Helmet>
           <link
             href="http://allfont.net/allfont.css?fonts=pragmatica"
             rel="stylesheet"
             type="text/css"
           />
-        </Helmet>
+        </Helmet> */}
         <div className="image-viewer">
           <div style={{ fontSize: 40 }}>
             <strong>D</strong>
