@@ -74,7 +74,7 @@ export default class Notme extends Component {
     return (
       <Layout hide>
         <Helmet>
-          <title>D&G's Notme 微信头像生成器v2 | 抵制辱华品牌</title>
+          <title>D&G's Notme | 抵制辱华品牌</title>
         </Helmet>
         <div className="image-viewer">
           <div style={{ fontSize: 40 }}>
