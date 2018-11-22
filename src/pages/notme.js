@@ -13,19 +13,20 @@ function beforeUpload(file) {
   return isLt2M
 }
 
+// function getMeta(url, callback) {
+//   var img = new Image()
+//   img.src = url
+//   img.crossOrigin = 'anonymous'
+//   img.onload = function() {
+//     callback(this.width, this.height)
+//   }
+// }
+
 export default class Notme extends Component {
   state = {
     image: null,
-    waterMarkImage: null
-  }
-  onImageUpload = image => {
-    this.setState({
-      image
-    })
-  }
-
-  onComplete = image => {
-    console.log(image)
+    waterMarkImage: null,
+    url: null
   }
 
   handleChange = info => {
@@ -35,6 +36,8 @@ export default class Notme extends Component {
     }
     if (info.file.status === 'done') {
       const { url } = info.file.response
+      this.setState({ url })
+
       const magician = new photoMagician()
       magician
         .addWaterMark({
@@ -56,6 +59,13 @@ export default class Notme extends Component {
     return (
       <Layout>
         <div className="image-viewer">
+          <div>
+            <strong>D</strong>
+            <span role="img" aria-label="shit">
+              💩
+            </span>
+            <strong>G</strong>
+          </div>
           <Upload
             name="avatar"
             className="avatar-uploader"
@@ -70,6 +80,7 @@ export default class Notme extends Component {
           </Upload>
           {this.state.waterMarkImage && (
             <img
+              crossOrigin="anonymous"
               src={this.state.waterMarkImage}
               className="new-image"
               alt="profile"
