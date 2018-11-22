@@ -79,7 +79,7 @@ export default class Notme extends Component {
         <div className="image-viewer">
           <div style={{ fontSize: 40 }}>
             <strong>D</strong>
-            <span>ied</span>
+            <span>ead</span>
             <span>&</span>
             <strong>G</strong>
             <span>one</span>
