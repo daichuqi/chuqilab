@@ -82,11 +82,12 @@ export default class Notme extends Component {
               onChange={this.handleChange}>
               <Button type="primary" size="large">
                 <Icon type={this.state.loading ? 'loading' : 'upload'} />
-                上传头像
+                Upload Avatar
               </Button>
             </Upload>
             <div style={{ marginTop: 10, fontSize: 12 }}>
-              目前只支持正方形image, 用desktop字体会比较粗 
+              only support square image, create from desktop will get a bolder
+              font.
               <span role="img" aria-label="cry">
                 😹
               </span>
