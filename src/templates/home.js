@@ -13,7 +13,7 @@ export default class Home extends Component {
       <Layout location={this.props.location}>
         <Helmet title="home" />
         <div className="home-container">
-          <div class="main">
+          <div className="main">
             <div className="left-section">
               <div className="about">About</div>
               <div className="text">

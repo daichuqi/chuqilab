@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Upload, Icon, message, Button } from 'antd'
 import photoMagician from 'photo-magician'
+import Layout from '../components/layout'
 import notme from '../assets/notme.png'
 import '../styles/notme.scss'
 
@@ -53,27 +54,29 @@ export default class Notme extends Component {
 
   render() {
     return (
-      <div className="image-viewer">
-        <Upload
-          name="avatar"
-          className="avatar-uploader"
-          showUploadList={false}
-          action="https://polar-cove-32492.herokuapp.com/image"
-          beforeUpload={beforeUpload}
-          onChange={this.handleChange}>
-          <Button type="primary" size="large">
-            <Icon type={this.state.loading ? 'loading' : 'upload'} />
-            上传头像
-          </Button>
-        </Upload>
-        {this.state.waterMarkImage && (
-          <img
-            src={this.state.waterMarkImage}
-            className="new-image"
-            alt="profile"
-          />
-        )}
-      </div>
+      <Layout>
+        <div className="image-viewer">
+          <Upload
+            name="avatar"
+            className="avatar-uploader"
+            showUploadList={false}
+            action="https://polar-cove-32492.herokuapp.com/image"
+            beforeUpload={beforeUpload}
+            onChange={this.handleChange}>
+            <Button type="primary" size="large">
+              <Icon type={this.state.loading ? 'loading' : 'upload'} />
+              上传头像
+            </Button>
+          </Upload>
+          {this.state.waterMarkImage && (
+            <img
+              src={this.state.waterMarkImage}
+              className="new-image"
+              alt="profile"
+            />
+          )}
+        </div>
+      </Layout>
     )
   }
 }
