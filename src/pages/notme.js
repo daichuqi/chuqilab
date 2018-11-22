@@ -108,6 +108,18 @@ export default class Notme extends Component {
             />
           )}
         </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <Icon type="github" style={{ marginRight: 10 }} />
+          Created By Chuqi
+          <a
+            rel="noopener noreferrer"
+            style={{ marginLeft: 5 }}
+            href="https://github.com/daichuqi/chuqilab/blob/master/src/pages/notme.js"
+            target="_blank">
+            Source Code
+          </a>
+        </div>
       </Layout>
     )
   }
