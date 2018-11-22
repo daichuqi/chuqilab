@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Upload, Icon, message, Button, Radio, Avatar } from 'antd'
 import Helmet from 'react-helmet'
-import photoMagician from 'photo-magician'
+// import photoMagician from 'photo-magician'
 import Layout from '../components/layout'
-import notme from '../assets/notme.png'
+// import notme from '../assets/notme.png'
 import { isMobile } from 'react-device-detect'
 import classnames from 'classnames'
 import '../styles/notme.scss'
@@ -53,20 +53,20 @@ export default class Notme extends Component {
         return
       }
 
-      const magician = new photoMagician()
-      magician
-        .addWaterMark({
-          cover: url,
-          mode: 'image',
-          waterMark: notme,
-          width: 1000,
-          height: 1000,
-          opacity: 0.8,
-          coordinate: [0, 100]
-        })
-        .then(waterMarkImage => {
-          this.setState({ waterMarkImage, loading: false })
-        })
+      // const magician = new photoMagician()
+      // magician
+      //   .addWaterMark({
+      //     cover: url,
+      //     mode: 'image',
+      //     waterMark: notme,
+      //     width: 1000,
+      //     height: 1000,
+      //     opacity: 0.8,
+      //     coordinate: [0, 100]
+      //   })
+      //   .then(waterMarkImage => {
+      //     this.setState({ waterMarkImage, loading: false })
+      //   })
     }
   }
 
@@ -74,15 +74,13 @@ export default class Notme extends Component {
     return (
       <Layout hide>
         <Helmet>
-          <title>D&G's Notme 头像生成器 v2 | 抵制辱华品牌</title>
+          <title>D&G's Notme 微信头像生成器v2 | 抵制辱华品牌</title>
         </Helmet>
         <div className="image-viewer">
           <div style={{ fontSize: 40 }}>
             <strong>D</strong>
             <span>ied</span>
-            <span role="img" aria-label="shit">
-              &
-            </span>
+            <span>&</span>
             <strong>G</strong>
             <span>one</span>
           </div>
@@ -105,49 +103,39 @@ export default class Notme extends Component {
 
           <br />
 
-          {isMobile && (
-            <div className="not-me-container">
-              {this.state.option === 1 && (
-                <div className="not-me-text">
-                  <div>Not</div>
-                  <div>Me</div>
-                </div>
-              )}
+          <div className="not-me-container">
+            {this.state.option === 1 && (
+              <div className="not-me-text">
+                <div>Not</div>
+                <div>Me</div>
+              </div>
+            )}
 
-              {this.state.option === 2 && (
-                <div
-                  className={classnames('not-me-box-logo', {
-                    [this.state.position]: true
-                  })}>
-                  Not Me
-                </div>
-              )}
+            {this.state.option === 2 && (
+              <div
+                className={classnames('not-me-box-logo', {
+                  [this.state.position]: true
+                })}>
+                Not Me
+              </div>
+            )}
 
-              <Avatar
-                shape="square"
-                src={this.state.url}
-                size={310}
-                icon="user"
-              />
-              {/* {this.state.url && (
-                <img
-                  crossOrigin="anonymous"
-                  src={this.state.url}
-                  className="new-image"
-                  alt="profile"
-                />
-              )} */}
-            </div>
-          )}
+            <Avatar
+              shape="square"
+              src={this.state.url}
+              size={310}
+              icon="user"
+            />
+          </div>
 
-          {this.state.waterMarkImage && !isMobile && (
+          {/* {this.state.waterMarkImage && !isMobile && (
             <img
               crossOrigin="anonymous"
               src={this.state.waterMarkImage}
               className="new-image"
               alt="profile"
             />
-          )}
+          )} */}
         </div>
 
         <div style={{ margin: '10px 0', textAlign: 'center' }}>
@@ -167,13 +155,6 @@ export default class Notme extends Component {
             </RadioGroup>
           </div>
         )}
-
-        {/* <div style={{ margin: 10, fontSize: 10 }}>
-          only support square image, create from desktop will get a bolder font.
-          <span role="img" aria-label="cry">
-            😹
-          </span>
-        </div> */}
 
         <div style={{ textAlign: 'center', fontSize: 10, marginBottom: 40 }}>
           <Icon type="github" style={{ marginRight: 10 }} />
