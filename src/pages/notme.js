@@ -57,27 +57,32 @@ export default class Notme extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout hide>
         <div className="image-viewer">
-          <div>
+          <div style={{ fontSize: 40 }}>
             <strong>D</strong>
             <span role="img" aria-label="shit">
               💩
             </span>
             <strong>G</strong>
           </div>
-          <Upload
-            name="avatar"
-            className="avatar-uploader"
-            showUploadList={false}
-            action="https://polar-cove-32492.herokuapp.com/image"
-            beforeUpload={beforeUpload}
-            onChange={this.handleChange}>
-            <Button type="primary" size="large">
-              <Icon type={this.state.loading ? 'loading' : 'upload'} />
-              上传头像
-            </Button>
-          </Upload>
+
+          <div style={{ marginBottom: 20 }}>(1985 ~ 2018)</div>
+          <div>
+            <Upload
+              name="avatar"
+              className="avatar-uploader"
+              showUploadList={false}
+              action="https://polar-cove-32492.herokuapp.com/image"
+              beforeUpload={beforeUpload}
+              onChange={this.handleChange}>
+              <Button type="primary" size="large">
+                <Icon type={this.state.loading ? 'loading' : 'upload'} />
+                NOT ME!
+              </Button>
+            </Upload>
+          </div>
+          <br />
           {this.state.waterMarkImage && (
             <img
               crossOrigin="anonymous"

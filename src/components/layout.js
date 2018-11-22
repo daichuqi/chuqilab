@@ -13,7 +13,7 @@ class Template extends Component {
     const { children } = this.props
     return (
       <div>
-        <Navbar />
+        {!this.props.hide && <Navbar />}
         {children}
       </div>
     )
