@@ -1,12 +1,28 @@
 .image-viewer {
-  width: 80%;
+  width: 95%;
   max-width: 800px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 20px;
   text-align: center;
 }
 
 .new-image {
-  margin-top: 20px;
   max-width: 100%;
+}
+.not-me-text {
+  position: absolute;
+  font-family: 'Pragmatica', arial;
+  width: 100%;
+  font-size: 110px;
+  line-height: 120px;
+  margin-top: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  text-align: center;
+  color: rgba(236,12,35,0.8)
+}
+
+.not-me-container {
+  position: relative;
+  padding: 20px 0; 
 }

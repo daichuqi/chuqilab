@@ -3,6 +3,8 @@ import { Upload, Icon, message, Button } from 'antd'
 import photoMagician from 'photo-magician'
 import Layout from '../components/layout'
 import notme from '../assets/notme.png'
+import Helmet from 'react-helmet'
+import { isMobile } from 'react-device-detect'
 import '../styles/notme.scss'
 
 function beforeUpload(file) {
@@ -12,15 +14,6 @@ function beforeUpload(file) {
   }
   return isLt2M
 }
-
-// function getMeta(url, callback) {
-//   var img = new Image()
-//   img.src = url
-//   img.crossOrigin = 'anonymous'
-//   img.onload = function() {
-//     callback(this.width, this.height)
-//   }
-// }
 
 export default class Notme extends Component {
   state = {
@@ -47,7 +40,7 @@ export default class Notme extends Component {
           width: 1000,
           height: 1000,
           opacity: 0.8,
-          coordinate: [0, 0]
+          coordinate: [0, 100]
         })
         .then(waterMarkImage => {
           this.setState({ waterMarkImage, loading: false })
@@ -58,6 +51,13 @@ export default class Notme extends Component {
   render() {
     return (
       <Layout hide>
+        <Helmet>
+          <link
+            href="http://allfont.net/allfont.css?fonts=pragmatica"
+            rel="stylesheet"
+            type="text/css"
+          />
+        </Helmet>
         <div className="image-viewer">
           <div style={{ fontSize: 40 }}>
             <strong>D</strong>
@@ -83,15 +83,23 @@ export default class Notme extends Component {
             </Upload>
           </div>
           <br />
-          {this.state.url && (
-            <img
-              crossOrigin="anonymous"
-              src={this.state.url}
-              className="new-image"
-              alt="profile"
-            />
+
+          {this.state.url && isMobile && (
+            <div className="not-me-container">
+              <div className="not-me-text">
+                <div>Not</div>
+                <div>Me</div>
+              </div>
+              <img
+                crossOrigin="anonymous"
+                src={this.state.url}
+                className="new-image"
+                alt="profile"
+              />
+            </div>
           )}
-          {this.state.waterMarkImage && (
+
+          {this.state.waterMarkImage && !isMobile && (
             <img
               crossOrigin="anonymous"
               src={this.state.waterMarkImage}
