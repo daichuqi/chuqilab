@@ -82,9 +82,15 @@ export default class Notme extends Component {
               onChange={this.handleChange}>
               <Button type="primary" size="large">
                 <Icon type={this.state.loading ? 'loading' : 'upload'} />
-                NOT ME!
+                上传头像
               </Button>
             </Upload>
+            <div style={{ marginTop: 10, fontSize: 12 }}>
+              目前只支持正方形image, 用desktop字体会比较粗 
+              <span role="img" aria-label="cry">
+                😹
+              </span>
+            </div>
           </div>
           <br />
 
@@ -113,7 +119,7 @@ export default class Notme extends Component {
           )}
         </div>
 
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', fontSize: 12 }}>
           <Icon type="github" style={{ marginRight: 10 }} />
           Created By Chuqi
           <a
