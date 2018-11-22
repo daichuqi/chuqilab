@@ -83,6 +83,14 @@ export default class Notme extends Component {
             </Upload>
           </div>
           <br />
+          {this.state.url && (
+            <img
+              crossOrigin="anonymous"
+              src={this.state.url}
+              className="new-image"
+              alt="profile"
+            />
+          )}
           {this.state.waterMarkImage && (
             <img
               crossOrigin="anonymous"
