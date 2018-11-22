@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { Upload, Icon, message, Button } from 'antd'
+import { Upload, Icon, message, Button, Radio, Avatar } from 'antd'
+import Helmet from 'react-helmet'
 import photoMagician from 'photo-magician'
 import Layout from '../components/layout'
 import notme from '../assets/notme.png'
 import { isMobile } from 'react-device-detect'
+import classnames from 'classnames'
 import '../styles/notme.scss'
 
+const RadioButton = Radio.Button
+const RadioGroup = Radio.Group
 function beforeUpload(file) {
   const isLt2M = file.size / 1024 / 1024 < 2
   if (!isLt2M) {
@@ -18,7 +22,21 @@ export default class Notme extends Component {
   state = {
     image: null,
     waterMarkImage: null,
-    url: null
+    url: null,
+    option: 1,
+    position: 'br'
+  }
+
+  onChange = e => {
+    this.setState({
+      option: e.target.value
+    })
+  }
+
+  onPosChange = e => {
+    this.setState({
+      position: e.target.value
+    })
   }
 
   handleChange = info => {
@@ -55,23 +73,21 @@ export default class Notme extends Component {
   render() {
     return (
       <Layout hide>
-        {/* <Helmet>
-          <link
-            href="http://allfont.net/allfont.css?fonts=pragmatica"
-            rel="stylesheet"
-            type="text/css"
-          />
-        </Helmet> */}
+        <Helmet>
+          <title>伟大的D&G's</title>
+        </Helmet>
         <div className="image-viewer">
           <div style={{ fontSize: 40 }}>
             <strong>D</strong>
+            <span>ied</span>
             <span role="img" aria-label="shit">
-              💩
+              &
             </span>
             <strong>G</strong>
+            <span>one</span>
           </div>
 
-          <div style={{ marginBottom: 20 }}>(1985 ~ 2018)</div>
+          <div style={{ marginBottom: 30 }}>(1985 ~ 2018)</div>
           <div>
             <Upload
               name="avatar"
@@ -85,28 +101,42 @@ export default class Notme extends Component {
                 Upload Avatar
               </Button>
             </Upload>
-            <div style={{ marginTop: 10, fontSize: 12 }}>
-              only support square image, create from desktop will get a bolder
-              font.
-              <span role="img" aria-label="cry">
-                😹
-              </span>
-            </div>
           </div>
+
           <br />
 
-          {this.state.url && isMobile && (
+          {isMobile && (
             <div className="not-me-container">
-              <div className="not-me-text">
-                <div>Not</div>
-                <div>Me</div>
-              </div>
-              <img
-                crossOrigin="anonymous"
+              {this.state.option === 1 && (
+                <div className="not-me-text">
+                  <div>Not</div>
+                  <div>Me</div>
+                </div>
+              )}
+
+              {this.state.option === 2 && (
+                <div
+                  className={classnames('not-me-box-logo', {
+                    [this.state.position]: true
+                  })}>
+                  Not Me
+                </div>
+              )}
+
+              <Avatar
+                shape="square"
                 src={this.state.url}
-                className="new-image"
-                alt="profile"
+                size={310}
+                icon="user"
               />
+              {/* {this.state.url && (
+                <img
+                  crossOrigin="anonymous"
+                  src={this.state.url}
+                  className="new-image"
+                  alt="profile"
+                />
+              )} */}
             </div>
           )}
 
@@ -120,9 +150,34 @@ export default class Notme extends Component {
           )}
         </div>
 
-        <div style={{ textAlign: 'center', fontSize: 12 }}>
+        <div style={{ margin: '10px 0', textAlign: 'center' }}>
+          <RadioGroup onChange={this.onChange} defaultValue="1">
+            <RadioButton value={1}>Text Overlay</RadioButton>
+            <RadioButton value={2}>Logo Box</RadioButton>
+          </RadioGroup>
+        </div>
+
+        {this.state.option === 2 && (
+          <div style={{ margin: '10px 0', textAlign: 'center' }}>
+            <RadioGroup onChange={this.onPosChange}>
+              <RadioButton value="ur">UR</RadioButton>
+              <RadioButton value="br">BR</RadioButton>
+              <RadioButton value="bl">BL</RadioButton>
+              <RadioButton value="ul">UL</RadioButton>
+            </RadioGroup>
+          </div>
+        )}
+
+        {/* <div style={{ margin: 10, fontSize: 10 }}>
+          only support square image, create from desktop will get a bolder font.
+          <span role="img" aria-label="cry">
+            😹
+          </span>
+        </div> */}
+
+        <div style={{ textAlign: 'center', fontSize: 10, marginBottom: 40 }}>
           <Icon type="github" style={{ marginRight: 10 }} />
-          Created By Chuqi
+          Created By Richie
           <a
             rel="noopener noreferrer"
             style={{ marginLeft: 5 }}
