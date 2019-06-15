@@ -62,6 +62,7 @@
     "yarn": "^1.16.0"
   },
   "scripts": {
+    "build": "gatsby build",
     "heroku-postbuild": "gatsby build",
     "start": "gatsby serve",
     "dev": "gatsby develop",
