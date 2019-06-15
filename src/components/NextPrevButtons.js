@@ -4,11 +4,13 @@ import { Button, Icon } from 'antd'
 
 const NextPrevButton = ({ next, prev }) => {
   let nextButton, prevButton
+
   if (prev) {
     const {
       fields: { slug: prevPath },
       frontmatter: { title: prevTitle }
     } = prev
+
     prevButton = (
       <Button type="primary" style={{ float: 'left' }} size="small">
         <Link to={prevPath}>
@@ -22,6 +24,7 @@ const NextPrevButton = ({ next, prev }) => {
       fields: { slug: nextPath },
       frontmatter: { title: nextTitle }
     } = next
+
     nextButton = (
       <Button type="primary" style={{ float: 'right' }} size="small">
         <Link to={nextPath}>

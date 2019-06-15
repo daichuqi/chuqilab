@@ -3,6 +3,7 @@ const Promise = require('bluebird')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const createPaginatedPages = require('gatsby-paginate')
+
 const blogListTemplate = './src/templates/blog-list.js'
 const blogPostTemplate = './src/templates/blog-post.js'
 const home = './src/templates/home.js'
@@ -41,14 +42,10 @@ exports.createPages = ({ graphql, actions }) => {
         `
       ).then(result => {
         if (result.errors) {
-          console.log(result.errors)
           reject(result.errors)
         }
 
-        createPage({
-          path: '/',
-          component: path.resolve(home)
-        })
+        createPage({ path: '/', component: path.resolve(home) })
 
         const posts = result.data.allMarkdownRemark.edges
         const postsPerPage = 10

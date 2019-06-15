@@ -8,16 +8,13 @@ import '../styles/responsive.scss'
 import '../styles/style.scss'
 import '../styles/birthday.scss'
 
-class Template extends Component {
+export default class Layout extends Component {
   render() {
-    const { children } = this.props
     return (
       <div>
         {!this.props.hide && <Navbar />}
-        {children}
+        {this.props.children}
       </div>
     )
   }
 }
-
-export default Template
