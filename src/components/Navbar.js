@@ -10,9 +10,9 @@ const NavBar = () => (
           CHUQI
         </Link>
       </div>
-      {/* <Link className="nav-item" to="/page">
+      <Link className="nav-item" to="/page">
         Blog
-      </Link> */}
+      </Link>
     </div>
   </div>
 )
