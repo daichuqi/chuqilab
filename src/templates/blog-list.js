@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
+
 import Layout from '../components/layout'
 import BlogItem from '../components/BlogItem'
 import '../styles/blog-list.scss'
 
-const NavLink = ({ text, url, show }) => {
-  return show ? <Link to={url}>{text}</Link> : null
-}
+const NavLink = ({ text, url, show }) =>
+  show ? <Link to={url}>{text}</Link> : null
 
-class BlogIndex extends React.Component {
+export default class BlogList extends Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteDescription = get(
@@ -43,8 +43,6 @@ class BlogIndex extends React.Component {
     )
   }
 }
-
-export default BlogIndex
 
 export const pageQuery = graphql`
   query blogPageQuery($skip: Int!, $limit: Int!) {

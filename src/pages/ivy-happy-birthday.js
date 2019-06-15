@@ -1,28 +1,20 @@
 import React, { Component } from 'react'
 import { Modal, Icon, Spin } from 'antd'
+
 import Layout from '../components/layout'
 import Draw from '../components/Draw/Draw'
 import order from '../assets/order-new.png'
+
 export default class Birthdy extends Component {
   state = {
     visible: false,
     status: 'hide'
   }
 
-  handleOk = () => {
-    this.setState({
-      visible: false
-    })
-  }
-
   done = () => {
-    this.setState({
-      status: 'order'
-    })
+    this.setState({ status: 'order' })
     setTimeout(() => {
-      this.setState({
-        status: 'show'
-      })
+      this.setState({ status: 'show' })
     }, 20000)
   }
 
@@ -32,11 +24,7 @@ export default class Birthdy extends Component {
         <Modal
           closable
           footer={null}
-          onCancel={() =>
-            this.setState({
-              visible: false
-            })
-          }
+          onCancel={() => this.setState({ visible: false })}
           title="Basic Modal"
           visible={this.state.visible}>
           <img src={order} alt="order" />
@@ -71,11 +59,7 @@ export default class Birthdy extends Component {
         {this.state.status === 'show' ? (
           <div
             className="pick-up"
-            onClick={() =>
-              this.setState({
-                visible: true
-              })
-            }>
+            onClick={() => this.setState({ visible: true })}>
             领取礼物{' '}
             <span role="img" aria-label="heart">
               ❤️

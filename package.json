@@ -58,8 +58,8 @@
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
   "engines": {
-    "node": "^10.13.0",
-    "yarn": "^1.9.4"
+    "node": "^10.16.0",
+    "yarn": "^1.16.0"
   },
   "scripts": {
     "build": "gatsby build",
