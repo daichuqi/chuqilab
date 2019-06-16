@@ -48,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
         createPage({ path: '/', component: path.resolve(home) })
 
         const posts = result.data.allMarkdownRemark.edges
-        const postsPerPage = 10
+        const postsPerPage = 3
         const numPages = Math.ceil(posts.length / postsPerPage)
 
         // Create blog posts pages.

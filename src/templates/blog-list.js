@@ -7,16 +7,12 @@ import Layout from '../components/Layout'
 import BlogItem from '../components/BlogItem'
 import '../styles/blog-list.scss'
 
-const NavLink = ({ text, url, show }) =>
-  show ? <Link to={url}>{text}</Link> : null
+const NavLink = ({ text, pageCount, show, style}) => {
+  return show && <Link style={style} to={`/page/${pageCount}`}>{text}</Link>
+}
 
 export default class BlogList extends Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const siteDescription = get(
-      this,
-      'props.data.site.siteMetadata.description'
-    )
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
     const { currentPage, numPages } = this.props.pageContext
     const isFirst = currentPage === 1
@@ -26,18 +22,13 @@ export default class BlogList extends Component {
 
     return (
       <Layout location={this.props.location}>
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          meta={[{ name: 'description', content: siteDescription }]}
-          title={siteTitle}
-        />
+        <Helmet title={`Page ${currentPage} | Blog`} />
         <div className="template-wrapper blog-pages">
-          {posts.map(({ node }) => (
-            <BlogItem key={node.id} node={node} />
-          ))}
+          
+          {posts.map(({ node }) => <BlogItem key={node.id} node={node} />)}
 
-          <NavLink show={!isFirst} url={prevPage} text="Prev" />
-          <NavLink show={!isLast} url={nextPage} text="Next" />
+          <NavLink show={!isFirst} pageCount={prevPage} text="Prev" style={{float: 'left'}} />
+          <NavLink show={!isLast} pageCount={nextPage} text="Next" style={{float: 'right'}} />
         </div>
       </Layout>
     )

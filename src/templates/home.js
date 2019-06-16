@@ -11,7 +11,7 @@ export default class Home extends Component {
   render() {
     return (
       <Layout location={this.props.location}>
-        <Helmet title="home" />
+        <Helmet title="Home | Chuqi" />
         <div className="home-container">
           <div className="main">
             <div className="left-section">
