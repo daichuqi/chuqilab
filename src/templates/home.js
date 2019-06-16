@@ -17,7 +17,10 @@ export default class Home extends Component {
             <div className="left-section">
               <div className="about">About</div>
               <div className="text">
-                Richie is a dreamer living in Zürich, Switzerland🇨🇭
+                Richie is a dreamer living in Zürich, Switzerland
+                <span role="img" aria-label="flag">
+                  🇨🇭
+                </span>
               </div>
               <div className="text">
                 He is currently work for <Icon type="apple" theme="filled" /> in

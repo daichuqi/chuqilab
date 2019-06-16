@@ -5,8 +5,8 @@ import './style.scss'
 const BlogItem = ({
   node: {
     fields: { slug },
-    frontmatter: { excerpt, title, date }
-  }
+    frontmatter: { excerpt, title, date },
+  },
 }) => (
   <div className="blog-item">
     <div className="blog-header">

@@ -20,14 +20,14 @@ class BlogPost extends Component {
       const key = keydown.event.which
       if (prev && key === LEFT) {
         const {
-          fields: { slug: nextPath }
+          fields: { slug: nextPath },
         } = prev
         navigate(nextPath)
       }
 
       if (next && key === RIGHT) {
         const {
-          fields: { slug: prevPath }
+          fields: { slug: prevPath },
         } = next
         navigate(prevPath)
       }
@@ -45,9 +45,9 @@ class BlogPost extends Component {
         imageMin,
         excerpt,
         imagePosition,
-        tags
+        tags,
       },
-      html
+      html,
     } = this.props.data.markdownRemark
 
     return (

@@ -2,7 +2,7 @@ import { createStore as reduxCreateStore } from 'redux'
 import * as actions from './actions'
 
 const initialState = {
-  show: false
+  show: false,
 }
 
 const reducer = (state, { type, payload }) => {
@@ -10,7 +10,7 @@ const reducer = (state, { type, payload }) => {
     case actions.TOGGLE_LOGIN:
       return {
         ...state,
-        show: payload
+        show: payload,
       }
     default:
       return state

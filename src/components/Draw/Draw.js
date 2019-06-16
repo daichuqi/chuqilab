@@ -10,7 +10,7 @@ let data = [
   { label: 'Amazon $10', ratio: 0 },
   { label: 'Watch Series 4', ratio: 1 },
   { label: 'Movie Ticket', ratio: 0 },
-  { label: '谢谢参与', ratio: 0 }
+  { label: '谢谢参与', ratio: 0 },
 ]
 
 export default class Draw extends Component {
