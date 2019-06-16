@@ -5,8 +5,6 @@ import { MIDI_MAP, UPDATE_INTERVAL, TOTAL_NOTES } from './configs'
 import Machine from './machine'
 import BufferLoader from './bufferLoader'
 
-import './monkeyPatch'
-
 import './style.scss'
 
 export default class Baroque extends Component {
@@ -124,12 +122,21 @@ export default class Baroque extends Component {
 
     source.buffer = buffer
     // Create a gain node.
-    var gainNode = this.audioContext.createGain()
-    source.connect(gainNode)
-    gainNode.connect(this.audioContext.destination)
-    // Set volume
-    gainNode.gain.value = volPm
-    source.start()
+    if (this.audioContext.createGain) {
+      var gainNode = this.audioContext.createGain()
+      source.connect(gainNode)
+      gainNode.connect(this.audioContext.destination)
+      // Set volume
+      gainNode.gain.value = volPm
+      source.start()
+    } else {
+      var gainNode = this.audioContext.createGainNode()
+      source.connect(gainNode)
+      gainNode.connect(this.audioContext.destination)
+      // Set volume
+      gainNode.gain.value = volPm
+      source.noteOn()
+    }
   }
 
   rsize = () => {
