@@ -1,12 +1,16 @@
-import { MATH_PI } from './configs'
+/**
+ * @fileoverview This file contains the Wheel class.
+ * @author Alexander Chen alex@chenalexander.com
+ * @version 0.1
+ */
+
 /**
  * Builds a new Wheel.
  * @class This is the Wheel class.
  * @constructor
  * @param
  */
-var Wheel = function(xpPm, ypPm, indPm, cvPm, suite) {
-  this.suite = suite
+var Wheel = function(xpPm, ypPm, indPm, cvPm) {
   // my index number (0 or 1)
   this.ind = indPm
   // set my center position
@@ -28,7 +32,7 @@ var Wheel = function(xpPm, ypPm, indPm, cvPm, suite) {
  */
 Wheel.prototype.init = function() {
   // link to main
-  this.m = this.suite.machine
+  this.m = suite.machine
 }
 
 /**
@@ -57,5 +61,3 @@ Wheel.prototype.redraw = function() {
 Wheel.prototype.setRot = function(r) {
   this.rot = r
 }
-
-export default Wheel

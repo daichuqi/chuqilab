@@ -1,4 +1,96 @@
-var SONG_DATA_ARRAY = [
+export const WHEEL_RADIUS = 172
+
+// How often to run our update function? In milliseconds. so 33 would be around 30 frames per second.
+// var UPDATE_INTERVAL = 33;
+export const UPDATE_INTERVAL = 33
+
+// How often to run our load update interval? (Not needed as often, just a timer.)
+export const LOAD_UPDATE_INTERVAL = 80
+// How many total notes/pitches do we have? Make sure this matches the compiled sound SWF.
+export const TOTAL_NOTES = 38
+// Initial tempo (beats per minute) and beats per second.
+export const BPM_NORM = 145
+// Mininum mouse speed in pixels per millisecond.
+export const MOUSE_SPEED_MIN = 70
+// Maximum mouse speed in pixels per millisecond.
+export const MOUSE_SPEED_MAX = 1500
+// The mouse will grab a thread if the average speed ratio is below this threshold.
+export const MOUSE_SPEED_RATIO_GRAB = 0.4
+// Number of measurements to consider when calculating average mouse speed.
+export const MOUSE_AVERAGE_COUNT = 5
+// Number of threads. Make this 8 to match the Bach musical grouping.
+export const TOTAL_THREADS = 8
+// How many total notes are in the song
+
+// Subdivision of notes for each thread. 1 = Quarter notes, 2 = eighth, etc.
+export const NOTE_UNIT = 2
+// The value to multiply a length of string to move up one half-step, by Pythagorean scale.
+export const HALF_STEP_MULTIPLIER = 0.943874312681769
+// Maximum length for a thread, assigned to the lowest note.
+export const MAX_LENGTH = 590
+// Shortest length for the highest note, figured out mathematically.
+export const MIN_LENGTH =
+  MAX_LENGTH * Math.pow(HALF_STEP_MULTIPLIER, TOTAL_NOTES - 1)
+// Store PI as global constant.
+export const MATH_PI = Math.PI
+// Show framerate for testing?
+export const SHOW_FRAMERATE = false
+// Initialize mouse position on the page (Not constant)
+export const mouseX = 0,
+  mouseY = 0
+
+// Below what speed (px/frame) can a nub grab a thread instead of plucking it.
+// Set this speed below the normal rate that nubs are traveling during a song
+// to help performance.
+export const SPD_GRAB = 4
+// What speed (px/frame) do we ignore plucks.
+// Helps when song loops, as dots skip impossible distance.
+// Also helps when dragging very quickly over all strings, will ignore some
+export const SPD_IGNORE_MAX = 80
+
+// Mapping of MIDI notes from SONG_DATA_ARRAY into our musical note scale
+export const MIDI_MAP = {
+  // Numerical keys.
+  '36': 0,
+  '37': 1,
+  '38': 2,
+  '39': 3,
+  '40': 4,
+  '41': 5,
+  '42': 6,
+  '43': 7,
+  '44': 8,
+  '45': 9,
+  '46': 10,
+  '47': 11,
+  '48': 12,
+  '49': 13,
+  '50': 14,
+  '51': 15,
+  '52': 16,
+  '53': 17,
+  '54': 18,
+  '55': 19,
+  '56': 20,
+  '57': 21,
+  '58': 22,
+  '59': 23,
+  '60': 24,
+  '61': 25,
+  '62': 26,
+  '63': 27,
+  '64': 28,
+  '65': 29,
+  '66': 30,
+  '67': 31,
+  '68': 32,
+  '69': 33,
+  '70': 34,
+  '71': 35,
+  '72': 36,
+}
+
+export const SONG_DATA_ARRAY = [
   43,
   50,
   59,
@@ -702,5 +794,7 @@ var SONG_DATA_ARRAY = [
   -1,
   -1,
   -1,
-  -1
+  -1,
 ]
+
+export const TOTAL_NOTES_IN_SONG = SONG_DATA_ARRAY.length

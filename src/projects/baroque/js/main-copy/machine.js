@@ -1,29 +1,9 @@
-import Point from './Point'
-import Thread from './Thread'
-import Wheel from './Wheel'
-import Nub from './Nub'
-
-import {
-  MAX_LENGTH,
-  MOUSE_SPEED_MIN,
-  MOUSE_SPEED_MAX,
-  BPM_NORM,
-  TOTAL_NOTES,
-  HALF_STEP_MULTIPLIER,
-  SONG_DATA_ARRAY,
-  WHEEL_RADIUS,
-  SHOW_FRAMERATE,
-  NOTE_UNIT,
-  MATH_PI,
-  SPD_IGNORE_MAX,
-  TOTAL_THREADS,
-} from './configs'
-
 /**
  * Define constants.
  */
 
 // Set radius of wheel and other constants.
+var WHEEL_RADIUS = 172
 var WHEEL_RADIUS_SQUARED = Math.pow(WHEEL_RADIUS, 2)
 var WHEEL_CIRCUMFERENCE = Math.PI * WHEEL_RADIUS_SQUARED
 // Length of a line segment drawn through quarter arc of circle.
@@ -51,8 +31,7 @@ var FPS_BACKGROUND = 2
  * @constructor
  * @param {object} cvPm the Canvas context to draw in.
  */
-var Machine = function(cvPm, suite) {
-  this.suite = suite
+var Machine = function(cvPm) {
   // store my canvas
   this.cv = cvPm
   // stores whether mouse is moving
@@ -151,49 +130,45 @@ Machine.prototype.build = function() {
   // go through all threads and draw them
   for (var i = 0; i < TOTAL_THREADS; i++) {
     // Store the starting pitch for the threads
-    this.arrPitchStart[i] = this.suite.arrMidiMap[SONG_DATA_ARRAY[i]]
+    this.arrPitchStart[i] = suite.arrMidiMap[SONG_DATA_ARRAY[i]]
     hex = '#FFFFFF'
     str = 3
     var pitch = -1
-    var thr = new Thread(yp, pitch, str, hex, i, this.cv, this.suite)
+    var thr = new Thread(yp, pitch, str, hex, i, this.cv)
     yp -= dy
     this.arrThreads.push(thr)
   }
   // Build wheels - x, y, index, canvas
-  this.wheel0 = new Wheel(WHEEL_RADIUS, 0, 0, this.cv, this.suite)
-  this.wheel1 = new Wheel(-WHEEL_RADIUS, 0, 1, this.cv, this.suite)
+  this.wheel0 = new Wheel(WHEEL_RADIUS, 0, 0, this.cv)
+  this.wheel1 = new Wheel(-WHEEL_RADIUS, 0, 1, this.cv)
   // Build nubs for them
   this.arrNubs[0] = this.wheel0.nub0 = new Nub(
     0,
     0,
-    this.suite.machine,
+    suite.machine,
     this.wheel0,
-    this.cv,
-    this.suite
+    this.cv
   )
   this.arrNubs[1] = this.wheel0.nub1 = new Nub(
     1,
     1,
-    this.suite.machine,
+    suite.machine,
     this.wheel0,
-    this.cv,
-    this.suite
+    this.cv
   )
   this.arrNubs[2] = this.wheel1.nub0 = new Nub(
     0,
     2,
-    this.suite.machine,
+    suite.machine,
     this.wheel1,
-    this.cv,
-    this.suite
+    this.cv
   )
   this.arrNubs[3] = this.wheel1.nub1 = new Nub(
     1,
     3,
-    this.suite.machine,
+    suite.machine,
     this.wheel1,
-    this.cv,
-    this.suite
+    this.cv
   )
   // composite mode
   this.cv.globalCompositeOperation = 'lighter'
@@ -250,10 +225,10 @@ Machine.prototype.setGroup = function(n) {
     var note = SONG_DATA_ARRAY[this.indGroup + i]
     // is it a rest?
     if (note == -1) {
-      pitch = -1
+      this.pitch = -1
     } else {
       // what pitch do we want to make it?
-      pitch = suite.arrMidiMap[note]
+      this.pitch = suite.arrMidiMap[note]
     }
     this.arrThreads[i].setTargetPitch(pitch)
   }
@@ -508,8 +483,8 @@ Machine.prototype.updateAndRedrawThreads = function() {
 Machine.prototype.updLoading = function() {
   var str
   // are we loading audio?
-  if (!this.suite.soundReady) {
-    var perc = Math.round((this.suite.indNoteLd / TOTAL_NOTES) * 100)
+  if (!suite.soundReady) {
+    var perc = Math.round((suite.indNoteLd / TOTAL_NOTES) * 100)
     //str = "Loading sound ("+ perc + "%)";
     if (SHOW_FRAMERATE) {
       //this.elmLoader.innerHTML += "<span class=\"loading\">" + str + "</span>";
@@ -607,7 +582,7 @@ Machine.prototype.incrLoad = function() {
       if (pitchTarg < 0) pitchTarg = 0
       // Make sure it's not higher than what we want
       if (pitchTarg > pitchStart) pitchTarg = pitchStart
-      if (this.suite.indNoteLd > 0 && this.suite.indNoteLd - 1 >= pitchTarg) {
+      if (suite.indNoteLd > 0 && suite.indNoteLd - 1 >= pitchTarg) {
         thr.setTargetPitch(pitchTarg)
         break
       }
@@ -620,7 +595,7 @@ Machine.prototype.incrLoad = function() {
   // If all threads are in place, and sound is loaded, we now begin.
   if (
     this.threadsInPlace &&
-    this.suite.soundReady &&
+    suite.soundReady &&
     this.rLoad >= 1 &&
     !this.isIntroDone
   ) {
@@ -779,8 +754,8 @@ Machine.prototype.checkBoxLimit = function(x, y) {
 Machine.prototype.rsize = function() {
   this.wasResized = true
   // make the canvas objects match window size
-  this.width = this.suite.canvasEl.width = window.innerWidth
-  this.height = this.suite.canvasEl.height = window.innerHeight
+  this.width = suite.canvasEl.width = window.innerWidth
+  this.height = suite.canvasEl.height = window.innerHeight
   // move the loader box
   this.elmLoader.style.left = '20px'
   this.elmLoader.style.top = this.height - 28 + 'px'
@@ -796,5 +771,3 @@ Machine.prototype.setOrigin = function() {
   this.xo = Math.round(this.width / 2)
   this.yo = Math.round(this.height / 2)
 }
-
-export default Machine

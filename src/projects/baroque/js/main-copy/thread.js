@@ -1,6 +1,8 @@
-import Point from './Point'
-import { hex2rgb, lerp, lim, sign } from './utils'
-import { MIN_LENGTH, MAX_LENGTH, TOTAL_NOTES } from './configs'
+/**
+ * @fileoverview This file contains the Thread class.
+ * @author Alexander Chen alex@chenalexander.com
+ * @version 0.1
+ */
 
 /**
  * Defines a range for the distance that we can pull long threads
@@ -65,8 +67,7 @@ var PAN_RIGHT = 0.3
  * @constructor
  * @param {number} ypPm Description
  */
-var Thread = function(ypPm, pitchPm, strPm, hexPm, indPm, cvPm, suite) {
-  this.suite = suite
+var Thread = function(ypPm, pitchPm, strPm, hexPm, indPm, cvPm) {
   // Initialize point objects.
   this.pt0 = new Point(0, 0)
   this.pt1 = new Point(0, 0)
@@ -167,7 +168,7 @@ var Thread = function(ypPm, pitchPm, strPm, hexPm, indPm, cvPm, suite) {
  */
 Thread.prototype.init = function() {
   // link to main machine class
-  this.m = this.suite.machine
+  this.m = suite.machine
   // update my position to initialize
   this.updPos()
 }
@@ -475,8 +476,8 @@ Thread.prototype.pluck = function(xp, yp, isNub, car) {
   this.xgi = this.xg = xp
   this.ygi = this.yg = yp
   // user's current mouse position
-  var xu = this.suite.getUserX()
-  var yu = this.suite.getUserY()
+  var xu = this.m.getUserX()
+  var yu = this.m.getUserY()
   // how far away is it from the line
   var dxu = xu - this.xp0
   var dyu = yu - this.yp0
@@ -620,11 +621,9 @@ Thread.prototype.playNote = function(rVol, rPan) {
   var pre = this.pitchInd < 10 ? '0' : ''
   // make sure sound has been loaded
   // if (!suite.soundReady) return;
-  this.suite.playSound(
+  suite.playSound(
     this.pitchInd,
     VOLUME_MIN + rVol * (VOLUME_MAX - VOLUME_MIN),
     PAN_LEFT + rPan * (PAN_RIGHT - PAN_LEFT)
   )
 }
-
-export default Thread

@@ -1,7 +1,8 @@
-import Point from './Point'
-
-import { WHEEL_RADIUS, MATH_PI, SPD_IGNORE_MAX, SPD_GRAB } from './configs'
-import { lineIntersect, lerp } from './utils'
+/**
+ * @fileoverview This file contains the Nub class.
+ * @author Alexander Chen alex@chenalexander.com
+ * @version 0.1
+ */
 
 /**
  * Constants definition.
@@ -68,8 +69,7 @@ var THROW_SPD_MIN = 6
  * @constructor
  * @param
  */
-var Nub = function(indPm, indAllPm, machinePm, wheelPm, cvPm, suite) {
-  this.suite = suite
+var Nub = function(indPm, indAllPm, machinePm, wheelPm, cvPm) {
   // Store my actual current and previous position.
   this.xp0
   this.yp0
@@ -504,8 +504,8 @@ Nub.prototype.unfollow = function(nubSource, vx, vy, damp) {
  */
 Nub.prototype.checkMouseOver = function() {
   // If mouse is already rolled over another nub, don't bother.
-  var dx = this.suite.getUserX() - this.xp1
-  var dy = this.suite.getUserY() - this.yp1
+  var dx = this.machine.getUserX() - this.xp1
+  var dy = this.machine.getUserY() - this.yp1
   var distSq = dx * dx + dy * dy
   return distSq < ROLLOVER_RAD_SQ
 }
@@ -606,5 +606,3 @@ Nub.prototype.setPos = function(x, y) {
   this.xp1 = x
   this.yp1 = y
 }
-
-export default Nub
