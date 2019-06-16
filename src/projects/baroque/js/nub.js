@@ -14,59 +14,59 @@ import { lineIntersect, lerp } from './utils'
  */
 
 // Radius to draw circle.
-var RAD_NORM = 6
+const RAD_NORM = 6
 // Radius of circle when user is rolled over
-var RAD_OVER = 15
+const RAD_OVER = 15
 // My radius while grabbed
-var RAD_GRAB = 10
+const RAD_GRAB = 10
 // radius easing ratio 0 to 1
-var RAD_EASE = 0.4
+const RAD_EASE = 0.4
 // Ease towards orbit when grabbed
-var EASE_ORBIT_GRAB = 0.2
+const EASE_ORBIT_GRAB = 0.2
 // Ease towards new orbit when follower
-var EASE_ORBIT_FOLLOW = 0.02
+const EASE_ORBIT_FOLLOW = 0.02
 // Ease towards orbit when released, going back to wheel
-var EASE_ORBIT_RESTORE = 0.02
+const EASE_ORBIT_RESTORE = 0.02
 // Ease towards new orbit center when grabbed
-var EASE_CENTER_GRAB = 0.3
+const EASE_CENTER_GRAB = 0.3
 // Ease center position when released, going back to wheel
-var EASE_CENTER_RESTORE = 0.015
+const EASE_CENTER_RESTORE = 0.015
 // Ease towards new orbit center when following
-var EASE_CENTER_FOLLOW_MIN = 0.04
-var EASE_CENTER_FOLLOW_MAX = 0.01
+const EASE_CENTER_FOLLOW_MIN = 0.04
+const EASE_CENTER_FOLLOW_MAX = 0.01
 // Ease towards new orbit size and position while a loader
-var EASE_ORBIT_LOADER = 0.003
-var EASE_CENTER_LOADER = 0.03
+const EASE_ORBIT_LOADER = 0.003
+const EASE_CENTER_LOADER = 0.03
 //
-var EASE_ORBIT_EXIT_LOADER = 0.1 // Make it go back really fast
-var EASE_CENTER_EXIT_LOADER = 0.1 // Make it go back really fast
+const EASE_ORBIT_EXIT_LOADER = 0.1 // Make it go back really fast
+const EASE_CENTER_EXIT_LOADER = 0.1 // Make it go back really fast
 
 // Trail start and end opacity
-var TRAIL_OPAC_MIN = 0.04
-var TRAIL_OPAC_MAX = 0.5
+const TRAIL_OPAC_MIN = 0.04
+const TRAIL_OPAC_MAX = 0.5
 // At what point along the trail (0 to 1) do we start fading back out
-var TRAIL_FADEOUT = 0.6
+const TRAIL_FADEOUT = 0.6
 // How many past points to store for trail?
-var TRAIL_PTS = 24
+const TRAIL_PTS = 24
 // Sample rate for trails (don't need to update every frame)
-var TRAIL_SAMPLE = 4
+const TRAIL_SAMPLE = 4
 // Radius of how close user needs to be to rollover a nub
 // Make this squared, so we don't have to do sqrt for distance.
 // e.g. For distance radius of 10, set this to 100.
-var ROLLOVER_RAD_SQ = 3500
+const ROLLOVER_RAD_SQ = 3500
 // How many strings can we pluck in one frame
-var PLUCK_FRAME_MAX = 2
+const PLUCK_FRAME_MAX = 2
 // Orbit when I am a follower
-var ORBIT_FOLLOW_MIN = WHEEL_RADIUS * 0.3
-var ORBIT_FOLLOW_MAX = WHEEL_RADIUS * 0.5
+const ORBIT_FOLLOW_MIN = WHEEL_RADIUS * 0.3
+const ORBIT_FOLLOW_MAX = WHEEL_RADIUS * 0.5
 // Orbit if I am the preloader nub
-var ORBIT_LOADER = 35
+const ORBIT_LOADER = 35
 // Orbit when I am being dragged
-var ORBIT_GRAB = 15
+const ORBIT_GRAB = 15
 // Cap speed after user releases. Give it max speed so it can't fly off
 // Also give minimum so it has a little delay when released
-var THROW_SPD_MAX = 23
-var THROW_SPD_MIN = 6
+const THROW_SPD_MAX = 23
+const THROW_SPD_MIN = 6
 
 /**
  * Builds a new Nub.
@@ -585,7 +585,7 @@ Nub.prototype.redraw = function() {
         (rat - TRAIL_FADEOUT) / (1 - TRAIL_FADEOUT)
       )
     }
-    this.cv.strokeStyle = 'rgba(255,255,255,' + opac + ')'
+    this.cv.strokeStyle = `rgba(255,255,255, ${opac})`
     this.cv.moveTo(this.m.xo + xh0, this.m.yo + yh0)
     this.cv.quadraticCurveTo(
       this.m.xo + x1,

@@ -131,13 +131,6 @@ export default class Machine {
     )
   }
 
-  /**
-   * Done loading.
-   */
-  doneLoading = () => {
-    this.elmLoader.style.display = 'none'
-  }
-
   setTempo = t => {
     this.bpm = t
     this.bps = t / 60
@@ -550,14 +543,6 @@ export default class Machine {
       this.ybMax - this.ybMin + CLEAR_RECT_MARG * 2
     )
 
-    // this.cv.fillStyle = 'rgba(255,255,255,0.3)'
-    // this.cv.fillRect(
-    //   this.xo + this.xbMin - CLEAR_RECT_MARG,
-    //   this.yo + this.ybMin - CLEAR_RECT_MARG,
-    //   this.xbMax - this.xbMin + CLEAR_RECT_MARG * 2,
-    //   this.ybMax - this.ybMin + CLEAR_RECT_MARG * 2
-    // )
-    // this.updThreads()
     this.updateAndRedrawThreads()
     this.redrawNubs()
   }
@@ -614,16 +599,12 @@ export default class Machine {
    * Goes through all Threads and updates and redraws them
    */
   updWheels = () => {
-    // set left wheel rotation
-    var rot
-    //
     this.wheel0.setRot(
       (MATH_PI * (0.25 + ((this.beatSong % 16) / 16) * 2)) % (2 * MATH_PI)
     )
     this.wheel1.setRot(
       (MATH_PI * (0.25 - ((this.beatSong % 16) / 16) * 2)) % (2 * MATH_PI)
     )
-    //
     this.wheel0.upd()
     this.wheel1.upd()
   }
@@ -654,7 +635,7 @@ export default class Machine {
       lenCurr *= HALF_STEP_MULTIPLIER
     }
 
-    var len, str, hex, pitch
+    let str, hex, pitch
     // vertical distance between threads
     var dy = WHEEL_QUARTER_SEG / TOTAL_THREADS
     var yp = (TOTAL_THREADS / 2) * dy - 0.5 * dy
@@ -665,7 +646,7 @@ export default class Machine {
       this.arrPitchStart[i] = this.suite.arrMidiMap[SONG_DATA_ARRAY[i]]
       hex = '#FFFFFF'
       str = 3
-      var pitch = -1
+      pitch = -1
       var thr = new Thread(yp, pitch, str, hex, i, this.cv, this.suite)
       yp -= dy
       this.arrThreads.push(thr)

@@ -110,7 +110,7 @@ export default class Baroque extends Component {
     this.arrBuffers = bufferListPm
     this.soundAvailable = true
     this.soundReady = true
-    this.everythingIsReady()
+    this.setState({ ready: true })
   }
 
   /**
@@ -122,21 +122,12 @@ export default class Baroque extends Component {
 
     source.buffer = buffer
     // Create a gain node.
-    if (this.audioContext.createGain) {
-      var gainNode = this.audioContext.createGain()
-      source.connect(gainNode)
-      gainNode.connect(this.audioContext.destination)
-      // Set volume
-      gainNode.gain.value = volPm
-      source.start()
-    } else {
-      var gainNode = this.audioContext.createGainNode()
-      source.connect(gainNode)
-      gainNode.connect(this.audioContext.destination)
-      // Set volume
-      gainNode.gain.value = volPm
-      source.noteOn()
-    }
+    var gainNode = this.audioContext.createGain()
+    source.connect(gainNode)
+    gainNode.connect(this.audioContext.destination)
+    // Set volume
+    gainNode.gain.value = volPm
+    source.start()
   }
 
   rsize = () => {
@@ -147,13 +138,7 @@ export default class Baroque extends Component {
     }
   }
 
-  everythingIsReady = () => {
-    this.machine.doneLoading()
-    this.setState({ ready: true })
-  }
-
   render() {
-    var perc = Math.round((this.state.progress / TOTAL_NOTES) * 100)
     return (
       <div id="baroque">
         {!this.state.start && (
@@ -163,7 +148,7 @@ export default class Baroque extends Component {
                 strokeWidth={32}
                 showInfo={false}
                 strokeColor="rgb(162, 26, 26)"
-                percent={perc}
+                percent={Math.round((this.state.progress / TOTAL_NOTES) * 100)}
               />
 
               <div
