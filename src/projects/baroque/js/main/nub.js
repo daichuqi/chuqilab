@@ -1,6 +1,12 @@
 import Point from './Point'
 
-import { WHEEL_RADIUS, MATH_PI, SPD_IGNORE_MAX, SPD_GRAB } from './configs'
+import {
+  WHEEL_RADIUS,
+  MATH_PI,
+  SPD_IGNORE_MAX,
+  SPD_GRAB,
+  NUBS,
+} from './configs'
 import { lineIntersect, lerp } from './utils'
 
 /**
@@ -68,8 +74,7 @@ var THROW_SPD_MIN = 6
  * @constructor
  * @param
  */
-var Nub = function(indPm, indAllPm, machinePm, wheelPm, cvPm, suite) {
-  this.suite = suite
+var Nub = function(indPm, indAllPm, machinePm, wheelPm, cvPm) {
   // Store my actual current and previous position.
   this.xp0
   this.yp0
@@ -236,11 +241,11 @@ Nub.prototype.updPos = function() {
     // If user is holding a nub
     if (this.machine.isHoldingNub) {
       // Ease towards user position.
-      this.xpOrbitTarg = this.machine.getUserX()
-      this.ypOrbitTarg = this.machine.getUserY()
+      this.xpOrbitTarg = this.m.getUserX()
+      this.ypOrbitTarg = this.m.getUserY()
     } else if (this.isMouseOver) {
-      this.xpOrbitTarg = this.machine.getUserX()
-      this.ypOrbitTarg = this.machine.getUserY()
+      this.xpOrbitTarg = this.m.getUserX()
+      this.ypOrbitTarg = this.m.getUserY()
       // Else user is not holding a nub,  use wheel anchor positions as target
     } else if (!this.isLoading) {
       // Target position for orbit
@@ -504,8 +509,8 @@ Nub.prototype.unfollow = function(nubSource, vx, vy, damp) {
  */
 Nub.prototype.checkMouseOver = function() {
   // If mouse is already rolled over another nub, don't bother.
-  var dx = this.suite.getUserX() - this.xp1
-  var dy = this.suite.getUserY() - this.yp1
+  var dx = this.m.getUserX() - this.xp1
+  var dy = this.m.getUserY() - this.yp1
   var distSq = dx * dx + dy * dy
   return distSq < ROLLOVER_RAD_SQ
 }

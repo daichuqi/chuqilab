@@ -1,17 +1,11 @@
 import React, { Component } from 'react'
 import { MIDI_MAP, UPDATE_INTERVAL, TOTAL_NOTES } from './configs'
-import Machine from './machine2'
+import Machine from './machine'
 import BufferLoader from './BufferLoader'
 
 import './style.css'
 
 export default class Baroque extends Component {
-  mouseX
-  mouseY
-
-  getUserX = xo => this.mouseX - xo
-  getUserY = yo => this.mouseY - yo
-
   componentDidMount = () => {
     this.ready = false
     this.initMidiMap()
@@ -30,15 +24,6 @@ export default class Baroque extends Component {
     }
 
     window.addEventListener('resize', this.rsize, false)
-
-    document.addEventListener(
-      'mousemove',
-      e => {
-        this.mouseX = e.pageX
-        this.mouseY = e.pageY
-      },
-      false
-    )
 
     document.addEventListener(
       'mousedown',
@@ -83,7 +68,7 @@ export default class Baroque extends Component {
     this.arrBuffers = new Array(TOTAL_NOTES)
     // Create array of URL's
     this.arrUrl = new Array(TOTAL_NOTES)
-    var midiValue, pre
+    var pre
     for (var i = 0; i < TOTAL_NOTES; i++) {
       if (i < 10) pre = '0'
       else pre = ''
@@ -106,7 +91,6 @@ export default class Baroque extends Component {
     this.soundAvailable = true
     this.soundReady = true
     this.everythingIsReady()
-    //suite.machine.setGroup(0);
   }
 
   /**

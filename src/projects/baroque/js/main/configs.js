@@ -1,5 +1,8 @@
 export const WHEEL_RADIUS = 172
 
+// How many total nubs in the machine.
+export const NUBS = 4
+
 // How often to run our update function? In milliseconds. so 33 would be around 30 frames per second.
 // var UPDATE_INTERVAL = 33;
 export const UPDATE_INTERVAL = 33
