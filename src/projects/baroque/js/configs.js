@@ -5,7 +5,7 @@ export const NUBS = 4
 
 // How often to run our update function? In milliseconds. so 33 would be around 30 frames per second.
 // var UPDATE_INTERVAL = 33;
-export const UPDATE_INTERVAL = 33
+export const UPDATE_INTERVAL = 28
 
 // How often to run our load update interval? (Not needed as often, just a timer.)
 export const LOAD_UPDATE_INTERVAL = 80

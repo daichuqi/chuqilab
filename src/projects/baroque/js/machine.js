@@ -135,8 +135,7 @@ export default class Machine {
    * Done loading.
    */
   doneLoading = () => {
-    // hide the "loading audio text"
-    if (!SHOW_FRAMERATE) this.elmLoader.style.display = 'none'
+    this.elmLoader.style.display = 'none'
   }
 
   setTempo = t => {
@@ -191,11 +190,11 @@ export default class Machine {
     // are we loading audio?
     if (!this.suite.soundReady) {
       var perc = Math.round((this.suite.indNoteLd / TOTAL_NOTES) * 100)
-      //str = "Loading sound ("+ perc + "%)";
+      str = 'Loading sound (' + perc + '%)'
       if (SHOW_FRAMERATE) {
-        //this.elmLoader.innerHTML += "<span class=\"loading\">" + str + "</span>";
+        this.elmLoader.innerHTML += '<span class="loading">' + str + '</span>'
       } else {
-        //this.elmLoader.innerHTML = "<span class=\"loading\">" + str + "</span>";
+        this.elmLoader.innerHTML = '<span class="loading">' + str + '</span>'
       }
     }
     // How much time since we last updated the load animation?

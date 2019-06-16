@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
+import { Progress } from 'antd'
+
 import { MIDI_MAP, UPDATE_INTERVAL, TOTAL_NOTES } from './configs'
 import Machine from './machine'
 import BufferLoader from './bufferLoader'
 
-import './style.css'
+import './style.scss'
 
 export default class Baroque extends Component {
+  state = {
+    progress: 0,
+    start: false,
+  }
   componentDidMount = () => {
-    this.ready = false
     this.initMidiMap()
 
     // Create Web Audio Context, future proofed for future browsers
@@ -17,8 +22,9 @@ export default class Baroque extends Component {
       window.mozAudioContext ||
       window.oAudioContext ||
       window.msAudioContext
+
     if (contextClass) {
-      this.context = new contextClass()
+      this.audioContext = new contextClass()
     } else {
       // Web Audio API not available. Ask user to use a supported browser.
     }
@@ -52,9 +58,35 @@ export default class Baroque extends Component {
     this.elmLoader = this.refs.loader
     this.canvasObj = this.canvasEl.getContext('2d')
     this.machine = new Machine(this.canvasObj, this, this.elmLoader)
-    this.indNoteLd = 0
     // invoke resize listener once now
+
+    // Load in the audio files.
+    // Create array of audio buffers
+    this.arrBuffers = Array(TOTAL_NOTES)
+    this.arrUrl = Array(TOTAL_NOTES)
+      .fill(null)
+      .map((v, i) => {
+        if (i < 10) i = `0${i}`
+        return `https://s3-us-west-2.amazonaws.com/baroque.me/harp_${i}.mp3`
+      })
+
+    this.indNoteLd = 0
+    const bufferLoader = new BufferLoader(
+      this.audioContext,
+      this.arrUrl,
+      this.finishedLoading,
+      () => {
+        this.indNoteLd++
+        this.setState({ progress: this.state.progress + 1 })
+      }
+    )
+    bufferLoader.load()
+  }
+
+  begin = () => {
+    this.setState({ start: true })
     this.rsize()
+
     // Build our machine.
     this.machine.build()
     this.machine.beginLoading()
@@ -62,27 +94,15 @@ export default class Baroque extends Component {
     setInterval(() => {
       this.machine.upd()
     }, UPDATE_INTERVAL)
+  }
 
-    // Load in the audio files.
-    // Create array of audio buffers
-    this.arrBuffers = new Array(TOTAL_NOTES)
-    // Create array of URL's
-    this.arrUrl = new Array(TOTAL_NOTES)
-    var pre
-    for (var i = 0; i < TOTAL_NOTES; i++) {
-      if (i < 10) pre = '0'
-      else pre = ''
-      this.arrUrl[i] = `audio/harp_${pre}${i}.mp3`
+  initMidiMap = () => {
+    this.arrMidiMap = new Array()
+    var n
+    for (let key in MIDI_MAP) {
+      n = parseInt(key)
+      this.arrMidiMap[n] = MIDI_MAP[key]
     }
-    const bufferLoader = new BufferLoader(
-      this.context,
-      this.arrUrl,
-      this.finishedLoading,
-      () => {
-        this.indNoteLd++
-      }
-    )
-    bufferLoader.load()
   }
 
   // what to do when we're done loading sounds
@@ -97,14 +117,14 @@ export default class Baroque extends Component {
    * Play note with given pitch, volume, pan.
    */
   playSound = (pitchPm, volPm, panPm) => {
-    var n = pitchPm
-    var buffer = this.arrBuffers[n]
-    var source = this.context.createBufferSource()
+    var buffer = this.arrBuffers[pitchPm]
+    var source = this.audioContext.createBufferSource()
+
     source.buffer = buffer
     // Create a gain node.
-    var gainNode = this.context.createGain()
+    var gainNode = this.audioContext.createGain()
     source.connect(gainNode)
-    gainNode.connect(this.context.destination)
+    gainNode.connect(this.audioContext.destination)
     // Set volume
     gainNode.gain.value = volPm
     source.start()
@@ -118,33 +138,39 @@ export default class Baroque extends Component {
     }
   }
 
-  initMidiMap = () => {
-    this.arrMidiMap = new Array()
-    var n
-    for (let key in MIDI_MAP) {
-      n = parseInt(key)
-      this.arrMidiMap[n] = MIDI_MAP[key]
-    }
-  }
-
-  /**
-   * Start the process once everything's loaded.
-   */
   everythingIsReady = () => {
-    if (this.ready) {
-      return
-    }
-    this.ready = true
-    // Tell machine it's ready.
     this.machine.doneLoading()
+    this.setState({ ready: true })
   }
 
   render() {
+    var perc = Math.round((this.state.progress / TOTAL_NOTES) * 100)
     return (
       <div id="baroque">
-        <div id="main-layer">
-          <canvas id="canvas" ref="canvas"></canvas>
-        </div>
+        {!this.state.start && (
+          <div className="center-loading">
+            <div className="button-wrapper">
+              <Progress
+                strokeWidth={32}
+                showInfo={false}
+                strokeColor="rgb(162, 26, 26)"
+                percent={perc}
+              />
+
+              <div
+                className="start-button"
+                onClick={() => {
+                  if (this.state.ready) {
+                    this.begin()
+                  }
+                }}
+              >
+                {this.state.ready ? 'Play' : 'Loading...'}
+              </div>
+            </div>
+          </div>
+        )}
+        <canvas id="canvas" ref="canvas"></canvas>
         <div id="loader" ref="loader"></div>
         <div id="framerate"></div>
       </div>

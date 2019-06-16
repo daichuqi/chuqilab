@@ -40,7 +40,6 @@ BufferLoader.prototype.loadFile = function(indPm) {
 
   // Decode asynchronously
   request.onload = function() {
-    console.log('hello')
     // when it's done
     context.decodeAudioData(
       request.response,
