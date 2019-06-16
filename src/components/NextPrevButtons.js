@@ -8,7 +8,7 @@ const NextPrevButton = ({ next, prev }) => {
   if (prev) {
     const {
       fields: { slug: prevPath },
-      frontmatter: { title: prevTitle },
+      frontmatter: { title: prevTitle }
     } = prev
 
     prevButton = (
@@ -20,7 +20,7 @@ const NextPrevButton = ({ next, prev }) => {
   if (next) {
     const {
       fields: { slug: nextPath },
-      frontmatter: { title: nextTitle },
+      frontmatter: { title: nextTitle }
     } = next
 
     nextButton = (

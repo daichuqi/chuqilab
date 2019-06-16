@@ -8,7 +8,7 @@ import order from '../assets/order-new.png'
 export default class Birthdy extends Component {
   state = {
     visible: false,
-    status: 'hide',
+    status: 'hide'
   }
 
   done = () => {

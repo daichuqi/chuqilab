@@ -7,9 +7,12 @@ import Layout from '../components/Layout'
 import BlogItem from '../components/BlogItem'
 import '../styles/blog-list.scss'
 
-const NavLink = ({ text, pageCount, show, style}) => {
-  return show && <Link style={style} to={`/page/${pageCount}`}>{text}</Link>
-}
+const NavLink = ({ text, pageCount, show, style }) =>
+  show && (
+    <Link style={style} to={`/page/${pageCount}`}>
+      {text}
+    </Link>
+  )
 
 export default class BlogList extends Component {
   render() {
@@ -24,11 +27,22 @@ export default class BlogList extends Component {
       <Layout location={this.props.location}>
         <Helmet title={`Page ${currentPage} | Blog`} />
         <div className="template-wrapper blog-pages">
-          
-          {posts.map(({ node }) => <BlogItem key={node.id} node={node} />)}
+          {posts.map(({ node }) => (
+            <BlogItem key={node.id} node={node} />
+          ))}
 
-          <NavLink show={!isFirst} pageCount={prevPage} text="Prev" style={{float: 'left'}} />
-          <NavLink show={!isLast} pageCount={nextPage} text="Next" style={{float: 'right'}} />
+          <NavLink
+            show={!isFirst}
+            pageCount={prevPage}
+            text="Prev"
+            style={{ float: 'left' }}
+          />
+          <NavLink
+            show={!isLast}
+            pageCount={nextPage}
+            text="Next"
+            style={{ float: 'right' }}
+          />
         </div>
       </Layout>
     )

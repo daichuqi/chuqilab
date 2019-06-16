@@ -13,18 +13,21 @@ import '../styles/blog-post.scss'
 const { LEFT, RIGHT } = Keys
 
 class BlogPost extends Component {
-
   UNSAFE_componentWillReceiveProps({ keydown }) {
     if (keydown.event) {
       const { prev, next } = this.props.pageContext
       const key = keydown.event.which
       if (prev && key === LEFT) {
-        const { fields: { slug: nextPath }} = prev
+        const {
+          fields: { slug: nextPath }
+        } = prev
         navigate(nextPath)
       }
 
       if (next && key === RIGHT) {
-        const { fields: { slug: prevPath }} = next
+        const {
+          fields: { slug: prevPath }
+        } = next
         navigate(prevPath)
       }
     }
@@ -33,38 +36,32 @@ class BlogPost extends Component {
   render() {
     const { prev, next } = this.props.pageContext
     const {
-      frontmatter: {
-        title,
-        date,
-        image,
-        imageMin,
-        imagePosition,
-        tags,
-      },
-      html,
+      frontmatter: { title, date, image, imageMin, imagePosition, tags },
+      html
     } = this.props.data.markdownRemark
 
     return (
       <Layout location={this.props.location}>
         <Helmet title={`${title} | Blog`} />
-          <HeaderImage
-            imagePosition={imagePosition}
-            image={image}
-            imageMin={imageMin}
-          />
-          <div className="blog-post-page template-wrapper">
-              <div className="blog-detail-header">
-                <div className="title">{title}</div>
-                <div className="date">{date}</div>
-              </div>
-
-              <div 
-                className="blog-content" 
-                dangerouslySetInnerHTML={{ __html: html }}/>
-
-              <TagsLabel tags={tags} style={{ marginTop: 30 }} />
-              <NextPrevButtons prev={prev} next={next} />
+        <HeaderImage
+          imagePosition={imagePosition}
+          image={image}
+          imageMin={imageMin}
+        />
+        <div className="blog-post-page template-wrapper">
+          <div className="blog-detail-header">
+            <div className="title">{title}</div>
+            <div className="date">{date}</div>
           </div>
+
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+
+          <TagsLabel tags={tags} style={{ marginTop: 30 }} />
+          <NextPrevButtons prev={prev} next={next} />
+        </div>
       </Layout>
     )
   }
