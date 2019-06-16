@@ -127,7 +127,11 @@ export default class Baroque extends Component {
     gainNode.connect(this.audioContext.destination)
     // Set volume
     gainNode.gain.value = volPm
-    source.start()
+    if (source.start) {
+      source.start()
+    } else {
+      source.noteOn()
+    }
   }
 
   rsize = () => {
