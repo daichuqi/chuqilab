@@ -1,6 +1,6 @@
-import Point from './Point'
-import Thread from './Thread'
-import Wheel from './Wheel'
+import Point from './point'
+import Thread from './thread'
+import Wheel from './wheel'
 import Nub from './nub'
 
 import {
@@ -672,8 +672,8 @@ export default class Machine {
       this.arrThreads.push(thr)
     }
     // Build wheels - x, y, index, canvas
-    this.wheel0 = new Wheel(WHEEL_RADIUS, 0, 0, this.cv, this.suite)
-    this.wheel1 = new Wheel(-WHEEL_RADIUS, 0, 1, this.cv, this.suite)
+    this.wheel0 = new Wheel(WHEEL_RADIUS, 0, 0, this.cv)
+    this.wheel1 = new Wheel(-WHEEL_RADIUS, 0, 1, this.cv)
     // Build nubs for them
     this.arrNubs[0] = this.wheel0.nub0 = new Nub(
       0,

@@ -1,4 +1,4 @@
-import Point from './Point'
+import Point from './point'
 
 export const hex2rgb = hex => {
   // Remove the '#' char - if there is one.

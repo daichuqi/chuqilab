@@ -1,4 +1,4 @@
-import Point from './Point'
+import Point from './point'
 import { hex2rgb, lerp, lim, sign } from './utils'
 import { MIN_LENGTH, MAX_LENGTH, TOTAL_NOTES } from './configs'
 

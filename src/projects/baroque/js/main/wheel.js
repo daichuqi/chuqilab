@@ -1,8 +1,7 @@
 import { MATH_PI } from './configs'
 
 export default class Wheel {
-  constructor(xpPm, ypPm, indPm, cvPm, suite) {
-    this.suite = suite
+  constructor(xpPm, ypPm, indPm, cvPm) {
     // my index number (0 or 1)
     this.ind = indPm
     // set my center position
@@ -16,10 +15,6 @@ export default class Wheel {
     this.cv = cvPm
 
     this.init()
-  }
-
-  init = () => {
-    this.m = this.suite.machine
   }
 
   upd = () => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { MIDI_MAP, UPDATE_INTERVAL, TOTAL_NOTES } from './configs'
 import Machine from './machine'
-import BufferLoader from './BufferLoader'
+import BufferLoader from './bufferLoader'
 
 import './style.css'
 
