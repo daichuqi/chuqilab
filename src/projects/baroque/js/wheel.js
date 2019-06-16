@@ -13,8 +13,6 @@ export default class Wheel {
     var sgn = this.ind == 0 ? 1 : -1
     this.rotSpd = sgn * 0.035
     this.cv = cvPm
-
-    this.init()
   }
 
   upd = () => {
