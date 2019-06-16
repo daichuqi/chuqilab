@@ -12,11 +12,9 @@ const NextPrevButton = ({ next, prev }) => {
     } = prev
 
     prevButton = (
-      <Button type="primary" style={{ float: 'left' }} size="small">
-        <Link to={prevPath}>
+        <Link to={prevPath} style={{ float: 'left' }}>
           <Icon type="caret-left" /> {prevTitle}
         </Link>
-      </Button>
     )
   }
   if (next) {
@@ -26,11 +24,9 @@ const NextPrevButton = ({ next, prev }) => {
     } = next
 
     nextButton = (
-      <Button type="primary" style={{ float: 'right' }} size="small">
-        <Link to={nextPath}>
+        <Link to={nextPath} style={{ float: 'right' }}>
           {nextTitle} <Icon type="caret-right" />
         </Link>
-      </Button>
     )
   }
   return (

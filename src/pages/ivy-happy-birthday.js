@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, Icon, Spin } from 'antd'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import Draw from '../components/Draw/Draw'
 import order from '../assets/order-new.png'
 

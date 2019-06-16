@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import profileImage from '../assets/profile-image.jpg'
 import '../styles/home.scss'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 
 export default class Home extends Component {
   render() {
@@ -17,7 +17,7 @@ export default class Home extends Component {
             <div className="left-section">
               <div className="about">About</div>
               <div className="text">
-                Richie is a dreamer living in Sunnyvale, CA.
+                Richie is a dreamer living in Zürich, Switzerland🇨🇭
               </div>
               <div className="text">
                 He is currently work for <Icon type="apple" theme="filled" /> in

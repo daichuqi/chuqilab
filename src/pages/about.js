@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import GoogleMap from '../components/GoogleMap'
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 export default class About extends Component {
   render() {
     return (

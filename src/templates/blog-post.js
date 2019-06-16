@@ -7,7 +7,7 @@ import keydown, { Keys } from 'react-keydown'
 import NextPrevButtons from '../components/NextPrevButtons'
 import HeaderImage from '../components/HeaderImage/'
 import TagsLabel from '../components/Tags/TagsLabel'
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 
 import '../styles/blog-post.scss'
 
