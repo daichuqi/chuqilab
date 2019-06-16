@@ -5,6 +5,8 @@ import { MIDI_MAP, UPDATE_INTERVAL, TOTAL_NOTES } from './configs'
 import Machine from './machine'
 import BufferLoader from './bufferLoader'
 
+import './monkeyPatch'
+
 import './style.scss'
 
 export default class Baroque extends Component {
@@ -127,11 +129,7 @@ export default class Baroque extends Component {
     gainNode.connect(this.audioContext.destination)
     // Set volume
     gainNode.gain.value = volPm
-    if (source.start) {
-      source.start()
-    } else {
-      source.noteOn()
-    }
+    source.start()
   }
 
   rsize = () => {
