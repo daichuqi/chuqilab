@@ -38,9 +38,7 @@ const HEIGHT_ALL_THREADS = WHEEL_QUARTER_SEG
 const FPS_BACKGROUND = 2
 
 export default class Machine {
-  constructor(cvPm, suite, loader) {
-    this.elmLoader = loader
-
+  constructor(cvPm, suite) {
     this.suite = suite
     // store my canvas
     this.cv = cvPm
@@ -179,17 +177,6 @@ export default class Machine {
    * Update status text.
    */
   updLoading = () => {
-    var str
-    // are we loading audio?
-    if (!this.suite.soundReady) {
-      var perc = Math.round((this.suite.indNoteLd / TOTAL_NOTES) * 100)
-      str = 'Loading sound (' + perc + '%)'
-      if (SHOW_FRAMERATE) {
-        this.elmLoader.innerHTML += '<span class="loading">' + str + '</span>'
-      } else {
-        this.elmLoader.innerHTML = '<span class="loading">' + str + '</span>'
-      }
-    }
     // How much time since we last updated the load animation?
     this.tLoadCurr = new Date().getTime() / 1000
     var elap = this.tLoadCurr - this.tLoadPrev
@@ -552,10 +539,6 @@ export default class Machine {
     // make the canvas objects match window size
     this.width = this.suite.canvasEl.width = window.innerWidth
     this.height = this.suite.canvasEl.height = window.innerHeight
-    // move the loader box
-    this.elmLoader.style.left = '20px'
-    this.elmLoader.style.top = this.height - 28 + 'px'
-    // move the about ? box
     // update the origin
     this.setOrigin()
   }

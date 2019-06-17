@@ -55,9 +55,8 @@ export default class Baroque extends Component {
     )
 
     this.canvasEl = this.refs.canvas
-    this.elmLoader = this.refs.loader
     this.canvasObj = this.canvasEl.getContext('2d')
-    this.machine = new Machine(this.canvasObj, this, this.elmLoader)
+    this.machine = new Machine(this.canvasObj, this)
     // invoke resize listener once now
 
     // Load in the audio files.
@@ -165,8 +164,6 @@ export default class Baroque extends Component {
           </div>
         )}
         <canvas id="canvas" ref="canvas"></canvas>
-        <div id="loader" ref="loader"></div>
-        <div id="framerate"></div>
       </div>
     )
   }
