@@ -3,8 +3,8 @@ import { Link } from 'gatsby'
 
 import './Navbar.scss'
 
-const NavBar = () => (
-  <div className="nav-component pattern">
+const NavBar = ({ overlay }) => (
+  <div className={`nav-component pattern ${overlay ? 'overlay' : ''}`}>
     <div className="wrapper">
       <div className="site-name">
         <Link className="site-name-text" to="/">

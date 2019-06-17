@@ -1,10 +1,13 @@
-
 .nav-component {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: hsla(0, 0%, 98%, 0.9);
-  backdrop-filter: blur(3px); 
+  backdrop-filter: blur(3px);
+  &.overlay {
+    position: absolute;
+    width: 100%;
+  }
   .nav-item {
     float: right;
     line-height: 46px;

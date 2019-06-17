@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
+
 import Baroque from '../projects/baroque/js'
+import Layout from '../components/Layout'
 
 export default class Hanhan extends Component {
   render() {
     return (
-      <div>
-        <Baroque></Baroque>
-      </div>
+      <Layout overlay>
+        <Baroque />
+      </Layout>
     )
   }
 }

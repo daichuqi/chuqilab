@@ -11,7 +11,7 @@ export default class Layout extends Component {
   render() {
     return (
       <div>
-        {!this.props.hide && <Navbar />}
+        {!this.props.hide && <Navbar overlay={this.props.overlay} />}
         {this.props.children}
       </div>
     )
