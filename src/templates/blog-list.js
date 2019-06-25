@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { Col } from 'antd'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
+import Masonry from 'react-masonry-component'
 
 import Layout from '../components/Layout'
 import BlogItem from '../components/BlogItem'
@@ -27,9 +29,13 @@ export default class BlogList extends Component {
       <Layout location={this.props.location}>
         <Helmet title={`Page ${currentPage} | Blog`} />
         <div className="template-wrapper blog-pages">
-          {posts.map(({ node }) => (
-            <BlogItem key={node.id} node={node} />
-          ))}
+          <Masonry>
+            {posts.map(({ node }) => (
+              <Col sm={24} md={12} key={node.id}>
+                <BlogItem node={node} />
+              </Col>
+            ))}
+          </Masonry>
 
           <NavLink
             show={!isFirst}
@@ -72,6 +78,11 @@ export const pageQuery = graphql`
             date(formatString: "MMM DD YYYY")
             title
             excerpt
+            image
+            imageMin
+            imagePosition
+            featureImageHeight
+            tags
           }
         }
       }
