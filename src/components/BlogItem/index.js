@@ -19,9 +19,7 @@ const BlogItem = ({
 }) => {
   const content = (
     <>
-      <Link className="blog-title" to={slug}>
-        {title}
-      </Link>
+      <div className="blog-title">{title}</div>
       <div className="blog-date">
         <Icon type="history" style={{ marginRight: 8 }} />
         {date}
@@ -30,26 +28,28 @@ const BlogItem = ({
   )
 
   return (
-    <div className="blog-item">
-      <div className="blog-header">
-        {image ? (
-          <div className="feature-image-container">
-            <img
-              className="feature-image"
-              style={{
-                objectPosition: imagePosition,
-                height: featureImageHeight,
-              }}
-              src={image}
-            />
+    <Link className="blog-title" to={slug}>
+      <div className="blog-item">
+        <div className="blog-header">
+          {image ? (
+            <div className="feature-image-container">
+              <img
+                className="feature-image"
+                style={{
+                  objectPosition: imagePosition,
+                  height: featureImageHeight,
+                }}
+                src={image}
+              />
 
-            <div className="dark-wrapper">{content}</div>
-          </div>
-        ) : (
-          <div className="no-feature-image">{content}</div>
-        )}
+              <div className="dark-wrapper">{content}</div>
+            </div>
+          ) : (
+            <div className="no-feature-image">{content}</div>
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }
 export default BlogItem

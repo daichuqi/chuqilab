@@ -4,7 +4,7 @@ import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Masonry from 'react-masonry-component'
-
+import Columns from 'react-columns'
 import Layout from '../components/Layout'
 import BlogItem from '../components/BlogItem'
 import '../styles/blog-list.scss'
@@ -29,13 +29,26 @@ export default class BlogList extends Component {
       <Layout location={this.props.location}>
         <Helmet title={`Page ${currentPage} | Blog`} />
         <div className="template-wrapper blog-pages">
-          <Masonry>
+          <Columns
+            queries={[
+              {
+                columns: 1,
+                query: 'min-width: 480px',
+              },
+              {
+                columns: 2,
+                query: 'min-width: 756px',
+              },
+              {
+                columns: 3,
+                query: 'min-width: 1000px',
+              },
+            ]}
+          >
             {posts.map(({ node }) => (
-              <Col sm={24} md={12} key={node.id}>
-                <BlogItem node={node} />
-              </Col>
+              <BlogItem key={node.id} node={node} />
             ))}
-          </Masonry>
+          </Columns>
 
           <NavLink
             show={!isFirst}

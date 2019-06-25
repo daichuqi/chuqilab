@@ -25,9 +25,8 @@
 }
 
 .blog-item {
-  //   width: 100%;
-  margin: 15px;
-  //   padding: 1px;
+  width: 96%;
+  margin: 2%;
   user-select: none;
   .feature-image-container {
     position: relative;
@@ -48,7 +47,7 @@
       bottom: 0;
       padding: 5px 20px;
       width: 100%;
-      height: 70px;
+      height: 55px;
       background-color: rgba($color: #000000, $alpha: 0.3);
     }
   }
@@ -60,15 +59,16 @@
   }
   .blog-title {
     z-index: 1;
-    font-size: 24px;
+    font-size: 22px;
     text-decoration: none;
     font-weight: 300;
+    line-height: 28px;
     bottom: 20px;
     color: white;
   }
   .blog-date {
-    font-size: 12px;
-    color: white;
+    font-size: 10px;
+    color: #ccc;
   }
 }
 
