@@ -59,8 +59,8 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.node.fields.slug,
               prev: index === 0 ? null : posts[index - 1].node,
-              next: index === posts.length - 1 ? null : posts[index + 1].node
-            }
+              next: index === posts.length - 1 ? null : posts[index + 1].node,
+            },
           })
         })
 
@@ -72,8 +72,8 @@ exports.createPages = ({ graphql, actions }) => {
               limit: postsPerPage,
               skip: i * postsPerPage,
               numPages,
-              currentPage: i + 1
-            }
+              currentPage: i + 1,
+            },
           })
         })
       })
@@ -89,7 +89,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value
+      value,
     })
   }
 }
