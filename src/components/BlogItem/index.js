@@ -7,14 +7,7 @@ import './style.scss'
 const BlogItem = ({
   node: {
     fields: { slug },
-    frontmatter: {
-      excerpt,
-      title,
-      date,
-      image,
-      imagePosition,
-      featureImageHeight,
-    },
+    frontmatter: { excerpt, title, date, image, imagePosition },
   },
 }) => {
   const content = (
@@ -37,7 +30,6 @@ const BlogItem = ({
                 className="feature-image"
                 style={{
                   objectPosition: imagePosition,
-                  height: featureImageHeight,
                 }}
                 src={image}
               />
