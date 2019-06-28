@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 
 export const CloudimageContext = React.createContext()
+const window = window ? window : window
 
 class CloudimageProvider extends Component {
   constructor({ config = {} }) {
