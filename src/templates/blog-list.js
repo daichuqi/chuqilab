@@ -5,7 +5,6 @@ import Helmet from 'react-helmet'
 import Columns from 'react-columns'
 import Layout from '../components/Layout'
 import BlogItem from '../components/BlogItem'
-import '../styles/blog-list.scss'
 
 const NavLink = ({ text, pageCount, show, style }) =>
   show && (

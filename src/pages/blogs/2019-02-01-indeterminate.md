@@ -1,14 +1,13 @@
 ---
 path: '/2019-02-01-indeterminate'
 date: '2019-02-01T07:29:20.392Z'
-# path: '/2018-05-18-hawaii'
-# date: '2018-05-18T02:28:17.392Z'
 title: 'Indeterminate Path'
 tags: ['usa', 'path']
 excerpt: '生命是一场放逐和流浪，只是大部分人都将自己交予了俗世，用别人和社会既定的轨道牵绊自己前行，而内心的声音，早在懂得谄媚于人之前就消失殆尽。'
 image: 'https://chuqi-gatsby.s3-us-west-1.amazonaws.com/leave-us.png'
 imageMin: 'https://chuqi-gatsby.s3-us-west-1.amazonaws.com/leave-us.png'
 imagePosition: '0% 60%'
+ytid: 'b3LJlZBWI8w'
 ---
 
 <div class="normal-article">

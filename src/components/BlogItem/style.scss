@@ -34,11 +34,11 @@
     overflow: hidden;
     > .feature-image {
       object-fit: cover;
-      transition: filter 800ms;
-      filter: brightness(1);
+      transition: filter 500ms;
+      filter: brightness(0.9);
 
       &:hover {
-        filter: brightness(1.1);
+        filter: brightness(1.2);
         cursor: pointer;
       }
     }

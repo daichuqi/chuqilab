@@ -1,11 +1,12 @@
 ---
-path: "/2012-02-18-lady-godvia"
-date: "2012-02-18T08:00:16.904Z"
-title: "Lady Godvia"
+path: '/2012-02-18-lady-godvia'
+date: '2012-02-18T08:00:16.904Z'
+title: 'Lady Godvia'
 tags: ['painting']
-excerpt: "Godiva, the gift from God."
-image: "https://s3-us-west-1.amazonaws.com/chuqi-gatsby/ladygodvia.jpg"
+excerpt: 'Godiva, the gift from God.'
+image: 'https://s3-us-west-1.amazonaws.com/chuqi-gatsby/ladygodvia.jpg'
 imagePosition: '0% 30%'
+ytid: 'TeBquU3AKNE'
 ---
 
 <p class="normal-article">

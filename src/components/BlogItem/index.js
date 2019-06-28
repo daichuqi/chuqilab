@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Icon } from 'antd'
+import Img from '../../library/cloudimage'
 
 import './style.scss'
 
@@ -10,7 +11,6 @@ const BlogItem = ({
     frontmatter: { excerpt, title, date, image, imagePosition },
   },
 }) => {
-  console.log('date', date)
   const content = (
     <>
       <div className="blog-title">{title}</div>
@@ -27,12 +27,12 @@ const BlogItem = ({
         <div className="blog-header">
           {image ? (
             <div className="feature-image-container">
-              <img
-                className="feature-image"
-                style={{
-                  objectPosition: imagePosition,
-                }}
+              <Img
                 src={image}
+                className="feature-image"
+                style={{ objectPosition: imagePosition }}
+                operation="width"
+                size="600"
               />
 
               <div className="dark-wrapper">{content}</div>

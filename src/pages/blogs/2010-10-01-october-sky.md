@@ -1,10 +1,10 @@
 ---
-path: "/2009-10-01-october-sky"
-date: "2010-10-01T11:02:14.904Z"
-title: "October Sky"
+path: '/2009-10-01-october-sky'
+date: '2010-10-01T11:02:14.904Z'
+title: 'October Sky'
 tags: ['benlippen', 'high school']
-excerpt: "为什么天这么安静，所有的云都跑到我这里."
-image: "https://s3-us-west-1.amazonaws.com/chuqi-gatsby/benlippen-sky.jpg"
+excerpt: '为什么天这么安静，所有的云都跑到我这里.'
+image: 'https://s3-us-west-1.amazonaws.com/chuqi-gatsby/benlippen.jpg'
 imagePosition: '0% 50%'
 ---
 

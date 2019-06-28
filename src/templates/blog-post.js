@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
+import { Button } from 'antd'
 import { graphql, navigate } from 'gatsby'
 import keydown, { Keys } from 'react-keydown'
+import YouTube from 'react-youtube'
 
 import NextPrevButtons from '../components/NextPrevButtons'
 import HeaderImage from '../components/HeaderImage/'
@@ -13,31 +15,47 @@ import '../styles/blog-post.scss'
 const { LEFT, RIGHT } = Keys
 
 class BlogPost extends Component {
-  UNSAFE_componentWillReceiveProps({ keydown }) {
+  state = {
+    player: null,
+    playing: false,
+  }
+
+  UNSAFE_componentWillReceiveProps = ({ keydown }) => {
     if (keydown.event) {
       const { prev, next } = this.props.pageContext
       const key = keydown.event.which
       if (prev && key === LEFT) {
         const {
-          fields: { slug: nextPath }
+          fields: { slug: nextPath },
         } = prev
         navigate(nextPath)
       }
 
       if (next && key === RIGHT) {
         const {
-          fields: { slug: prevPath }
+          fields: { slug: prevPath },
         } = next
         navigate(prevPath)
       }
     }
   }
 
+  onVideoButtonClick = () => {
+    if (!this.state.playing) {
+      this.state.player.playVideo()
+      this.setState({ playing: true })
+    } else {
+      this.state.player.pauseVideo()
+      this.setState({ playing: false })
+    }
+  }
+
   render() {
     const { prev, next } = this.props.pageContext
+    const { playing, player } = this.state
     const {
-      frontmatter: { title, date, image, imageMin, imagePosition, tags },
-      html
+      frontmatter: { title, date, image, imageMin, imagePosition, tags, ytid },
+      html,
     } = this.props.data.markdownRemark
 
     return (
@@ -47,12 +65,33 @@ class BlogPost extends Component {
           imagePosition={imagePosition}
           image={image}
           imageMin={imageMin}
-        />
+        >
+          {ytid && (
+            <Button
+              className="player-button"
+              size="large"
+              shape="circle"
+              disabled={!player}
+              icon={playing ? 'pause' : 'caret-right'}
+              onClick={() => this.onVideoButtonClick()}
+            />
+          )}
+        </HeaderImage>
+
         <div className="blog-post-page template-wrapper">
           <div className="blog-detail-header">
             <div className="title">{title}</div>
             <div className="date">{date}</div>
           </div>
+
+          {ytid && (
+            <div style={{ height: 0, width: 0, overflow: 'hidden' }}>
+              <YouTube
+                videoId={ytid}
+                onReady={event => this.setState({ player: event.target })}
+              />
+            </div>
+          )}
 
           <div
             className="blog-content"
@@ -62,6 +101,7 @@ class BlogPost extends Component {
           <TagsLabel tags={tags} style={{ marginTop: 30 }} />
           <NextPrevButtons prev={prev} next={next} />
         </div>
+        <script src="http://www.youtube.com/player_api" />
       </Layout>
     )
   }
@@ -89,6 +129,7 @@ export const pageQuery = graphql`
         excerpt
         imagePosition
         tags
+        ytid
       }
     }
   }
