@@ -3,12 +3,15 @@
   .normal-article {
     white-space: pre-line;
     max-width: 1200px;
+    margin-bottom: 20px;
   }
   .quote {
     font-style: italic;
     padding: 0 20px;
+    font-size: 12px;
+    color: #666;
   }
-  
+
   pre[class*='language-'] {
     width: 100%;
     border: none;

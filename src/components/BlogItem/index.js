@@ -10,6 +10,7 @@ const BlogItem = ({
     frontmatter: { excerpt, title, date, image, imagePosition },
   },
 }) => {
+  console.log('date', date)
   const content = (
     <>
       <div className="blog-title">{title}</div>
