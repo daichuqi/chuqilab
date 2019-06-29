@@ -3,7 +3,6 @@ import { Button, Modal } from 'antd'
 
 import hope from '../assets/hope.jpg'
 import airpod from '../assets/airpod.png'
-import dance from '../assets/dance.gif'
 
 const text = ['点我', '再点我', '再来一次', '用力一点~', '再用力一点....']
 export default class Hope extends Component {
@@ -76,7 +75,7 @@ export default class Hope extends Component {
                               style={{
                                 width: '100%',
                               }}
-                              src={dance}
+                              src="https://chuqi-gatsby.s3-us-west-1.amazonaws.com/629A6A25-ACA0-4343-BCB5-905CD7BC5FD5.GIF"
                             ></img>
                           </div>
                         ),
