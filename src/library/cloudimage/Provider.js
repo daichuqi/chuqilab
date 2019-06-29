@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 
 export const CloudimageContext = React.createContext()
-const window = window ? window : window
 
 class CloudimageProvider extends Component {
   constructor({ config = {} }) {
@@ -48,12 +47,10 @@ class CloudimageProvider extends Component {
             xl: '(min-width: 1200px)', // from 1200    USUALSCREEN
           },
       queryString,
-      innerWidth: window.innerWidth,
+      innerWidth: 0,
       previewQualityFactor: 10,
       //isChrome: /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
     }
-
-    window.addEventListener('resize', this.updateDimensions)
   }
 
   updateDimensions = _.debounce(() => {
@@ -62,6 +59,13 @@ class CloudimageProvider extends Component {
     if (innerWidth < window.innerWidth)
       this.setState({ innerWidth: window.innerWidth })
   }, 100)
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions)
+    this.setState({
+      innerWidth: window.innerWidth,
+    })
+  }
 
   render() {
     return (
