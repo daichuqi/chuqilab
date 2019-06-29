@@ -6,6 +6,7 @@ tags: ['benlippen', 'high school']
 excerpt: '为什么天这么安静，所有的云都跑到我这里.'
 image: 'https://s3-us-west-1.amazonaws.com/chuqi-gatsby/benlippen.jpg'
 imagePosition: '0% 50%'
+ytid: 'WxZvXPTBC0A'
 ---
 
 <p class="normal-article">

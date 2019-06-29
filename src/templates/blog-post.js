@@ -5,6 +5,7 @@ import { graphql, navigate } from 'gatsby'
 import keydown, { Keys } from 'react-keydown'
 import YouTube from 'react-youtube'
 
+import Countdown from '../components/Countdown'
 import NextPrevButtons from '../components/NextPrevButtons'
 import HeaderImage from '../components/HeaderImage/'
 import TagsLabel from '../components/Tags/TagsLabel'
@@ -18,6 +19,26 @@ class BlogPost extends Component {
   state = {
     player: null,
     playing: false,
+    duration: 0,
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.intervalHandle)
+  }
+
+  startCountdown = () => {
+    this.intervalHandle = setInterval(() => {
+      const duration = this.state.duration - 1
+      this.setState({ duration })
+
+      if (duration === 0) {
+        clearInterval(this.intervalHandle)
+      }
+    }, 1000)
+  }
+
+  pauseCountDown = () => {
+    clearInterval(this.intervalHandle)
   }
 
   UNSAFE_componentWillReceiveProps = ({ keydown }) => {
@@ -43,8 +64,10 @@ class BlogPost extends Component {
   onVideoButtonClick = () => {
     if (!this.state.playing) {
       this.state.player.playVideo()
+      this.startCountdown()
       this.setState({ playing: true })
     } else {
+      this.pauseCountDown()
       this.state.player.pauseVideo()
       this.setState({ playing: false })
     }
@@ -52,7 +75,7 @@ class BlogPost extends Component {
 
   render() {
     const { prev, next } = this.props.pageContext
-    const { playing, player } = this.state
+    const { playing, player, duration } = this.state
     const {
       frontmatter: { title, date, image, imageMin, imagePosition, tags, ytid },
       html,
@@ -67,14 +90,16 @@ class BlogPost extends Component {
           imageMin={imageMin}
         >
           {ytid && (
-            <Button
-              className="player-button"
-              size="large"
-              shape="circle"
-              disabled={!player}
-              icon={playing ? 'pause' : 'caret-right'}
-              onClick={() => this.onVideoButtonClick()}
-            />
+            <div className="player-control">
+              <Countdown duration={duration}></Countdown>
+              <Button
+                size="large"
+                shape="circle"
+                disabled={!player}
+                icon={playing ? 'pause' : 'caret-right'}
+                onClick={() => this.onVideoButtonClick()}
+              />
+            </div>
           )}
         </HeaderImage>
 
@@ -87,8 +112,19 @@ class BlogPost extends Component {
           {ytid && (
             <div style={{ height: 0, width: 0, overflow: 'hidden' }}>
               <YouTube
+                onEnd={() => {
+                  this.setState({
+                    duration: this.state.player.getDuration(),
+                    playing: false,
+                  })
+                  clearInterval(this.intervalHandle)
+                }}
                 videoId={ytid}
-                onReady={event => this.setState({ player: event.target })}
+                onReady={event => {
+                  const player = event.target
+                  const duration = player.getDuration()
+                  this.setState({ player, duration })
+                }}
               />
             </div>
           )}

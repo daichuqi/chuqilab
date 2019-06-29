@@ -85,7 +85,6 @@ class Img extends Component {
         )
       : []
 
-    console.log('sources', sources)
     let previewCloudimageUrl, previewSources
 
     if (isPreview) {

@@ -7539,11 +7539,6 @@ load-json-file@^2.0.0:
     pify "^2.0.0"
     strip-bom "^3.0.0"
 
-load-script2@^2.0.1:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/load-script2/-/load-script2-2.0.2.tgz#e0176f861797477beeedcdc28892b913b84df2e8"
-  integrity sha512-jhu5PuWP4xZopugGlDTipmM71w4ObKGCGtfgojORqDQeFNEd3+EhaW8rqXWqZ7S2w+I7ZgrLN1x9CWjwbs2jug==
-
 load-script@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/load-script/-/load-script-1.0.0.tgz#0491939e0bee5643ee494a7e3da3d2bac70c6ca4"
@@ -7655,6 +7650,11 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
   integrity sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash.isnumber@^3.0.0:
   version "3.0.3"
@@ -10601,6 +10601,14 @@ react-columns@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-columns/-/react-columns-1.2.1.tgz#6d0c097f91ae279170213bffd5263fcd4d415142"
   integrity sha512-z0sAMP6pqF0EgJhD4+m8eq67Q4PonqJ17/K+hWZrbMGLj1+aGDomkCTAkupL6v2I5HyDqiQOX/9agzMWcUZwsQ==
+
+react-countdown-now@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-countdown-now/-/react-countdown-now-2.1.1.tgz#88901eb776907338da137effbf7cdbec5b9274c6"
+  integrity sha512-DGSd/EGzigIsixQNzPQbk376zG49IVAyMCUkMgDEuIXlIRKQwB44Fg8uA3zrZ+aQVAuzsyb6fJWskPxIP56DYg==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    prop-types "^15.7.2"
 
 react-dev-utils@^4.2.1:
   version "4.2.3"
@@ -13856,13 +13864,6 @@ youtube-player@^5.5.1:
     debug "^2.6.6"
     load-script "^1.0.0"
     sister "^3.0.0"
-
-yt-player@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/yt-player/-/yt-player-3.1.1.tgz#19177e89a8b1eaa28f788de62c1e3922ffed8d03"
-  integrity sha512-Ozh6Qt+EMlHT1/M0mXQUVO0DIItId7XPSfL/DnQjqFbajAAbj03GyYUUlIoQXnX1/oPl7Crqb0CHErfZO0Tx8A==
-  dependencies:
-    load-script2 "^2.0.1"
 
 yurnalist@^1.0.5:
   version "1.0.5"
