@@ -4,3 +4,12 @@
   padding-top: 20px;
   width: 90%;
 }
+
+.airpod-modal {
+  .ant-modal-body {
+    padding-left: 0;
+  }
+  .anticon.anticon-check-circle {
+    display: none;
+  }
+}
