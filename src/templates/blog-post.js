@@ -101,7 +101,6 @@ class BlogPost extends Component {
           <TagsLabel tags={tags} style={{ marginTop: 30 }} />
           <NextPrevButtons prev={prev} next={next} />
         </div>
-        <script src="http://www.youtube.com/player_api" />
       </Layout>
     )
   }

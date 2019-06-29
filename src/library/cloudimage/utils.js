@@ -1,5 +1,3 @@
-const window = window ? window : window
-
 export const checkOnMedia = size => {
   try {
     const array = size.split(',')
