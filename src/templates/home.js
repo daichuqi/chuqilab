@@ -36,7 +36,7 @@ export default class Home extends Component {
               </div>
             </div>
             <div className="right-section">
-              <Img src={profileImage} alt="Demo image" />
+              <Img src={profileImage} alt="me" size="200x200" />
             </div>
           </div>
         </div>

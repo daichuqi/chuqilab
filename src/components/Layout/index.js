@@ -13,6 +13,7 @@ const cloudimageConfig = {
   token: 'arflvvvqen',
   baseUrl: 'https://www.daichuqi.com',
   lazyLoading: false,
+  imgLoadingAnimation: false,
 }
 
 export default class Layout extends Component {
