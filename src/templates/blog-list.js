@@ -6,6 +6,8 @@ import Columns from 'react-columns'
 import Layout from '../components/Layout'
 import BlogItem from '../components/BlogItem'
 
+import { queries } from './configs'
+
 const NavLink = ({ text, pageCount, show, style }) =>
   show && (
     <Link style={style} to={`/page/${pageCount}`}>
@@ -26,22 +28,7 @@ export default class BlogList extends Component {
       <Layout location={this.props.location}>
         <Helmet title={`Page ${currentPage} | Blog`} />
         <div className="template-wrapper blog-pages">
-          <Columns
-            queries={[
-              {
-                columns: 1,
-                query: 'min-width: 480px',
-              },
-              {
-                columns: 2,
-                query: 'min-width: 756px',
-              },
-              {
-                columns: 3,
-                query: 'min-width: 1000px',
-              },
-            ]}
-          >
+          <Columns queries={queries}>
             {posts.map(({ node }) => (
               <BlogItem key={node.id} node={node} />
             ))}
@@ -92,6 +79,7 @@ export const pageQuery = graphql`
             imageMin
             imagePosition
             tags
+            type
           }
         }
       }

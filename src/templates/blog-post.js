@@ -37,10 +37,6 @@ class BlogPost extends Component {
     }, 1000)
   }
 
-  pauseCountDown = () => {
-    clearInterval(this.intervalHandle)
-  }
-
   UNSAFE_componentWillReceiveProps = ({ keydown }) => {
     if (keydown.event) {
       const { prev, next } = this.props.pageContext
@@ -67,7 +63,7 @@ class BlogPost extends Component {
       this.startCountdown()
       this.setState({ playing: true })
     } else {
-      this.pauseCountDown()
+      clearInterval(this.intervalHandle)
       this.state.player.pauseVideo()
       this.setState({ playing: false })
     }
@@ -112,6 +108,7 @@ class BlogPost extends Component {
           {ytid && (
             <div style={{ height: 0, width: 0, overflow: 'hidden' }}>
               <YouTube
+                opts={{ playsinline: 1 }}
                 onEnd={() => {
                   this.setState({
                     duration: this.state.player.getDuration(),

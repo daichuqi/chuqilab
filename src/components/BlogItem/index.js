@@ -8,7 +8,7 @@ import './style.scss'
 const BlogItem = ({
   node: {
     fields: { slug },
-    frontmatter: { excerpt, title, date, image, imagePosition },
+    frontmatter: { excerpt, title, date, image, imagePosition, type },
   },
 }) => {
   const content = (
@@ -21,28 +21,36 @@ const BlogItem = ({
     </>
   )
 
-  return (
+  return type !== 'image' ? (
     <Link className="blog-title" to={slug}>
       <div className="blog-item">
-        <div className="blog-header">
-          {image ? (
-            <div className="feature-image-container">
-              <Img
-                src={image}
-                className="feature-image"
-                style={{ objectPosition: imagePosition }}
-                operation="width"
-                size="600"
-              />
+        <div className="feature-image-container">
+          <Img
+            src={image}
+            className="feature-image"
+            style={{ objectPosition: imagePosition }}
+            operation="width"
+            size="600"
+          />
 
-              <div className="dark-wrapper">{content}</div>
-            </div>
-          ) : (
-            <div className="no-feature-image">{content}</div>
-          )}
+          <div className="dark-wrapper">{content}</div>
         </div>
       </div>
     </Link>
+  ) : (
+    <div className="blog-item">
+      <div className="feature-image-container">
+        <Img
+          src={image}
+          className="feature-image"
+          style={{ objectPosition: imagePosition }}
+          operation="width"
+          size="600"
+        />
+
+        <div className="dark-wrapper">{content}</div>
+      </div>
+    </div>
   )
 }
 export default BlogItem

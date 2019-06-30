@@ -34,6 +34,7 @@ exports.createPages = ({ graphql, actions }) => {
                     excerpt
                     imagePosition
                     tags
+                    type
                   }
                 }
               }
@@ -46,8 +47,9 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         createPage({ path: '/', component: path.resolve(home) })
-
-        const posts = result.data.allMarkdownRemark.edges
+        const posts = result.data.allMarkdownRemark.edges.filter(
+          ({ node }) => node.frontmatter.type !== 'image'
+        )
         const postsPerPage = 10
         const numPages = Math.ceil(posts.length / postsPerPage)
 
