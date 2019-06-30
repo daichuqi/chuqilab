@@ -8,6 +8,7 @@ image: 'https://chuqi-gatsby.s3-us-west-1.amazonaws.com/leave-us.png'
 imageMin: 'https://chuqi-gatsby.s3-us-west-1.amazonaws.com/leave-us.png'
 imagePosition: '0% 60%'
 ytid: 'b3LJlZBWI8w'
+location: 'Sunnyvale, CA'
 ---
 
 <div class="normal-article">

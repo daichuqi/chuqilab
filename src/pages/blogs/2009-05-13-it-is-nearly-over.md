@@ -6,6 +6,7 @@ tags: ['valley forge', 'high school']
 excerpt: 'there is always hope'
 image: 'https://daichuqi.me/wordpress/wp-content/uploads/2009/05/dsc_5kk041.jpg'
 imagePosition: '0% 40%'
+location: 'Wayne, PA'
 ---
 
 <p class="normal-article">

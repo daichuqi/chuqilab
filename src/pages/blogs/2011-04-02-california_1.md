@@ -6,6 +6,7 @@ tags: ['travel']
 excerpt: 'it is a long night fight'
 image: 'https://daichuqi.me/wordpress/wp-content/uploads/2011/04/DSC_0576.jpg'
 imagePosition: '0% 10%'
+location: 'Phoenix, AZ'
 ---
 
 <p class="normal-article">
@@ -14,8 +15,5 @@ imagePosition: '0% 10%'
   一觉醒来飞机已经到凤凰城了，旁边的Gavin拿他的Ipad看Eminem的电影。
   醒来的时候外面夜幕已黑，我眯缝着眼睛，努力睁开，
   窗子里呈现一座繁华灯城，只觉得夜色迷人，拿出单反拍照留念。
-
-tired and sleepy.
-Good night. San Francisco 🌙
 
 </p>

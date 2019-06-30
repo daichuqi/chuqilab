@@ -76,10 +76,12 @@ export const pageQuery = graphql`
             title
             excerpt
             image
+            images
             imageMin
             imagePosition
             tags
             type
+            location
           }
         }
       }

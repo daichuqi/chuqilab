@@ -1283,10 +1283,10 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^3.19.3:
-  version "3.19.3"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.19.3.tgz#9d4af091bbfab8bb888cc98f36c994fbaf12e931"
-  integrity sha512-7pIICKAMLC2EvRu4Wi0bLuIfkco84u3rbghyqibBZetVrCQQHjhWBxKiv3dxSAlr9HdT71fFvZcus+R81KlGSg==
+antd@^3.19.8:
+  version "3.19.8"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.19.8.tgz#64c4fa7596dbb1fa390bb7da5b3f63e226d84e53"
+  integrity sha512-sGBJHuzr/7Vm3VJpzt5vjOWjtth8Ld38FneIQeX5OKHudWYH8j+Xt0j4q2sYwOiV9lYFuh4tlZv7/7NFyCO2vw==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.0.0"
@@ -1305,7 +1305,7 @@ antd@^3.19.3:
     prop-types "^15.7.2"
     raf "^3.4.1"
     rc-animate "^2.8.3"
-    rc-calendar "~9.14.5"
+    rc-calendar "~9.15.0"
     rc-cascader "~0.17.4"
     rc-checkbox "~2.1.6"
     rc-collapse "~1.11.3"
@@ -7651,11 +7651,6 @@ lodash.isarray@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
   integrity sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
 
-lodash.isequal@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
-  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
-
 lodash.isnumber@^3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/lodash.isnumber/-/lodash.isnumber-3.0.3.tgz#3ce76810c5928d03352301ac287317f11c0b1ffc"
@@ -10190,10 +10185,10 @@ rc-animate@^3.0.0-rc.1:
     rc-util "^4.5.0"
     react-lifecycles-compat "^3.0.4"
 
-rc-calendar@~9.14.5:
-  version "9.14.5"
-  resolved "https://registry.yarnpkg.com/rc-calendar/-/rc-calendar-9.14.5.tgz#77c9d6bfec827d2e325adc770f1cef2fa2e4fc0e"
-  integrity sha512-UCo2O7e3hfOJrV0pkBzpw5vedwyn08YTWvErMTvYbz3nE7rLehXH6i2ABUe1fMCIXoH+YDhQ085SRJgKyA3mZA==
+rc-calendar@~9.15.0:
+  version "9.15.2"
+  resolved "https://registry.yarnpkg.com/rc-calendar/-/rc-calendar-9.15.2.tgz#81c9444c897655e40c7cb3b40581cb3db4351703"
+  integrity sha512-eLYXH3aYEfhJiytHVTnNp5k887nqBdwyH9gRH+PJQ3p3Yt/EFw03tTza32LuU8eA3tMUMgYonW90TvPsJ8is8g==
   dependencies:
     babel-runtime "6.x"
     classnames "2.x"
@@ -10601,14 +10596,6 @@ react-columns@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-columns/-/react-columns-1.2.1.tgz#6d0c097f91ae279170213bffd5263fcd4d415142"
   integrity sha512-z0sAMP6pqF0EgJhD4+m8eq67Q4PonqJ17/K+hWZrbMGLj1+aGDomkCTAkupL6v2I5HyDqiQOX/9agzMWcUZwsQ==
-
-react-countdown-now@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/react-countdown-now/-/react-countdown-now-2.1.1.tgz#88901eb776907338da137effbf7cdbec5b9274c6"
-  integrity sha512-DGSd/EGzigIsixQNzPQbk376zG49IVAyMCUkMgDEuIXlIRKQwB44Fg8uA3zrZ+aQVAuzsyb6fJWskPxIP56DYg==
-  dependencies:
-    lodash.isequal "^4.5.0"
-    prop-types "^15.7.2"
 
 react-dev-utils@^4.2.1:
   version "4.2.3"
