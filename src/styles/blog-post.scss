@@ -6,8 +6,8 @@
 .blog-post-page {
   color: rgba(0, 0, 0, 0.8);
   .normal-article {
+    max-width: 800px;
     white-space: pre-line;
-    max-width: 500px;
     margin-bottom: 20px;
   }
   .quote {
@@ -26,7 +26,7 @@
   pre[class*='language-'] {
     width: 100%;
     border: none;
-    max-width: 550px;
+    max-width: 500px;
     margin-bottom: 1.45rem;
   }
 
