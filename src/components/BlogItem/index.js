@@ -14,12 +14,14 @@ const BlogItem = ({
       date,
       image,
       images,
+      imageMin,
       imagePosition,
       type,
       location,
     },
   },
 }) => {
+  const coverimage = imageMin || image
   const content = (
     <>
       <div className="blog-title">{title}</div>
@@ -41,7 +43,7 @@ const BlogItem = ({
       <div className="blog-item">
         <div className="feature-image-container">
           <Img
-            src={image}
+            src={coverimage}
             className="feature-image"
             style={{ objectPosition: imagePosition }}
             operation="width"
