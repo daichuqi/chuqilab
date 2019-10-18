@@ -6,7 +6,20 @@ import Columns from 'react-columns'
 import Layout from '../components/Layout'
 import BlogItem from '../components/BlogItem'
 
-import { queries } from './configs'
+const queries = [
+  {
+    columns: 1,
+    query: 'min-width: 480px',
+  },
+  {
+    columns: 2,
+    query: 'min-width: 756px',
+  },
+  {
+    columns: 3,
+    query: 'min-width: 1000px',
+  },
+]
 
 const NavLink = ({ text, pageCount, show, style }) =>
   show && (
@@ -17,20 +30,22 @@ const NavLink = ({ text, pageCount, show, style }) =>
 
 export default class BlogList extends Component {
   render() {
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
+    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
     const { currentPage, numPages } = this.props.pageContext
     const isFirst = currentPage === 1
     const isLast = currentPage === numPages
     const prevPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()
     const nextPage = (currentPage + 1).toString()
 
+    console.log('posts', posts)
+
     return (
-      <Layout location={this.props.location}>
+      <Layout>
         <Helmet title={`Page ${currentPage} | Blog`} />
         <div className="template-wrapper blog-pages">
           <Columns queries={queries}>
             {posts.map(({ node }) => (
-              <BlogItem key={node.id} node={node} />
+              <BlogItem key={node.slug} node={node} />
             ))}
           </Columns>
 
@@ -53,38 +68,55 @@ export default class BlogList extends Component {
 }
 
 export const pageQuery = graphql`
-  query blogPageQuery($skip: Int!, $limit: Int!) {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
+  query HomeQuery($skip: Int!, $limit: Int!) {
+    allContentfulBlogPost(
       limit: $limit
       skip: $skip
+      sort: { fields: [publishDate], order: DESC }
     ) {
       edges {
         node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMM DD YYYY")
-            title
-            excerpt
-            image
-            images
-            imageMin
-            imagePosition
-            tags
-            type
-            location
+          title
+          slug
+          publishDate(formatString: "MMMM Do, YYYY")
+          tags
+          place
+          heroImage {
+            sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+              ...GatsbyContentfulSizes_withWebp
+            }
           }
         }
       }
     }
   }
 `
+
+// export const pageQuery = graphql`
+//   query HomeQuery($skip: Int!, $limit: Int!) {
+//     allContentfulBlogPost(
+//       sort: { fields: [publishDate]], order: DESC }
+//       limit: $limit
+//       skip: $skip
+//     ) {
+//       edges {
+//         node {
+//           title
+//           slug
+//           publishDate(formatString: "MMMM Do, YYYY")
+//           tags
+//           heroImage {
+//             sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+//               ...GatsbyContentfulSizes_withWebp
+//             }
+//           }
+//           description {
+//             childMarkdownRemark {
+//               html
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `

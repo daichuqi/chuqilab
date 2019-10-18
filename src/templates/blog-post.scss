@@ -3,8 +3,12 @@
   bottom: -20px;
   right: 5%;
 }
+.blog-content {
+  max-width: 680px;
+}
 .blog-post-page {
   color: rgba(0, 0, 0, 0.8);
+  padding: 20px 0 50px;
   .normal-article {
     max-width: 800px;
     white-space: pre-line;

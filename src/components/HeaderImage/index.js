@@ -1,17 +1,12 @@
 import React from 'react'
 
-import Img from '../../library/cloudimage'
+// import Img from '../../library/cloudimage'
+import Img from 'gatsby-image'
 import './style.scss'
 
-const HeaderImage = ({ imagePosition, image, imageMin, children }) => (
+const HeaderImage = ({ sizes, children }) => (
   <div className="background-image-container">
-    {image ? (
-      <Img
-        className="progressive-image"
-        style={{ objectPosition: imagePosition }}
-        src={image}
-      />
-    ) : null}
+    {sizes ? <Img className="progressive-image" sizes={sizes} /> : null}
     {children}
   </div>
 )

@@ -2,40 +2,24 @@ const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
-const createPaginatedPages = require('gatsby-paginate')
 
 const blogListTemplate = './src/templates/blog-list.js'
 const blogPostTemplate = './src/templates/blog-post.js'
-const home = './src/templates/home.js'
+const blogPost = path.resolve('./src/templates/blog-post.js')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    // const blogPost = path.resolve('./src/templates/blog-post.js')
     resolve(
       graphql(
         `
           {
-            allMarkdownRemark(
-              sort: { fields: [frontmatter___date], order: DESC }
-              limit: 1000
-            ) {
+            allContentfulBlogPost {
               edges {
                 node {
-                  fields {
-                    slug
-                  }
-                  frontmatter {
-                    title
-                    date
-                    image
-                    imageMin
-                    excerpt
-                    imagePosition
-                    tags
-                    type
-                  }
+                  title
+                  slug
                 }
               }
             }
@@ -43,28 +27,24 @@ exports.createPages = ({ graphql, actions }) => {
         `
       ).then(result => {
         if (result.errors) {
+          console.log(result.errors)
           reject(result.errors)
         }
 
-        createPage({ path: '/', component: path.resolve(home) })
-        const posts = result.data.allMarkdownRemark.edges.filter(
-          ({ node }) => node.frontmatter.type !== 'image'
-        )
-        const postsPerPage = 10
-        const numPages = Math.ceil(posts.length / postsPerPage)
-
-        // Create blog posts pages.
-        _.each(posts, (post, index) => {
+        const posts = result.data.allContentfulBlogPost.edges
+        console.log('posts', posts)
+        posts.forEach((post, index) => {
           createPage({
-            path: post.node.fields.slug,
-            component: path.resolve(blogPostTemplate),
+            path: `/blog/${post.node.slug}/`,
+            component: blogPost,
             context: {
-              slug: post.node.fields.slug,
-              prev: index === 0 ? null : posts[index - 1].node,
-              next: index === posts.length - 1 ? null : posts[index + 1].node,
+              slug: post.node.slug,
             },
           })
         })
+
+        const postsPerPage = 10
+        const numPages = Math.ceil(posts.length / postsPerPage)
 
         _.times(numPages, i => {
           createPage({
@@ -81,17 +61,4 @@ exports.createPages = ({ graphql, actions }) => {
       })
     )
   })
-}
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
 }
