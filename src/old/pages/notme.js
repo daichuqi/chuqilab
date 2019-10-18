@@ -25,18 +25,18 @@ export default class Notme extends Component {
     waterMarkImage: null,
     url: null,
     option: 1,
-    position: 'br'
+    position: 'br',
   }
 
   onChange = e => {
     this.setState({
-      option: e.target.value
+      option: e.target.value,
     })
   }
 
   onPosChange = e => {
     this.setState({
-      position: e.target.value
+      position: e.target.value,
     })
   }
 
@@ -94,7 +94,8 @@ export default class Notme extends Component {
               showUploadList={false}
               action="https://polar-cove-32492.herokuapp.com/image"
               beforeUpload={beforeUpload}
-              onChange={this.handleChange}>
+              onChange={this.handleChange}
+            >
               <Button type="primary" size="large">
                 <Icon type={this.state.loading ? 'loading' : 'upload'} />
                 Upload Avatar
@@ -115,8 +116,9 @@ export default class Notme extends Component {
             {this.state.option === 2 && (
               <div
                 className={classnames('not-me-box-logo', {
-                  [this.state.position]: true
-                })}>
+                  [this.state.position]: true,
+                })}
+              >
                 Not Me
               </div>
             )}
@@ -164,7 +166,8 @@ export default class Notme extends Component {
             rel="noopener noreferrer"
             style={{ marginLeft: 5 }}
             href="https://github.com/daichuqi/chuqilab/blob/master/src/pages/notme.js"
-            target="_blank">
+            target="_blank"
+          >
             Source Code
           </a>
         </div>

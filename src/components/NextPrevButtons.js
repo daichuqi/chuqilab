@@ -6,31 +6,21 @@ const NextPrevButton = ({ next, prev }) => {
   let nextButton, prevButton
 
   if (prev) {
-    const {
-      fields: { slug: prevPath },
-      frontmatter: { title: prevTitle },
-    } = prev
-
     prevButton = (
-      <Link to={prevPath} style={{ float: 'left' }}>
-        <Icon type="caret-left" /> {prevTitle}
+      <Link to={`blog/${prev.slug}`} style={{ float: 'left' }}>
+        <Icon type="caret-left" /> {prev.title}
       </Link>
     )
   }
   if (next) {
-    const {
-      fields: { slug: nextPath },
-      frontmatter: { title: nextTitle },
-    } = next
-
     nextButton = (
-      <Link to={nextPath} style={{ float: 'right' }}>
-        {nextTitle} <Icon type="caret-right" />
+      <Link to={`blog/${next.slug}`} style={{ float: 'right' }}>
+        {next.title} <Icon type="caret-right" />
       </Link>
     )
   }
   return (
-    <div style={{ margin: '50px 0 80px', padding: 1 }}>
+    <div style={{ margin: '10px 0 30px', padding: 1 }}>
       {prevButton}
       {nextButton}
     </div>

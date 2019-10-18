@@ -6,8 +6,8 @@ import Img from 'gatsby-image'
 import './style.scss'
 
 const BlogItem = ({ node }) => {
-  console.log('node', node)
   const { title, slug, publishDate, heroImage, place } = node
+  console.log('heroImage', heroImage)
   const content = (
     <>
       <div className="blog-title">{title}</div>

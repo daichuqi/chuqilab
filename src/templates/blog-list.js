@@ -30,7 +30,7 @@ const NavLink = ({ text, pageCount, show, style }) =>
 
 export default class BlogList extends Component {
   render() {
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+    const posts = get(this, 'props.data.allContentfulBlogPost.edges') || []
     const { currentPage, numPages } = this.props.pageContext
     const isFirst = currentPage === 1
     const isLast = currentPage === numPages
@@ -41,7 +41,7 @@ export default class BlogList extends Component {
 
     return (
       <Layout>
-        <Helmet title={`Page ${currentPage} | Blog`} />
+        <Helmet title={`Page ${currentPage} | Chuqi`} />
         <div className="template-wrapper blog-pages">
           <Columns queries={queries}>
             {posts.map(({ node }) => (

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Icon } from 'antd'
 import Helmet from 'react-helmet'
 
-import Img from '../library/cloudimage'
+import Img from 'gatsby-image'
 import profileImage from '../assets/profile-image.jpg'
 import '../styles/home.scss'
 
@@ -36,7 +36,7 @@ export default class Home extends Component {
               </div>
             </div>
             <div className="right-section">
-              <Img src={profileImage} alt="me" size="200" />
+              <Img sizes={profileImage} alt="me" size="200" />
             </div>
           </div>
         </div>
