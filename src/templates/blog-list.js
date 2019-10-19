@@ -77,7 +77,7 @@ export const pageQuery = graphql`
           tags
           place
           heroImage {
-            sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+            sizes(maxWidth: 350, maxHeight: 200, resizingBehavior: FILL) {
               ...GatsbyContentfulSizes_withWebp
             }
           }
