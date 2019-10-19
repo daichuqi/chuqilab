@@ -24,13 +24,8 @@ export default class BlogPostTemplate extends Component {
     musicReady: false,
   }
 
-  componentWillMount = () => {
-    document.addEventListener('keydown', this.handleKeydown)
-  }
-
   componentWillUnmount = () => {
     clearInterval(this.intervalHandle)
-    document.removeEventListener('keydown', this.handleKeydown)
   }
 
   startCountdown = () => {
@@ -74,7 +69,7 @@ export default class BlogPostTemplate extends Component {
     const { playing, duration, musicReady } = this.state
 
     return (
-      <Layout onKeydown={this.keydownHandler}>
+      <Layout onKeyDown={this.handleKeydown} tabIndex="0">
         <Helmet title={`${title} | Chuqi `} />
         <HeaderImage sizes={heroImage.sizes}>
           {music && (
