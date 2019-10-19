@@ -24,17 +24,18 @@
   opacity: 1;
 }
 
-.blog-item:hover {
-  opacity: 1;
-  filter: brightness(1.1);
-}
-
 .blog-item {
+  transition: 300ms filter ease-in;
   width: 96%;
   opacity: 1;
-  filter: brightness(0.95);
   margin: 2%;
   user-select: none;
+
+  &:hover {
+    opacity: 1;
+    filter: brightness(1.2);
+    transition: all 0.3s ease-out;
+  }
 
   .feature-image-container {
     position: relative;
@@ -43,11 +44,7 @@
     .feature-image {
       object-fit: cover;
       transition: filter 500ms;
-      filter: brightness(0.95);
-
-      &:hover {
-        filter: brightness(1.15);
-      }
+      filter: brightness(0.9);
     }
     > .dark-wrapper {
       position: absolute;
@@ -88,10 +85,4 @@
     line-height: 20px;
     display: inline-block;
   }
-}
-
-.blog-excerpt {
-  font-size: 12px;
-  color: #b6b6b6;
-  font-weight: 300;
 }

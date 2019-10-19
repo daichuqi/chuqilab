@@ -1,12 +1,12 @@
 import React from 'react'
 import { Tag } from 'antd'
 
-const TagsLabel = props => {
-  if (props.tags && props.tags.length > 0) {
+export default ({ tags, style }) => {
+  if (tags && tags.length > 0) {
     return (
-      <div style={props.style}>
+      <div style={style}>
         <span style={{ marginRight: 5 }}>Tags: </span>
-        {props.tags.map(tag => (
+        {tags.map(tag => (
           <Tag key={tag} color="magenta">
             {tag}
           </Tag>
@@ -16,5 +16,3 @@ const TagsLabel = props => {
   }
   return <div />
 }
-
-export default TagsLabel

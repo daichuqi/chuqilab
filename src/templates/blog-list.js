@@ -21,50 +21,45 @@ const queries = [
   },
 ]
 
-const NavLink = ({ text, pageCount, show, style }) =>
-  show && (
-    <Link style={style} to={`/page/${pageCount}`}>
-      {text}
-    </Link>
+const NavLink = ({ text, pageCount, show, style }) => (
+  <Link style={style} to={`/page/${pageCount}`} hidden={!show}>
+    {text}
+  </Link>
+)
+
+export default props => {
+  const posts = get(props, 'data.allContentfulBlogPost.edges') || []
+  const { currentPage, numPages } = props.pageContext
+  const isFirst = currentPage === 1
+  const isLast = currentPage === numPages
+  const prevPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()
+  const nextPage = (currentPage + 1).toString()
+
+  return (
+    <Layout>
+      <Helmet title={`Page ${currentPage} | Chuqi`} />
+      <div className="template-wrapper blog-pages">
+        <Columns queries={queries}>
+          {posts.map(({ node }) => (
+            <BlogItem key={node.slug} node={node} />
+          ))}
+        </Columns>
+
+        <NavLink
+          show={!isFirst}
+          pageCount={prevPage}
+          text="Prev"
+          style={{ float: 'left' }}
+        />
+        <NavLink
+          show={!isLast}
+          pageCount={nextPage}
+          text="Next"
+          style={{ float: 'right' }}
+        />
+      </div>
+    </Layout>
   )
-
-export default class BlogList extends Component {
-  render() {
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges') || []
-    const { currentPage, numPages } = this.props.pageContext
-    const isFirst = currentPage === 1
-    const isLast = currentPage === numPages
-    const prevPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()
-    const nextPage = (currentPage + 1).toString()
-
-    console.log('posts', posts)
-
-    return (
-      <Layout>
-        <Helmet title={`Page ${currentPage} | Chuqi`} />
-        <div className="template-wrapper blog-pages">
-          <Columns queries={queries}>
-            {posts.map(({ node }) => (
-              <BlogItem key={node.slug} node={node} />
-            ))}
-          </Columns>
-
-          <NavLink
-            show={!isFirst}
-            pageCount={prevPage}
-            text="Prev"
-            style={{ float: 'left' }}
-          />
-          <NavLink
-            show={!isLast}
-            pageCount={nextPage}
-            text="Next"
-            style={{ float: 'right' }}
-          />
-        </div>
-      </Layout>
-    )
-  }
 }
 
 export const pageQuery = graphql`
@@ -91,32 +86,3 @@ export const pageQuery = graphql`
     }
   }
 `
-
-// export const pageQuery = graphql`
-//   query HomeQuery($skip: Int!, $limit: Int!) {
-//     allContentfulBlogPost(
-//       sort: { fields: [publishDate]], order: DESC }
-//       limit: $limit
-//       skip: $skip
-//     ) {
-//       edges {
-//         node {
-//           title
-//           slug
-//           publishDate(formatString: "MMMM Do, YYYY")
-//           tags
-//           heroImage {
-//             sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-//               ...GatsbyContentfulSizes_withWebp
-//             }
-//           }
-//           description {
-//             childMarkdownRemark {
-//               html
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `

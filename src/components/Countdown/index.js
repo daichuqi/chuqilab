@@ -1,27 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 const addZero = n => (n <= 9 ? `0${parseInt(n)}` : parseInt(n))
 
-export default class CountDown extends Component {
-  static defaultProps = {
-    duration: 0,
-  }
+export default ({ duration = 0 }) => {
+  const minute = Math.floor(duration / 60)
+  const second = duration - minute * 60
 
-  render() {
-    const minute = Math.floor(this.props.duration / 60)
-    const second = this.props.duration - minute * 60
-
-    return (
-      <div
-        style={{
-          display: 'inline-block',
-          mixBlendMode: 'darken',
-          marginRight: 10,
-          verticalAlign: 'bottom',
-        }}
-      >
-        {addZero(minute)}: {addZero(second)}
-      </div>
-    )
-  }
+  return (
+    <div
+      style={{
+        display: 'inline-block',
+        mixBlendMode: 'darken',
+        marginRight: 10,
+        verticalAlign: 'bottom',
+      }}
+    >
+      {addZero(minute)}: {addZero(second)}
+    </div>
+  )
 }

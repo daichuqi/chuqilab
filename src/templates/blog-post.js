@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { Button } from 'antd'
 import get from 'lodash/get'
-import { graphql } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
+import { Keys } from 'react-keydown'
 
 import Countdown from '../components/Countdown'
 import NextPrevButtons from '../components/NextPrevButtons'
@@ -14,6 +15,8 @@ import ReactAudioPlayer from 'react-audio-player'
 
 import './blog-post.scss'
 
+const { LEFT, RIGHT } = Keys
+
 export default class BlogPostTemplate extends Component {
   state = {
     playing: false,
@@ -21,8 +24,13 @@ export default class BlogPostTemplate extends Component {
     musicReady: false,
   }
 
+  componentWillMount = () => {
+    document.addEventListener('keydown', this.handleKeydown)
+  }
+
   componentWillUnmount = () => {
     clearInterval(this.intervalHandle)
+    document.removeEventListener('keydown', this.handleKeydown)
   }
 
   startCountdown = () => {
@@ -36,23 +44,14 @@ export default class BlogPostTemplate extends Component {
     }, 1000)
   }
 
-  keydownHandler = keydown => {
-    console.log('keydown', keydown)
-    if (keydown.event) {
-      const { prev, next } = this.props.pageContext
-      const key = keydown.event.which
-      if (prev && key === LEFT) {
-        const {
-          fields: { slug: nextPath },
-        } = prev
-        navigate(nextPath)
-      }
-      if (next && key === RIGHT) {
-        const {
-          fields: { slug: prevPath },
-        } = next
-        navigate(prevPath)
-      }
+  handleKeydown = ({ keyCode }) => {
+    const { prev, next } = this.props.pageContext
+
+    if (prev && keyCode === LEFT) {
+      navigate(`/blog/${prev.slug}`)
+    }
+    if (next && keyCode === RIGHT) {
+      navigate(`/blog/${next.slug}`)
     }
   }
 
@@ -67,13 +66,12 @@ export default class BlogPostTemplate extends Component {
       this.setState({ playing: false })
     }
   }
+
   render() {
     const post = get(this.props, 'data.contentfulBlogPost')
     const { prev, next } = this.props.pageContext
     const { title, heroImage, publishDate, body, tags, music } = post
     const { playing, duration, musicReady } = this.state
-
-    console.log('music', post)
 
     return (
       <Layout onKeydown={this.keydownHandler}>

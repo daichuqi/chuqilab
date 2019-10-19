@@ -9,7 +9,7 @@
   .background-image-container {
     overflow: hidden;
     position: relative;
-    height: 300px;
+    max-height: 300px;
     img {
       height: 100%;
       width: 100%;

@@ -1,11 +1,9 @@
 const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
 
-const blogListTemplate = './src/templates/blog-list.js'
-const blogPostTemplate = './src/templates/blog-post.js'
-const blogPost = path.resolve('./src/templates/blog-post.js')
+const blogListTemplate = path.resolve('./src/templates/blog-list.js')
+const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -15,7 +13,9 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allContentfulBlogPost {
+            allContentfulBlogPost(
+              sort: { fields: [publishDate], order: DESC }
+            ) {
               edges {
                 node {
                   title
@@ -32,11 +32,11 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const posts = result.data.allContentfulBlogPost.edges
-        console.log('posts', posts)
+
         posts.forEach((post, index) => {
           createPage({
             path: `/blog/${post.node.slug}/`,
-            component: blogPost,
+            component: blogPostTemplate,
             context: {
               slug: post.node.slug,
               prev: index === 0 ? null : posts[index - 1].node,
@@ -51,7 +51,7 @@ exports.createPages = ({ graphql, actions }) => {
         _.times(numPages, i => {
           createPage({
             path: i === 0 ? `/page` : `/page/${i + 1}`,
-            component: path.resolve(blogListTemplate),
+            component: blogListTemplate,
             context: {
               limit: postsPerPage,
               skip: i * postsPerPage,
