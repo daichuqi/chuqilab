@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Richie Dai <daichuqi@gmail.com>",
   "dependencies": {
-    "antd": "^3.26.3",
+    "antd": "^3.26.6",
     "axios": "^0.19.0",
     "chalk": "^2.4.2",
     "contentful-import": "^7.6.0",

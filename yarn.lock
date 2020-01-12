@@ -1730,10 +1730,10 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
-antd@^3.26.3:
-  version "3.26.3"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.26.3.tgz#046747567d25e381b1b298c3a5c5b970ed716a0d"
-  integrity sha512-1/0yyEfLWK1/hfE8ir9aWYu/iQEYIuUmkQDz0oj5PtDavGNB0yM5TyYRpwzk/06fS6Riop3uDBy2giUlsMFCmA==
+antd@^3.26.6:
+  version "3.26.6"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.26.6.tgz#7e583e11e757679ca6d2fda0bc418a177f5d3653"
+  integrity sha512-GgDiGjY/DooqpPxcWSMk8Xhj6hF1KuyIHzFZ/BgjpaXF+Ca9MKHch8Vmo5yuUPiXekbaOyoKaZj8g/Z2Tr3Lxg==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -1746,6 +1746,7 @@ antd@^3.26.3:
     css-animation "^1.5.0"
     dom-closest "^0.2.0"
     enquire.js "^2.1.6"
+    is-mobile "^2.1.0"
     lodash "^4.17.13"
     moment "^2.24.0"
     omit.js "^1.0.2"
@@ -7869,6 +7870,11 @@ is-jpg@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-jpg/-/is-jpg-2.0.0.tgz#2e1997fa6e9166eaac0242daae443403e4ef1d97"
   integrity sha1-LhmX+m6RZuqsAkLarkQ0A+TvHZc=
+
+is-mobile@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/is-mobile/-/is-mobile-2.1.0.tgz#4c0cab72f3358dd9986007389b30729fae80da0b"
+  integrity sha512-M5OhlZwh+aTlmRUvDg0Wq3uWVNa+w4DyZ2SjbrS+BhSLu9Po+JXHendC305ZEu+Hh7lywb19Zu4kYXu3L1Oo8A==
 
 is-natural-number@^4.0.1:
   version "4.0.1"
