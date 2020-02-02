@@ -5,7 +5,7 @@
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: #ff274d;
 }
-.lottery-btn:hover{
+.lottery-btn:hover {
   cursor: pointer;
 }
 .subtext {
@@ -14,10 +14,9 @@
 }
 .pick-up {
   text-align: center;
-  
-  &:hover{
-    cursor: pointer;
-    color:pink
-  }
 
+  &:hover {
+    cursor: pointer;
+    color: pink;
+  }
 }

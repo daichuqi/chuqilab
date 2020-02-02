@@ -21,8 +21,6 @@ export default () => {
     }
   `)
 
-  console.log('profileImg', profileImg)
-
   return (
     <Layout>
       <Helmet title="Home | Chuqi" />

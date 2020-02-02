@@ -4,14 +4,13 @@ import { Button } from 'antd'
 import get from 'lodash/get'
 import { graphql, navigate } from 'gatsby'
 import { Keys } from 'react-keydown'
+import ReactAudioPlayer from 'react-audio-player'
 
 import Countdown from '../components/Countdown'
 import NextPrevButtons from '../components/NextPrevButtons'
 import HeaderImage from '../components/HeaderImage/'
 import TagsLabel from '../components/Tags/TagsLabel'
 import Layout from '../components/Layout'
-
-import ReactAudioPlayer from 'react-audio-player'
 
 import './blog-post.scss'
 
@@ -40,9 +39,11 @@ export default class BlogPostTemplate extends Component {
   }
 
   handleKeydown = ({ keyCode }) => {
+    console.log('hello')
     const { prev, next } = this.props.pageContext
 
     if (prev && keyCode === LEFT) {
+      console.log('hello')
       navigate(`/blog/${prev.slug}`)
     }
     if (next && keyCode === RIGHT) {
@@ -69,7 +70,7 @@ export default class BlogPostTemplate extends Component {
     const { playing, duration, musicReady } = this.state
 
     return (
-      <Layout onKeyDown={this.handleKeydown} tabIndex="0">
+      <Layout tabIndex="0" onKeyDown={this.handleKeydown}>
         <Helmet title={`${title} | Chuqi `} />
         <HeaderImage sizes={heroImage.sizes}>
           {music && (
@@ -80,10 +81,7 @@ export default class BlogPostTemplate extends Component {
                 shape="circle"
                 icon={playing ? 'pause' : 'caret-right'}
                 disabled={!musicReady}
-                onClick={() => {
-                  console.log('this.props', this.props)
-                  this.onVideoButtonClick()
-                }}
+                onClick={this.onVideoButtonClick}
               />
 
               <ReactAudioPlayer

@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Pragmatica';
-  src: local('Pragmatica'), url(../assets/pragmatica.woff) format('woff'), url(../assets/pragmatica.ttf) format('truetype')
+  src: local('Pragmatica'), url(../assets/pragmatica.woff) format('woff'),
+    url(../assets/pragmatica.ttf) format('truetype');
 }
 
 .image-viewer {
@@ -24,7 +25,7 @@
   font-weight: bolder;
   font-style: italic;
   text-align: center;
-  color: rgba(236,12,35,0.8);
+  color: rgba(236, 12, 35, 0.8);
   z-index: 1000;
 }
 
@@ -37,27 +38,27 @@
 .not-me-box-logo {
   z-index: 1000;
   font-size: 40px;
-    font-family: inherit;
-    font-weight: bolder;
-    position: absolute;
-    color: white;
-    width: 180px;
-    background-color: red;
-    font-style: italic;
-    &.br {
-      bottom: 0;
-      right: 0;
-    }
-    &.bl {
-      bottom: 0;
-      left: 0;
-    }
-    &.ul {
-      top: 0;
-      left: 0;
-    }
-    &.ur {
-      top:0;
-      right: 0;
-    }
+  font-family: inherit;
+  font-weight: bolder;
+  position: absolute;
+  color: white;
+  width: 180px;
+  background-color: red;
+  font-style: italic;
+  &.br {
+    bottom: 0;
+    right: 0;
+  }
+  &.bl {
+    bottom: 0;
+    left: 0;
+  }
+  &.ul {
+    top: 0;
+    left: 0;
+  }
+  &.ur {
+    top: 0;
+    right: 0;
+  }
 }

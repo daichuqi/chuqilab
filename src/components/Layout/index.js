@@ -8,8 +8,8 @@ import '../../styles/style.scss'
 import '../../styles/birthday.scss'
 
 export default ({ overlay, hide, children }) => (
-  <>
+  <div>
     {!hide && <Navbar overlay={overlay} />}
     {children}
-  </>
+  </div>
 )
