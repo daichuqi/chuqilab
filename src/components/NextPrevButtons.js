@@ -7,14 +7,14 @@ const NextPrevButton = ({ next, prev }) => {
 
   if (prev) {
     prevButton = (
-      <Link to={`blog/${prev.slug}`} style={{ float: 'left' }}>
+      <Link to={`/blog/${prev.slug}`} style={{ float: 'left' }}>
         <Icon type="caret-left" /> {prev.title}
       </Link>
     )
   }
   if (next) {
     nextButton = (
-      <Link to={`blog/${next.slug}`} style={{ float: 'right' }}>
+      <Link to={`/blog/${next.slug}`} style={{ float: 'right' }}>
         {next.title} <Icon type="caret-right" />
       </Link>
     )

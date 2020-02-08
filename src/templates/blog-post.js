@@ -1,128 +1,93 @@
-import React, { Component } from 'react'
+import React, { useState, useRef } from 'react'
 import Helmet from 'react-helmet'
 import { Button } from 'antd'
 import get from 'lodash/get'
-import { graphql, navigate } from 'gatsby'
-import { Keys } from 'react-keydown'
+import { graphql } from 'gatsby'
 import ReactAudioPlayer from 'react-audio-player'
 
 import Countdown from '../components/Countdown'
 import NextPrevButtons from '../components/NextPrevButtons'
 import HeaderImage from '../components/HeaderImage/'
-import TagsLabel from '../components/Tags/TagsLabel'
+import Tags from '../components/Tags'
 import Layout from '../components/Layout'
 
+import { useInterval } from '../utils/use-interval'
 import './blog-post.scss'
 
-const { LEFT, RIGHT } = Keys
+export default props => {
+  const { prev, next } = props.pageContext
+  const post = get(props, 'data.contentfulBlogPost')
+  const { title, heroImage, publishDate, body, tags, music } = post
 
-export default class BlogPostTemplate extends Component {
-  state = {
-    playing: false,
-    duration: 0,
-    musicReady: false,
-  }
+  const [playing, setPlaying] = useState(false)
+  const [ready, setReady] = useState(false)
+  const [duration, setDuration] = useState(0)
+  const player = useRef(null)
 
-  componentWillUnmount = () => {
-    clearInterval(this.intervalHandle)
-  }
+  useInterval(
+    () => {
+      setDuration(duration - 1)
+    },
+    playing ? 1000 : null
+  )
 
-  startCountdown = () => {
-    this.intervalHandle = setInterval(() => {
-      const duration = this.state.duration - 1
-      this.setState({ duration })
-
-      if (duration === 0) {
-        clearInterval(this.intervalHandle)
-      }
-    }, 1000)
-  }
-
-  handleKeydown = ({ keyCode }) => {
-    console.log('hello')
-    const { prev, next } = this.props.pageContext
-
-    if (prev && keyCode === LEFT) {
-      console.log('hello')
-      navigate(`/blog/${prev.slug}`)
-    }
-    if (next && keyCode === RIGHT) {
-      navigate(`/blog/${next.slug}`)
-    }
-  }
-
-  onVideoButtonClick = () => {
-    if (!this.state.playing) {
-      this.rap.audioEl.play()
-      this.startCountdown()
-      this.setState({ playing: true })
+  const onVideoButtonClick = () => {
+    if (!playing) {
+      player.current.audioEl.play()
+      setPlaying(true)
     } else {
-      clearInterval(this.intervalHandle)
-      this.rap.audioEl.pause()
-      this.setState({ playing: false })
+      player.current.audioEl.pause()
+      setPlaying(false)
     }
   }
 
-  render() {
-    const post = get(this.props, 'data.contentfulBlogPost')
-    const { prev, next } = this.props.pageContext
-    const { title, heroImage, publishDate, body, tags, music } = post
-    const { playing, duration, musicReady } = this.state
+  return (
+    <Layout tabIndex="0">
+      <Helmet title={`${title} | Chuqi `} />
+      <HeaderImage sizes={heroImage.sizes}>
+        {music && (
+          <div className="player-control">
+            <Countdown duration={duration}></Countdown>
+            <Button
+              size="large"
+              shape="circle"
+              icon={playing ? 'pause' : 'caret-right'}
+              disabled={!ready}
+              onClick={onVideoButtonClick}
+            />
 
-    return (
-      <Layout tabIndex="0" onKeyDown={this.handleKeydown}>
-        <Helmet title={`${title} | Chuqi `} />
-        <HeaderImage sizes={heroImage.sizes}>
-          {music && (
-            <div className="player-control">
-              <Countdown duration={duration}></Countdown>
-              <Button
-                size="large"
-                shape="circle"
-                icon={playing ? 'pause' : 'caret-right'}
-                disabled={!musicReady}
-                onClick={this.onVideoButtonClick}
-              />
-
-              <ReactAudioPlayer
-                onEnded={() => {
-                  this.setState({
-                    duration: this.rap.audioEl.duration,
-                    playing: false,
-                  })
-                  clearInterval(this.intervalHandle)
-                }}
-                onCanPlay={() => {
-                  this.setState({
-                    musicReady: true,
-                    duration: this.rap.audioEl.duration,
-                  })
-                }}
-                ref={element => (this.rap = element)}
-                src={`https:${music.file.url}`}
-              />
-            </div>
-          )}
-        </HeaderImage>
-
-        <div className="blog-post-page template-wrapper">
-          <div className="blog-detail-header">
-            <div className="title">{title}</div>
-            <div className="date">{publishDate}</div>
-
-            <div
-              className="blog-content"
-              dangerouslySetInnerHTML={{
-                __html: body.childMarkdownRemark.html,
+            <ReactAudioPlayer
+              ref={player}
+              onEnded={() => {
+                setDuration(player.current.audioEl.duration)
+                setPlaying(false)
               }}
+              onCanPlay={() => {
+                setReady(true)
+                setDuration(player.current.audioEl.duration)
+              }}
+              src={`https:${music.file.url}`}
             />
           </div>
-          <TagsLabel tags={tags} style={{ marginTop: 30 }} />
-          <NextPrevButtons prev={prev} next={next} />
+        )}
+      </HeaderImage>
+
+      <div className="blog-post-page template-wrapper">
+        <div className="blog-detail-header">
+          <div className="title">{title}</div>
+          <div className="date">{publishDate}</div>
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{
+              __html: body.childMarkdownRemark.html,
+            }}
+          />
         </div>
-      </Layout>
-    )
-  }
+        <Tags tags={tags} style={{ marginTop: 30 }} />
+        <NextPrevButtons prev={prev} next={next} />
+      </div>
+    </Layout>
+  )
 }
 
 export const pageQuery = graphql`

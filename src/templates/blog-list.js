@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link, graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
@@ -51,6 +51,7 @@ export default props => {
           text="Prev"
           style={{ float: 'left' }}
         />
+
         <NavLink
           show={!isLast}
           pageCount={nextPage}

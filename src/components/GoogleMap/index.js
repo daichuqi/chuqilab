@@ -11,16 +11,16 @@ export default class GoogleMap extends Component {
   static defaultProps = {
     center: {
       lat: 37.3875665,
-      lng: -121.99419
+      lng: -121.99419,
     },
-    zoom: 11
+    zoom: 11,
   }
 
   createMapOptions = maps => ({
     panControl: false,
     mapTypeControl: false,
     scrollwheel: false,
-    styles: MapStylesWhite
+    styles: MapStylesWhite,
   })
 
   render() {
@@ -30,12 +30,13 @@ export default class GoogleMap extends Component {
           options={this.createMapOptions}
           bootstrapURLKeys={{ key: GOOGLE_MAP_API }}
           defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}>
+          defaultZoom={this.props.zoom}
+        >
           <div lat={this.props.center.lat} lng={this.props.center.lng}>
             <img
               alt="my-apt"
               style={{
-                transform: 'translate(-50%, -50%)'
+                transform: 'translate(-50%, -50%)',
               }}
               src="https://s3.amazonaws.com/sneakpeeq-sites/jacklinks/images/marker.png"
             />
