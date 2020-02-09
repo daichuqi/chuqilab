@@ -10,8 +10,14 @@ import Layout from '../components/Layout'
 import '../styles/home.scss'
 import { getCurrentUser } from '../utils/auth'
 
-import config from '../aws-exports'
-Amplify.configure(config)
+Amplify.configure({
+  aws_project_region: 'us-west-2',
+  aws_cognito_identity_pool_id:
+    'us-west-2:5e98bf19-2dc9-4e8e-9a8e-5fe81f326e29',
+  aws_cognito_region: 'us-west-2',
+  aws_user_pools_id: 'us-west-2_wZAbsHVp5',
+  aws_user_pools_web_client_id: '30g872mgto7qqk7mrjvvmkrgt8',
+})
 
 export default () => {
   const user = getCurrentUser()
