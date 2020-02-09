@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Icon } from 'antd'
+import { Icon } from '@ant-design/compatible'
 
 const NextPrevButton = ({ next, prev }) => {
   let nextButton, prevButton

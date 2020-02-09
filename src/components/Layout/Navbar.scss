@@ -8,16 +8,21 @@
     position: absolute;
     width: 100%;
   }
-  .nav-item {
+  .nav-items {
     float: right;
-    line-height: 46px;
-    text-decoration: none;
-    color: rgb(121, 121, 121);
-    font-size: 20px;
-    color: #797979;
-    font-weight: 200;
-    &:hover {
-      color: black;
+
+    .nav-item {
+      margin-left: 20px;
+      line-height: 46px;
+      text-decoration: none;
+      color: rgb(121, 121, 121);
+      font-size: 20px;
+      color: #797979;
+      font-weight: 200;
+      &:hover {
+        cursor: pointer;
+        color: black;
+      }
     }
   }
   .wrapper {

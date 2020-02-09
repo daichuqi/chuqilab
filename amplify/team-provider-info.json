@@ -1,0 +1,20 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-chuqilab-prod-123523-authRole",
+            "UnauthRoleArn": "arn:aws:iam::411694885224:role/amplify-chuqilab-prod-123523-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::411694885224:role/amplify-chuqilab-prod-123523-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-chuqilab-prod-123523-deployment",
+            "UnauthRoleName": "amplify-chuqilab-prod-123523-unauthRole",
+            "StackName": "amplify-chuqilab-prod-123523",
+            "StackId": "arn:aws:cloudformation:us-west-2:411694885224:stack/amplify-chuqilab-prod-123523/b4635210-4b7b-11ea-aa4f-06cac24c53a2",
+            "AmplifyAppId": "d2mxddkkionz4h"
+        },
+        "categories": {
+            "auth": {
+                "chuqilab2e79c78b": {}
+            }
+        }
+    }
+}

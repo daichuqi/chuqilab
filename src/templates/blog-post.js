@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import Helmet from 'react-helmet'
 import { Button } from 'antd'
 import get from 'lodash/get'
-import { graphql } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 import ReactAudioPlayer from 'react-audio-player'
 
 import Countdown from '../components/Countdown'
@@ -11,6 +11,7 @@ import HeaderImage from '../components/HeaderImage/'
 import Tags from '../components/Tags'
 import Layout from '../components/Layout'
 
+import { isLoggedIn } from '../utils/auth'
 import { useInterval } from '../utils/use-interval'
 import './blog-post.scss'
 
@@ -39,6 +40,11 @@ export default props => {
       player.current.audioEl.pause()
       setPlaying(false)
     }
+  }
+
+  if (!isLoggedIn()) {
+    navigate(`/login`)
+    return null
   }
 
   return (

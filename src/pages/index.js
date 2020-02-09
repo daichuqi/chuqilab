@@ -1,14 +1,21 @@
-import React, { Component } from 'react'
-import { Icon } from 'antd'
-import Helmet from 'react-helmet'
+import React from 'react'
+import { Icon } from '@ant-design/compatible'
 
+import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 import { graphql, useStaticQuery } from 'gatsby'
-import '../styles/home.scss'
+import Amplify from 'aws-amplify'
 
 import Layout from '../components/Layout'
+import '../styles/home.scss'
+import { getCurrentUser } from '../utils/auth'
+
+import config from '../aws-exports'
+Amplify.configure(config)
 
 export default () => {
+  const user = getCurrentUser()
+
   const profileImg = useStaticQuery(graphql`
     query MyQuery {
       file(name: { eq: "profile_img" }) {
@@ -35,8 +42,7 @@ export default () => {
               </span>
             </div>
             <div className="text">
-              He is currently work for <Icon type="apple" theme="filled" /> in
-              SPG.
+              He is currently work for <Icon type="apple" /> in SPG.
               <br />
               LOVE design, art and tech.
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Icon } from 'antd'
+import { Icon } from '@ant-design/compatible'
 import Img from 'gatsby-image'
 
 import './style.scss'

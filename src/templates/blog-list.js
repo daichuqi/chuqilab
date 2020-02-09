@@ -1,10 +1,12 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, navigate } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Columns from 'react-columns'
+
 import Layout from '../components/Layout'
 import BlogItem from '../components/BlogItem'
+import { isLoggedIn } from '../utils/auth'
 
 const queries = [
   {
@@ -34,6 +36,11 @@ export default props => {
   const isLast = currentPage === numPages
   const prevPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
+
+  if (!isLoggedIn()) {
+    navigate(`/login`)
+    return null
+  }
 
   return (
     <Layout>

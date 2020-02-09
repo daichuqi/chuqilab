@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"chuqilab2e79c78b": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
