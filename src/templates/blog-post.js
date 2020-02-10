@@ -43,7 +43,7 @@ export default props => {
     }
   }
 
-  if (window && !isLoggedIn()) {
+  if (typeof window !== `undefined` && !isLoggedIn()) {
     navigate(`/login`)
     return null
   }

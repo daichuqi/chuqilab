@@ -37,7 +37,7 @@ export default props => {
   const prevPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
 
-  if (window && !isLoggedIn()) {
+  if (typeof window !== `undefined` && !isLoggedIn()) {
     navigate(`/login`)
     return null
   }
