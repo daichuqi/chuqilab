@@ -4,6 +4,7 @@ const path = require('path')
 
 const blogListTemplate = path.resolve('./src/templates/blog-list.js')
 const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
+const loginTemplate = path.resolve('./src/templates/login.js')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -32,6 +33,14 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const posts = result.data.allContentfulBlogPost.edges
+
+        createPage({
+          path: '/login',
+          component: loginTemplate,
+          context: {
+            imageTitle: 'Iseltwald',
+          },
+        })
 
         posts.forEach((post, index) => {
           createPage({

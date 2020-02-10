@@ -22,7 +22,7 @@ export default ({ overlay, hide, children }) => {
   }
 
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       {!hide && (
         <div className={`nav-component pattern ${overlay ? 'overlay' : ''}`}>
           <div className="wrapper">
