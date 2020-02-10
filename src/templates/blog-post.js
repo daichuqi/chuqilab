@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import Helmet from 'react-helmet'
 import { Button } from 'antd'
+import { Icon } from '@ant-design/compatible'
 import get from 'lodash/get'
 import { graphql, navigate } from 'gatsby'
 import ReactAudioPlayer from 'react-audio-player'
@@ -57,7 +58,7 @@ export default props => {
             <Button
               size="large"
               shape="circle"
-              icon={playing ? 'pause' : 'caret-right'}
+              icon={playing ? <Icon type='pause' /> : <Icon type='caret-right' /> }
               disabled={!ready}
               onClick={onVideoButtonClick}
             />
