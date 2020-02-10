@@ -26,6 +26,7 @@ export default function Login(props) {
       setUser(userInfo)
       navigate('/')
     } catch (err) {
+      console.log('err', err)
       setError(err)
     } finally {
       setLoading(false)
@@ -71,7 +72,7 @@ export default function Login(props) {
             <Form.Item
               name="password"
               rules={[
-                { required: true, message: 'Please input your username!' },
+                { required: true, message: 'Please input your password!' },
               ]}
             >
               <Input.Password
@@ -90,7 +91,7 @@ export default function Login(props) {
                 {loading ? 'Loading...' : 'Login'}
               </Button>
 
-              <div>
+              <div style={{ marginTop: 10 }}>
                 <Link to="/signup">Sign up</Link>
               </div>
             </div>
