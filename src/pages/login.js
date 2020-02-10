@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
 import { Form, Input, Button } from 'antd'
-import { navigate } from '@reach/router'
+import { Link, navigate } from 'gatsby'
 import { Auth } from 'aws-amplify'
 
-import { setUser, isLoggedIn } from '../utils/auth'
-import Error from '../components/Error'
 import Layout from '../components/Layout'
+import Error from '../components/Error'
+import { setUser } from '../utils/auth'
 
 const layout = {
   labelCol: { span: 8 },
@@ -14,10 +13,6 @@ const layout = {
 }
 
 export default function Login() {
-  if (isLoggedIn()) {
-    navigate('/page')
-  }
-
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -69,10 +64,18 @@ export default function Login() {
         </Form.Item>
 
         <div style={{ textAlign: 'center' }}>
-          <Button loading={loading} type="primary" htmlType="submit">
-            Sign In
+          <Button
+            style={{ width: 200 }}
+            loading={loading}
+            type="primary"
+            htmlType="submit"
+          >
+            Login
           </Button>
-          <Link to="/signup">Sign Up</Link>
+
+          <div>
+            <Link to="/signup">Sign up</Link>
+          </div>
         </div>
       </Form>
     </Layout>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd'
-import { navigate } from '@reach/router'
+import { navigate } from 'gatsby'
 import { Auth } from 'aws-amplify'
 
 import Layout from '../components/Layout'
@@ -27,17 +27,15 @@ export default function SignUp() {
       setStage(1)
     } catch (err) {
       setError(err)
-      console.log('error signing up...', err)
     }
   }
 
   const confirmSignUp = async ({ authCode }) => {
     try {
       await Auth.confirmSignUp(username, authCode)
-      navigate('/')
+      navigate('/login')
     } catch (err) {
       setError(err)
-      console.log('error confirming signing up...', err)
     }
   }
 

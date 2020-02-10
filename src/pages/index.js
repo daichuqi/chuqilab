@@ -1,14 +1,13 @@
 import React from 'react'
 import { Icon } from '@ant-design/compatible'
-
+import { graphql, useStaticQuery } from 'gatsby'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
-import { graphql, useStaticQuery } from 'gatsby'
 import Amplify from 'aws-amplify'
 
 import Layout from '../components/Layout'
-import '../styles/home.scss'
 import { getCurrentUser } from '../utils/auth'
+import '../styles/home.scss'
 
 Amplify.configure({
   aws_project_region: 'us-west-2',
@@ -20,8 +19,6 @@ Amplify.configure({
 })
 
 export default () => {
-  const user = getCurrentUser()
-
   const profileImg = useStaticQuery(graphql`
     query MyQuery {
       file(name: { eq: "profile_img" }) {
