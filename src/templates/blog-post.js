@@ -43,7 +43,7 @@ export default props => {
     }
   }
 
-  if (!isLoggedIn()) {
+  if (window && !isLoggedIn()) {
     navigate(`/login`)
     return null
   }
@@ -58,7 +58,9 @@ export default props => {
             <Button
               size="large"
               shape="circle"
-              icon={playing ? <Icon type='pause' /> : <Icon type='caret-right' /> }
+              icon={
+                playing ? <Icon type="pause" /> : <Icon type="caret-right" />
+              }
               disabled={!ready}
               onClick={onVideoButtonClick}
             />

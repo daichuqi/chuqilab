@@ -78,16 +78,6 @@
     uuid "^3.2.1"
     zen-observable "^0.8.6"
 
-"@aws-amplify/auth@1.4.4-unstable.5":
-  version "1.4.4-unstable.5"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-1.4.4-unstable.5.tgz#cbe182bd6ad2efbd15b6aaf8ab8b28403cdd2ad7"
-  integrity sha512-FhT10XUhLy/YVZGEbCKVVKLUBFxs+nrvbBfVrjAXGU+6CpYFufGsjqxafT/iVbMjhYPTdlKKIm++6dyiownN0w==
-  dependencies:
-    "@aws-amplify/cache" "1.1.4-unstable.5+c0fa439b"
-    "@aws-amplify/core" "1.2.4-unstable.5+c0fa439b"
-    amazon-cognito-identity-js "3.1.4-unstable.5+c0fa439b"
-    crypto-js "^3.1.9-1"
-
 "@aws-amplify/auth@^2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-2.1.5.tgz#5ba71686f745828ad08cb1d2805e030b8c7ba618"
@@ -98,27 +88,12 @@
     amazon-cognito-identity-js "^3.2.4"
     crypto-js "^3.1.9-1"
 
-"@aws-amplify/cache@1.1.4-unstable.5+c0fa439b":
-  version "1.1.4-unstable.5"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-1.1.4-unstable.5.tgz#b29deaae164bac56817c539b37baad1008b84254"
-  integrity sha512-xuFTOUxpEz3RZ13dttCVuSgGErGNarUvJSteZ+NqCIMFIZ59nzJTiI8f6uHj5CAdekTAErNHLVwzg+HdLNW8Rw==
-  dependencies:
-    "@aws-amplify/core" "1.2.4-unstable.5+c0fa439b"
-
 "@aws-amplify/cache@^2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-2.1.5.tgz#dfebe072cb56f36a3af1528f130ab1e031a8db33"
   integrity sha512-+UwwFapFGbJBNwBQ01u7j6F4m6sqW1j+yqTB0NJvPlYiRM1acYzeBcQPulohVBOjbAFxNpkh/2A+bol0I/mYRg==
   dependencies:
     "@aws-amplify/core" "^2.2.4"
-
-"@aws-amplify/core@1.2.4-unstable.5+c0fa439b":
-  version "1.2.4-unstable.5"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-1.2.4-unstable.5.tgz#8e0bc3d95995f1f27c6ea52f0ea3994c5fe04e7e"
-  integrity sha512-FdGPw21gEX1SNYFrk2ev99lBvzK5GgEqqi3JKSfi4cVCaLJzqKRhmXYuEsKKhxucx7rQZoS/k5EjDUpzzpfr2g==
-  dependencies:
-    aws-sdk "2.518.0"
-    url "^0.11.0"
 
 "@aws-amplify/core@^2.2.4":
   version "2.2.4"
@@ -1872,15 +1847,6 @@ alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
-
-amazon-cognito-identity-js@3.1.4-unstable.5+c0fa439b:
-  version "3.1.4-unstable.5"
-  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-3.1.4-unstable.5.tgz#7c3ebc25e026732adf1900a898cf1a15645fc981"
-  integrity sha512-x2pfGc2CAK31UJsODM9Xnd8uQeWop5dEaPc8Ukoxwrdz3Nv3VXnhlzT1j/k+zTs/CWKrS8MGERXsWWm3FumkVQ==
-  dependencies:
-    buffer "4.9.1"
-    crypto-js "^3.1.9-1"
-    js-cookie "^2.1.4"
 
 amazon-cognito-identity-js@^3.2.4:
   version "3.2.4"
