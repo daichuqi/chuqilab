@@ -3,7 +3,7 @@
   # This will be run the site build
   command = "npm run build"
   # This is the directory is publishing to netlify's CDN
-  publish = "build"
+  publish = "public"
 
 [template.environment]
-  FAUNADB_SERVER_SECRET = "fnADkTvUT3ACCpkDSXrIeQ8f7M6n4jPh3cfJIVCS"
+  FAUNADB_SECRET = "fnADkTvUT3ACCpkDSXrIeQ8f7M6n4jPh3cfJIVCS"
