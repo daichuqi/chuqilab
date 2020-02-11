@@ -13,8 +13,8 @@ import Tags from '../components/Tags'
 import Layout from '../components/Layout'
 
 import { isLoggedIn } from '../utils/auth'
-import { useInterval } from '../utils/use-interval'
-import './blog-post.scss'
+import { useInterval } from '../utils/customHooks'
+import '../styles/blog-post.scss'
 
 export default props => {
   const { prev, next } = props.pageContext
