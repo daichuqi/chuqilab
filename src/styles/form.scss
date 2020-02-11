@@ -1,0 +1,65 @@
+.form-wrapper {
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background-color: #00000033;
+  padding: 20px 20px;
+  width: 100%;
+  max-width: 400px;
+  backdrop-filter: blur(1px);
+}
+
+.form-title {
+  font-size: 28px;
+  width: 100%;
+  margin: 160px auto 0;
+  padding: 0 20px;
+  color: white;
+}
+
+.ant-form-item {
+  margin-bottom: 12px;
+}
+
+.ant-form-item-control-input {
+  .ant-input-password {
+    background-color: #00000055;
+    color: #fff;
+    border: 1px solid #00000000;
+    .ant-input {
+      border: none;
+      background-color: #00000000;
+      color: #fff;
+    }
+  }
+
+  .ant-input-group-addon {
+    background-color: #00000055;
+    border: 1px solid #00000000;
+  }
+
+  .ant-select-arrow,
+  .ant-select-selector {
+    color: #fff;
+  }
+  .ant-input {
+    border: 1px solid #00000000;
+    color: #fff;
+    background-color: #00000055;
+  }
+  ::placeholder {
+    color: #fff;
+    opacity: 0.6; /* Firefox */
+  }
+}
+
+.ant-form-item-has-error .ant-input,
+.ant-form-item-has-error .ant-input-affix-wrapper,
+.ant-form-item-has-error .ant-input:hover,
+.ant-form-item-has-error .ant-input-affix-wrapper:hover {
+  background-color: #00000055;
+  .ant-input {
+    background-color: #00000000;
+  }
+}

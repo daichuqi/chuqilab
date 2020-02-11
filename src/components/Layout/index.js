@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Auth } from 'aws-amplify'
+import Amplify, { Auth } from 'aws-amplify'
 import { navigate } from '@reach/router'
 
 import { logout, isLoggedIn } from '../../utils/auth'
@@ -10,6 +10,16 @@ import 'antd/dist/antd.css'
 import '../../styles/libs/prism-darcula.css'
 import '../../styles/default.scss'
 import '../../styles/style.scss'
+import '../../styles/form.scss'
+
+Amplify.configure({
+  aws_project_region: 'us-west-2',
+  aws_cognito_identity_pool_id:
+    'us-west-2:5e98bf19-2dc9-4e8e-9a8e-5fe81f326e29',
+  aws_cognito_region: 'us-west-2',
+  aws_user_pools_id: 'us-west-2_wZAbsHVp5',
+  aws_user_pools_web_client_id: '30g872mgto7qqk7mrjvvmkrgt8',
+})
 
 export default ({ overlay, hide, children }) => {
   const sigunout = async () => {

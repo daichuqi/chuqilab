@@ -13,6 +13,7 @@ export default function Login(props) {
   const asset = get(props, 'data.contentfulAsset')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [form] = Form.useForm()
 
   const login = async ({ username, password }) => {
     try {
@@ -33,88 +34,74 @@ export default function Login(props) {
     }
   }
 
+  const onFinishFailed = ({ errorFields }) => {
+    form.scrollToField(errorFields[0].name)
+  }
+
   return (
     <Layout>
-      <Row style={{ height: 'calc(100% - 46px)' }}>
-        <Col xs={24} sm={12} md={8} xxl={6}>
-          {error && <Error errorMessage={error} />}
+      <Img
+        fadeIn
+        className="progressive-image"
+        sizes={asset.sizes}
+        style={{ height: 'calc(100% - 46px)' }}
+        imgStyle={{ objectPosition: 'center left' }}
+      />
+      <div className="form-wrapper">
+        {error && <Error errorMessage={error} />}
 
-          <div
-            style={{
-              fontSize: 28,
-              width: '100%',
-              maxWidth: 260,
-              margin: '100px auto 0',
-            }}
+        <div className="form-title">Welcome</div>
+        <Form
+          name="basic"
+          onFinish={login}
+          style={{ textAlign: 'center', padding: 20 }}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            Welcome
-          </div>
-          <Form
-            name="basic"
-            onFinish={login}
-            style={{ textAlign: 'center', padding: 20 }}
-            onFinishFailed={errorInfo => {
-              console.log('errorInfo', errorInfo)
-            }}
+            <Input
+              size="large"
+              style={{ width: '100%' }}
+              placeholder="Username"
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Form.Item
-              name="username"
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
+            <Input.Password
+              size="large"
+              style={{ width: '100%' }}
+              placeholder="Password"
+            />
+          </Form.Item>
+
+          <div>
+            <Button
+              size="large"
+              style={{ width: '100%' }}
+              loading={loading}
+              type="primary"
+              htmlType="submit"
             >
-              <Input
-                style={{ width: '100%', maxWidth: 260 }}
-                placeholder="Username"
-              />
-            </Form.Item>
+              {loading ? 'Loading...' : 'Login'}
+            </Button>
 
-            <Form.Item
-              name="password"
-              rules={[
-                { required: true, message: 'Please input your password!' },
-              ]}
-            >
-              <Input.Password
-                style={{ width: '100%', maxWidth: 260 }}
-                placeholder="Password"
-              />
-            </Form.Item>
-
-            <div>
-              <Button
-                style={{ width: '100%', maxWidth: 260 }}
-                loading={loading}
-                type="primary"
-                htmlType="submit"
-              >
-                {loading ? 'Loading...' : 'Login'}
-              </Button>
-
-              <div style={{ marginTop: 10 }}>
-                <Link to="/signup">Sign up</Link>
-              </div>
+            <div style={{ marginTop: 10 }}>
+              <Link to="/signup">Sign up</Link>
             </div>
-          </Form>
-        </Col>
-        <Col xs={0} sm={12} md={16} xxl={18}>
-          <Img
-            fadeIn
-            className="progressive-image"
-            sizes={asset.sizes}
-            style={{ height: '100%' }}
-            imgStyle={{
-              objectPosition: 'center left',
-            }}
-          />
-        </Col>
-      </Row>
+          </div>
+        </Form>
+      </div>
     </Layout>
   )
 }
 
 export const pageQuery = graphql`
-  query ImageQuery($imageTitle: String!) {
+  query LoginImageQuery($imageTitle: String!) {
     contentfulAsset(title: { eq: $imageTitle }) {
       title
       sizes(maxWidth: 1180, background: "rgb:000000") {
