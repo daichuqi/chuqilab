@@ -5,6 +5,7 @@ const path = require('path')
 const chalk = require('chalk')
 
 const argv = require('yargs-parser')(process.argv.slice(2))
+require('dotenv').config()
 
 const spaceId = argv.spaceId
 const managementToken = argv.managementToken

@@ -1,3 +1,5 @@
+var proxy = require('http-proxy-middleware')
+
 let contentfulConfig
 
 try {
@@ -22,6 +24,18 @@ if (!spaceId || !accessToken) {
 }
 
 module.exports = {
+  developMiddleware: app => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target: 'http://localhost:9000',
+        secure: false, // Do not reject self-signed certificates.
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      })
+    )
+  },
   siteMetadata: {
     title: 'CQ',
     author: 'Richie',

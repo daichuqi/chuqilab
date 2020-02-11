@@ -5,6 +5,8 @@ import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
+
+import Api from '../Api'
 import '../styles/home.scss'
 
 export default () => {

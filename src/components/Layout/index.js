@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'gatsby'
 import Amplify, { Auth } from 'aws-amplify'
 import { navigate } from '@reach/router'
 
-import { logout, isLoggedIn } from '../../utils/auth'
+import { logout, isLoggedIn, getCurrentUser } from '../../utils/auth'
+import Api from '../../Api'
 
 import './Navbar.scss'
 import 'antd/dist/antd.css'
@@ -22,6 +23,7 @@ Amplify.configure({
 })
 
 export default ({ overlay, hide, children }) => {
+  const [name, setName] = useState('')
   const sigunout = async () => {
     try {
       await Auth.signOut()
@@ -30,6 +32,18 @@ export default ({ overlay, hide, children }) => {
       console.log('error', error)
     }
   }
+
+  useEffect(() => {
+    const load = async () => {
+      const user = getCurrentUser()
+      const { data } = await Api.todo.fetchUser(user.username)
+      setName(data.name)
+    }
+
+    if (isLoggedIn()) {
+      load()
+    }
+  }, [])
 
   return (
     <div style={{ height: '100vh' }}>
@@ -50,9 +64,13 @@ export default ({ overlay, hide, children }) => {
               )}
 
               {isLoggedIn() ? (
-                <span className="nav-item" onClick={sigunout}>
-                  Sign Out
-                </span>
+                <>
+                  <span className="nav-item">Hello {name}</span>
+
+                  <span className="nav-item" onClick={sigunout}>
+                    Logout
+                  </span>
+                </>
               ) : (
                 <Link className="nav-item" to="/login">
                   Login
