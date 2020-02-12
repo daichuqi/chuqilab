@@ -1,30 +1,32 @@
-import faunadb from 'faunadb'
+import { Client } from 'pg'
 import getId from './utils/getId'
-
-const q = faunadb.query
-const client = new faunadb.Client({
-  secret: process.env.FAUNADB_SECRET,
-})
 
 exports.handler = async (event, context, callback) => {
   const id = getId(event.path)
+  const client = new Client({
+    user: 'daichuqi',
+    host: 'chuqilab.c2ls2eak4iwb.us-west-2.rds.amazonaws.com',
+    database: 'mydb',
+    password: '123456789',
+    port: 5432,
+  })
+
   try {
-    const response = await client.paginate(
-      q.Match(q.Index('user_search_by_username'), id)
+    await client.connect()
+    const res = await client.query(
+      `SELECT * FROM users WHERE username='${id}';`
     )
 
-    response.each(async a => {
-      const user = await client.query(q.Get(a[0]))
-      return callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(user),
-      })
+    return callback(null, {
+      statusCode: 200,
+      body: JSON.stringify(res.rows[0]),
     })
   } catch (error) {
-    console.log('error', error)
     return callback(null, {
       statusCode: 400,
       body: JSON.stringify(error),
     })
+  } finally {
+    client.end()
   }
 }

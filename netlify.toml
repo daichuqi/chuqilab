@@ -4,6 +4,3 @@
   command = "npm run build"
   # This is the directory is publishing to netlify's CDN
   publish = "public"
-
-[template.environment]
-  FAUNADB_SECRET = "fnADkTvUT3ACCpkDSXrIeQ8f7M6n4jPh3cfJIVCS"

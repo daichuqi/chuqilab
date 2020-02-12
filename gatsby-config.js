@@ -44,6 +44,16 @@ module.exports = {
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
+    {
+      resolve: 'gatsby-source-pg',
+      options: {
+        rejectUnauthorized: false,
+        connectionString:
+          'postgres://daichuqi:123456789@chuqilab.c2ls2eak4iwb.us-west-2.rds.amazonaws.com:5432/mydb?ssl=1',
+        schema: 'public',
+        refetchInterval: 300, // Refetch data every 60 seconds
+      },
+    },
     'gatsby-plugin-sass',
     {
       resolve: `gatsby-source-filesystem`,

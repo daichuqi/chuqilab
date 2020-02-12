@@ -36,14 +36,15 @@ export default ({ overlay, hide, children }) => {
   useEffect(() => {
     const load = async () => {
       const user = getCurrentUser()
-      const { data } = await Api.todo.fetchUser(user.username)
-      setName(data.name)
+      // const { data } = await Api.todo.fetchUser(user.username)
+      setName(user.name)
+      console.log('load!!')
     }
 
     if (isLoggedIn()) {
       load()
     }
-  }, [])
+  }, [name])
 
   return (
     <div style={{ height: '100vh' }}>
@@ -63,14 +64,16 @@ export default ({ overlay, hide, children }) => {
                 </Link>
               )}
 
-              {isLoggedIn() ? (
-                <>
-                  <span className="nav-item">Hello {name}</span>
+              {isLoggedIn() && (
+                <Link className="nav-item" to="/app">
+                  App
+                </Link>
+              )}
 
-                  <span className="nav-item" onClick={sigunout}>
-                    Logout
-                  </span>
-                </>
+              {isLoggedIn() ? (
+                <span className="nav-item" onClick={sigunout}>
+                  Logout
+                </span>
               ) : (
                 <Link className="nav-item" to="/login">
                   Login

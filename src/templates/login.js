@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Input, Button, Row, Col } from 'antd'
+import { Form, Input, Button } from 'antd'
 import { Link, navigate, graphql } from 'gatsby'
 import { Auth } from 'aws-amplify'
 import Img from 'gatsby-image'
@@ -7,6 +7,7 @@ import get from 'lodash/get'
 
 import Layout from '../components/Layout'
 import Error from '../components/Error'
+import Api from '../Api'
 import { setUser } from '../utils/auth'
 
 export default function Login(props) {
@@ -20,6 +21,8 @@ export default function Login(props) {
       setLoading(true)
       await Auth.signIn(username, password)
       const user = await Auth.currentAuthenticatedUser()
+      const res = await Api.todo.fetchUser(user.username)
+      console.log('res', res)
       const userInfo = {
         ...user.attributes,
         username: user.username,
