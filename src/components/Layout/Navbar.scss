@@ -4,6 +4,7 @@
   z-index: 1000;
   background-color: hsla(0, 0%, 98%, 0.9);
   backdrop-filter: blur(3px);
+  height: 46px;
   &.overlay {
     position: absolute;
     width: 100%;
@@ -29,9 +30,9 @@
     margin: 0 auto;
     max-width: 1400px;
     padding: 0px 20px;
-    height: 46px;
+    height: 42px;
     .site-name {
-      line-height: 46px;
+      line-height: 42px;
       @media only screen and (max-width: 480px) {
         padding: 0;
       }

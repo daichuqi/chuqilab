@@ -32,8 +32,6 @@ const NavLink = ({ text, pageCount, show, style }) => (
 export default props => {
   const posts = get(props, 'data.allContentfulBlogPost.edges') || []
   const { currentPage, numPages } = props.pageContext
-  const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
   const prevPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
 
@@ -51,16 +49,14 @@ export default props => {
             <BlogItem key={node.slug} node={node} />
           ))}
         </Columns>
-
         <NavLink
-          show={!isFirst}
+          show={currentPage !== 1}
           pageCount={prevPage}
           text="Prev"
           style={{ float: 'left' }}
         />
-
         <NavLink
-          show={!isLast}
+          show={currentPage !== numPages}
           pageCount={nextPage}
           text="Next"
           style={{ float: 'right' }}

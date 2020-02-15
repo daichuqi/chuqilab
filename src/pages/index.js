@@ -5,8 +5,6 @@ import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
-
-import Api from '../Api'
 import '../styles/home.scss'
 
 export default () => {
@@ -29,12 +27,7 @@ export default () => {
         <div className="main">
           <div className="left-section">
             <div className="about">About</div>
-            <div className="text">
-              Richie is a dreamer living in Zürich, Switzerland
-              <span role="img" aria-label="flag">
-                🇨🇭
-              </span>
-            </div>
+            <div className="text">Richie is a dreamer.</div>
             <div className="text">
               He is currently work for <Icon type="apple" /> in SPG.
               <br />
@@ -47,11 +40,7 @@ export default () => {
             </div>
           </div>
           <div className="right-section">
-            <Img
-              fluid={profileImg.file.childImageSharp.fluid}
-              alt="me"
-              size="200"
-            />
+            <Img fluid={profileImg.file.childImageSharp.fluid} alt="me" size="200" />
           </div>
         </div>
       </div>

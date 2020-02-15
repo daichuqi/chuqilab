@@ -246,16 +246,8 @@ export default class Thread {
       (this.len - MIN_LENGTH) / (MAX_LENGTH - MIN_LENGTH)
     )
     // set my oscillation frequency
-    this.freq = lerp(
-      OSCILLATION_SPEED_LOW_NOTES,
-      OSCILLATION_SPEED_HIGH_NOTES,
-      this.rPitch
-    )
-    this.ampDamp = lerp(
-      AMPLITUDE_DAMPEN_LOW_NOTES,
-      AMPLITUDE_DAMPEN_HIGH_NOTES,
-      this.rPitch
-    )
+    this.freq = lerp(OSCILLATION_SPEED_LOW_NOTES, OSCILLATION_SPEED_HIGH_NOTES, this.rPitch)
+    this.ampDamp = lerp(AMPLITUDE_DAMPEN_LOW_NOTES, AMPLITUDE_DAMPEN_HIGH_NOTES, this.rPitch)
     // my maximum amplitude
     this.ampMax = this.distMax
     // store the sin and cos of my angle and perpendicular angle

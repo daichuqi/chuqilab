@@ -18,13 +18,7 @@ export default function SignUp(props) {
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
 
-  const onSignup = async ({
-    username,
-    password,
-    email,
-    phone_number,
-    prefix,
-  }) => {
+  const onSignup = async ({ username, password, email, phone_number, prefix }) => {
     try {
       setLoading(true)
       await Auth.signUp({
@@ -72,10 +66,7 @@ export default function SignUp(props) {
         fadeIn
         className="progressive-image"
         sizes={asset.sizes}
-        style={{ height: 'calc(100% - 46px)' }}
-        imgStyle={{
-          objectPosition: 'center left',
-        }}
+        imgStyle={{ objectPosition: 'center left' }}
       />
 
       <div className="form-wrapper">
@@ -91,15 +82,9 @@ export default function SignUp(props) {
           >
             <Form.Item
               name="username"
-              rules={[
-                { required: true, message: 'Please enter your username!' },
-              ]}
+              rules={[{ required: true, message: 'Please enter your username!' }]}
             >
-              <Input
-                size="large"
-                style={{ width: '100%' }}
-                placeholder="Username"
-              />
+              <Input size="large" style={{ width: '100%' }} placeholder="Username" />
             </Form.Item>
 
             <Form.Item
@@ -110,11 +95,7 @@ export default function SignUp(props) {
               ]}
               hasFeedback
             >
-              <Input.Password
-                size="large"
-                style={{ width: '100%' }}
-                placeholder="Password"
-              />
+              <Input.Password size="large" style={{ width: '100%' }} placeholder="Password" />
             </Form.Item>
 
             <Form.Item
@@ -131,9 +112,7 @@ export default function SignUp(props) {
                     if (!value || getFieldValue('password') === value) {
                       return Promise.resolve()
                     }
-                    return Promise.reject(
-                      'The two passwords that you entered do not match!'
-                    )
+                    return Promise.reject('The two passwords that you entered do not match!')
                   },
                 }),
               ]}
@@ -156,18 +135,12 @@ export default function SignUp(props) {
                 { required: true, message: 'Please enter your email!' },
               ]}
             >
-              <Input
-                size="large"
-                style={{ width: '100%' }}
-                placeholder="Email"
-              />
+              <Input size="large" style={{ width: '100%' }} placeholder="Email" />
             </Form.Item>
 
             <Form.Item
               name="phone_number"
-              rules={[
-                { required: true, message: 'Please enter Phone number!' },
-              ]}
+              rules={[{ required: true, message: 'Please enter Phone number!' }]}
             >
               <Input
                 size="large"

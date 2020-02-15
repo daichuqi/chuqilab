@@ -22,8 +22,9 @@ export default function Login(props) {
       await Auth.signIn(username, password)
       const user = await Auth.currentAuthenticatedUser()
       const res = await Api.todo.fetchUser(user.username)
-      console.log('res', res)
+      console.log('Login', res)
       const userInfo = {
+        ...res,
         ...user.attributes,
         username: user.username,
       }
@@ -47,7 +48,6 @@ export default function Login(props) {
         fadeIn
         className="progressive-image"
         sizes={asset.sizes}
-        style={{ height: 'calc(100% - 46px)' }}
         imgStyle={{ objectPosition: 'center left' }}
       />
       <div className="form-wrapper">
@@ -64,22 +64,14 @@ export default function Login(props) {
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input
-              size="large"
-              style={{ width: '100%' }}
-              placeholder="Username"
-            />
+            <Input size="large" style={{ width: '100%' }} placeholder="Username" />
           </Form.Item>
 
           <Form.Item
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password
-              size="large"
-              style={{ width: '100%' }}
-              placeholder="Password"
-            />
+            <Input.Password size="large" style={{ width: '100%' }} placeholder="Password" />
           </Form.Item>
 
           <div>

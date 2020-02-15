@@ -61,7 +61,7 @@ public
 .cache
 
 # contentful config file
-# .contentful.json
+.contentful.json
 
 #amplify
 amplify/\#current-cloud-backend

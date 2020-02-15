@@ -2,29 +2,19 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { Icon } from '@ant-design/compatible'
 
-const NextPrevButton = ({ next, prev }) => {
-  let nextButton, prevButton
-
-  if (prev) {
-    prevButton = (
-      <Link to={`/blog/${prev.slug}`} style={{ float: 'left' }}>
-        <Icon type="caret-left" /> {prev.title}
-      </Link>
-    )
-  }
-  if (next) {
-    nextButton = (
-      <Link to={`/blog/${next.slug}`} style={{ float: 'right' }}>
-        {next.title} <Icon type="caret-right" />
-      </Link>
-    )
-  }
+export default function NextPrevButton({ next, prev }) {
   return (
     <div style={{ margin: '10px 0 30px', padding: 1 }}>
-      {prevButton}
-      {nextButton}
+      {prev && (
+        <Link to={`/blog/${prev.slug}`} style={{ float: 'left' }}>
+          <Icon type="caret-left" /> {prev.title}
+        </Link>
+      )}
+      {next && (
+        <Link to={`/blog/${next.slug}`} style={{ float: 'right' }}>
+          {next.title} <Icon type="caret-right" />
+        </Link>
+      )}
     </div>
   )
 }
-
-export default NextPrevButton

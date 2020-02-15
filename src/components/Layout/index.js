@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { Avatar } from 'antd'
 import { Link } from 'gatsby'
 import Amplify, { Auth } from 'aws-amplify'
 import { navigate } from '@reach/router'
+import { Icon } from '@ant-design/compatible'
 
 import { logout, isLoggedIn, getCurrentUser } from '../../utils/auth'
-import Api from '../../Api'
 
 import './Navbar.scss'
 import 'antd/dist/antd.css'
@@ -15,15 +16,16 @@ import '../../styles/form.scss'
 
 Amplify.configure({
   aws_project_region: 'us-west-2',
-  aws_cognito_identity_pool_id:
-    'us-west-2:5e98bf19-2dc9-4e8e-9a8e-5fe81f326e29',
+  aws_cognito_identity_pool_id: 'us-west-2:5e98bf19-2dc9-4e8e-9a8e-5fe81f326e29',
   aws_cognito_region: 'us-west-2',
   aws_user_pools_id: 'us-west-2_wZAbsHVp5',
   aws_user_pools_web_client_id: '30g872mgto7qqk7mrjvvmkrgt8',
 })
 
 export default ({ overlay, hide, children }) => {
-  const [name, setName] = useState('')
+  const loggedIn = isLoggedIn()
+  const currentUser = getCurrentUser()
+
   const sigunout = async () => {
     try {
       await Auth.signOut()
@@ -32,19 +34,6 @@ export default ({ overlay, hide, children }) => {
       console.log('error', error)
     }
   }
-
-  useEffect(() => {
-    const load = async () => {
-      const user = getCurrentUser()
-      // const { data } = await Api.todo.fetchUser(user.username)
-      setName(user.name)
-      console.log('load!!')
-    }
-
-    if (isLoggedIn()) {
-      load()
-    }
-  }, [name])
 
   return (
     <div style={{ height: '100vh' }}>
@@ -58,22 +47,32 @@ export default ({ overlay, hide, children }) => {
             </div>
 
             <div className="nav-items">
-              {isLoggedIn() && (
+              {loggedIn && (
                 <Link className="nav-item" to="/page">
                   Blog
                 </Link>
               )}
 
-              {isLoggedIn() && (
+              {loggedIn && (
                 <Link className="nav-item" to="/app">
                   App
                 </Link>
               )}
 
-              {isLoggedIn() ? (
-                <span className="nav-item" onClick={sigunout}>
-                  Logout
-                </span>
+              {loggedIn ? (
+                <>
+                  <span className="nav-item" onClick={sigunout}>
+                    Logout
+                  </span>
+
+                  <span className="nav-item">
+                    <Avatar
+                      shape="square"
+                      src={currentUser.profile_image}
+                      icon={<Icon type="user" />}
+                    />
+                  </span>
+                </>
               ) : (
                 <Link className="nav-item" to="/login">
                   Login

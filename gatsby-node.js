@@ -15,9 +15,7 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allContentfulBlogPost(
-              sort: { fields: [publishDate], order: DESC }
-            ) {
+            allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
               edges {
                 node {
                   title

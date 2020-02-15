@@ -32,8 +32,7 @@ export const HALF_STEP_MULTIPLIER = 0.943874312681769
 // Maximum length for a thread, assigned to the lowest note.
 export const MAX_LENGTH = 590
 // Shortest length for the highest note, figured out mathematically.
-export const MIN_LENGTH =
-  MAX_LENGTH * Math.pow(HALF_STEP_MULTIPLIER, TOTAL_NOTES - 1)
+export const MIN_LENGTH = MAX_LENGTH * Math.pow(HALF_STEP_MULTIPLIER, TOTAL_NOTES - 1)
 // Store PI as global constant.
 export const MATH_PI = Math.PI
 // Show framerate for testing?

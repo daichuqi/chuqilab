@@ -1,7 +1,6 @@
 .template-wrapper {
   margin: 0 auto;
   max-width: 960px;
-  padding-top: 20px;
   width: 90%;
 }
 
@@ -12,4 +11,13 @@
   .anticon.anticon-check-circle {
     display: none;
   }
+}
+
+.progressive-image {
+  height: calc(100% - 46px);
+  width: 100%;
+}
+
+.background-image-container {
+  width: 100%;
 }

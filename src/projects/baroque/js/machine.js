@@ -326,10 +326,7 @@ export default class Machine {
         // Are we ready to move on now?
         if (this.isIntroDone) {
           // Did we just skip over a clean break where we can start the song?
-          if (
-            this.noteSongRdPrev < this.nextNoteBreak &&
-            this.noteSongRd >= this.nextNoteBreak
-          ) {
+          if (this.noteSongRdPrev < this.nextNoteBreak && this.noteSongRd >= this.nextNoteBreak) {
             // Bump
             //var d = new Date(); this.tSong0 = this.tNotes0 = this.t0 = d.getTime()/1000;
             // Set the time to where it would have been... to make it seamless.
@@ -448,16 +445,10 @@ export default class Machine {
       }
     }
     // Did we find a thread to change?
-    if (ctThreadsInPlace == TOTAL_THREADS && !this.threadsInPlace)
-      this.threadsInPlace = true
+    if (ctThreadsInPlace == TOTAL_THREADS && !this.threadsInPlace) this.threadsInPlace = true
 
     // If all threads are in place, and sound is loaded, we now begin.
-    if (
-      this.threadsInPlace &&
-      this.suite.soundReady &&
-      this.rLoad >= 1 &&
-      !this.isIntroDone
-    ) {
+    if (this.threadsInPlace && this.suite.soundReady && this.rLoad >= 1 && !this.isIntroDone) {
       this.isIntroDone = true
     }
   }
@@ -565,14 +556,9 @@ export default class Machine {
     // current speed - pixels per second
     this.spd = this.dist / this.elapFrame
     // normalize it from 0 to 1
-    this.rSpd = lim(
-      (this.spd - MOUSE_SPEED_MIN) / (MOUSE_SPEED_MAX - MOUSE_SPEED_MIN),
-      0,
-      1
-    )
+    this.rSpd = lim((this.spd - MOUSE_SPEED_MIN) / (MOUSE_SPEED_MAX - MOUSE_SPEED_MIN), 0, 1)
     // get average
-    this.rSpdAvg =
-      (this.rSpdAvg * (this.fAvg - 1)) / this.fAvg + this.rSpd * (1 / this.fAvg)
+    this.rSpdAvg = (this.rSpdAvg * (this.fAvg - 1)) / this.fAvg + this.rSpd * (1 / this.fAvg)
     // store previous position
     this.xp0 = this.xp1
     this.yp0 = this.yp1
@@ -582,12 +568,8 @@ export default class Machine {
    * Goes through all Threads and updates and redraws them
    */
   updWheels = () => {
-    this.wheel0.setRot(
-      (MATH_PI * (0.25 + ((this.beatSong % 16) / 16) * 2)) % (2 * MATH_PI)
-    )
-    this.wheel1.setRot(
-      (MATH_PI * (0.25 - ((this.beatSong % 16) / 16) * 2)) % (2 * MATH_PI)
-    )
+    this.wheel0.setRot((MATH_PI * (0.25 + ((this.beatSong % 16) / 16) * 2)) % (2 * MATH_PI))
+    this.wheel1.setRot((MATH_PI * (0.25 - ((this.beatSong % 16) / 16) * 2)) % (2 * MATH_PI))
     this.wheel0.upd()
     this.wheel1.upd()
   }
@@ -638,34 +620,10 @@ export default class Machine {
     this.wheel0 = new Wheel(WHEEL_RADIUS, 0, 0, this.cv)
     this.wheel1 = new Wheel(-WHEEL_RADIUS, 0, 1, this.cv)
     // Build nubs for them
-    this.arrNubs[0] = this.wheel0.nub0 = new Nub(
-      0,
-      0,
-      this.suite.machine,
-      this.wheel0,
-      this.cv
-    )
-    this.arrNubs[1] = this.wheel0.nub1 = new Nub(
-      1,
-      1,
-      this.suite.machine,
-      this.wheel0,
-      this.cv
-    )
-    this.arrNubs[2] = this.wheel1.nub0 = new Nub(
-      0,
-      2,
-      this.suite.machine,
-      this.wheel1,
-      this.cv
-    )
-    this.arrNubs[3] = this.wheel1.nub1 = new Nub(
-      1,
-      3,
-      this.suite.machine,
-      this.wheel1,
-      this.cv
-    )
+    this.arrNubs[0] = this.wheel0.nub0 = new Nub(0, 0, this.suite.machine, this.wheel0, this.cv)
+    this.arrNubs[1] = this.wheel0.nub1 = new Nub(1, 1, this.suite.machine, this.wheel0, this.cv)
+    this.arrNubs[2] = this.wheel1.nub0 = new Nub(0, 2, this.suite.machine, this.wheel1, this.cv)
+    this.arrNubs[3] = this.wheel1.nub1 = new Nub(1, 3, this.suite.machine, this.wheel1, this.cv)
     // composite mode
     this.cv.globalCompositeOperation = 'lighter'
     // Set the first nub as the loader nub

@@ -26,12 +26,7 @@ export default props => {
   const [duration, setDuration] = useState(0)
   const player = useRef(null)
 
-  useInterval(
-    () => {
-      setDuration(duration - 1)
-    },
-    playing ? 1000 : null
-  )
+  useInterval(() => setDuration(duration - 1), playing ? 1000 : null)
 
   const onVideoButtonClick = () => {
     if (!playing) {
@@ -58,9 +53,7 @@ export default props => {
             <Button
               size="large"
               shape="circle"
-              icon={
-                playing ? <Icon type="pause" /> : <Icon type="caret-right" />
-              }
+              icon={playing ? <Icon type="pause" /> : <Icon type="caret-right" />}
               disabled={!ready}
               onClick={onVideoButtonClick}
             />

@@ -19,9 +19,7 @@ if (!spaceId || !managementToken || !deliveryToken) {
   console.log(
     `You have to provide ${chalk.yellow('spaceId')}, ${chalk.yellow(
       'managementToken'
-    )} and ${chalk.yellow(
-      'deliveryToken'
-    )} arguments in order to set up your space correctly`
+    )} and ${chalk.yellow('deliveryToken')} arguments in order to set up your space correctly`
   )
   console.log(
     'Run: npm run setup -- --spaceId YOUR_SPACE --deliveryToken YOUR_CDA_KEY --managementToken YOUR_CMA_KEY '
@@ -58,20 +56,14 @@ fileRequest.then(
     spaceImport({ spaceId, managementToken, content: response.data })
       .then(() => {
         console.log('')
-        console.log(
-          `All set! You can now run ${chalk.yellow(
-            'npm run dev'
-          )} to see it in action.`
-        )
+        console.log(`All set! You can now run ${chalk.yellow('npm run dev')} to see it in action.`)
         console.log('')
       })
       .catch(error => console.error(error))
   },
   () => {
     // request failed – might be a network, might be a github issue.
-    console.log(
-      'Oops, something happened during fetching the template. Please try again later.'
-    )
+    console.log('Oops, something happened during fetching the template. Please try again later.')
   }
 )
 

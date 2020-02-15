@@ -1,12 +1,6 @@
 import Point from './point'
 
-import {
-  WHEEL_RADIUS,
-  MATH_PI,
-  SPD_IGNORE_MAX,
-  SPD_GRAB,
-  NUBS,
-} from './configs'
+import { WHEEL_RADIUS, MATH_PI, SPD_IGNORE_MAX, SPD_GRAB, NUBS } from './configs'
 import { lineIntersect, lerp } from './utils'
 
 /**
@@ -268,14 +262,12 @@ Nub.prototype.updPos = function() {
     // Ease x towards orbit center
     if (this.xpOrbit != this.xpOrbitTarg) {
       this.xpOrbit += (this.xpOrbitTarg - this.xpOrbit) * this.easeCenter
-      if (Math.abs(this.xpOrbitTarg - this.xpOrbit) < 1)
-        this.xpOrbit = this.xpOrbitTarg // Close enough?
+      if (Math.abs(this.xpOrbitTarg - this.xpOrbit) < 1) this.xpOrbit = this.xpOrbitTarg // Close enough?
     }
     // Ease y towards orbit center
     if (this.ypOrbit != this.ypOrbitTarg) {
       this.ypOrbit += (this.ypOrbitTarg - this.ypOrbit) * this.easeCenter
-      if (Math.abs(this.ypOrbitTarg - this.ypOrbit) < 1)
-        this.ypOrbit = this.ypOrbitTarg // Close enough?
+      if (Math.abs(this.ypOrbitTarg - this.ypOrbit) < 1) this.ypOrbit = this.ypOrbitTarg // Close enough?
     }
 
     // Set new positions of nubs based on wheel rotation
@@ -466,8 +458,7 @@ Nub.prototype.drop = function() {
   var nub
   for (var i = 0; i < NUBS; i++) {
     nub = this.machine.arrNubs[i]
-    if (nub != this && nub.hasEntered)
-      nub.unfollow(this, this.velX, this.velY, ct / NUBS)
+    if (nub != this && nub.hasEntered) nub.unfollow(this, this.velX, this.velY, ct / NUBS)
     ct++
   }
 }
@@ -478,11 +469,7 @@ Nub.prototype.drop = function() {
 Nub.prototype.follow = function(indPm) {
   var r = indPm / (NUBS - 1)
   this.orbitTarg = lerp(ORBIT_FOLLOW_MIN, ORBIT_FOLLOW_MAX, r)
-  this.easeCenterFollow = lerp(
-    EASE_CENTER_FOLLOW_MIN,
-    EASE_CENTER_FOLLOW_MAX,
-    r
-  )
+  this.easeCenterFollow = lerp(EASE_CENTER_FOLLOW_MIN, EASE_CENTER_FOLLOW_MAX, r)
 
   this.easeOrbit = EASE_ORBIT_FOLLOW
   this.easeCenter = this.easeCenterFollow
@@ -534,13 +521,7 @@ Nub.prototype.redraw = function() {
 
   this.cv.beginPath()
   this.cv.fillStyle = '#FFFFFF'
-  this.cv.arc(
-    this.xp1 + this.m.xo,
-    this.yp1 + this.m.yo,
-    this.rad,
-    0,
-    2 * MATH_PI
-  )
+  this.cv.arc(this.xp1 + this.m.xo, this.yp1 + this.m.yo, this.rad, 0, 2 * MATH_PI)
   this.cv.fill()
   this.cv.closePath()
 
@@ -579,11 +560,7 @@ Nub.prototype.redraw = function() {
     if (rat < TRAIL_FADEOUT) {
       opac = lerp(TRAIL_OPAC_MIN, TRAIL_OPAC_MAX, rat / TRAIL_FADEOUT)
     } else {
-      opac = lerp(
-        TRAIL_OPAC_MAX,
-        TRAIL_OPAC_MIN,
-        (rat - TRAIL_FADEOUT) / (1 - TRAIL_FADEOUT)
-      )
+      opac = lerp(TRAIL_OPAC_MAX, TRAIL_OPAC_MIN, (rat - TRAIL_FADEOUT) / (1 - TRAIL_FADEOUT))
     }
     this.cv.strokeStyle = `rgba(255,255,255, ${opac})`
     this.cv.moveTo(this.m.xo + xh0, this.m.yo + yh0)
