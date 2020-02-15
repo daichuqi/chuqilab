@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar } from 'antd'
+import { Avatar, Menu, Dropdown } from 'antd'
 import { Link } from 'gatsby'
 import Amplify, { Auth } from 'aws-amplify'
 import { navigate } from '@reach/router'
@@ -35,6 +35,16 @@ export default ({ overlay, hide, children }) => {
     }
   }
 
+  const menu = (
+    <Menu size="large">
+      <Menu.Item>
+        <span className="nav-item" onClick={sigunout}>
+          Logout
+        </span>
+      </Menu.Item>
+    </Menu>
+  )
+
   return (
     <div style={{ height: '100vh' }}>
       {!hide && (
@@ -60,19 +70,15 @@ export default ({ overlay, hide, children }) => {
               )}
 
               {loggedIn ? (
-                <>
-                  <span className="nav-item" onClick={sigunout}>
-                    Logout
-                  </span>
-
-                  <span className="nav-item">
+                <span className="nav-item">
+                  <Dropdown overlay={menu} placement="bottomLeft">
                     <Avatar
                       shape="square"
                       src={currentUser.profile_image}
                       icon={<Icon type="user" />}
                     />
-                  </span>
-                </>
+                  </Dropdown>
+                </span>
               ) : (
                 <Link className="nav-item" to="/login">
                   Login
