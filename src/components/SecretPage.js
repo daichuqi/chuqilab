@@ -1,6 +1,6 @@
 import React from 'react'
+import Join from './Join'
 
-export default () => {
-  console.log('hi')
-  return <div>SecretPage</div>
+export default ({ location }) => {
+  return <Join location={location} />
 }

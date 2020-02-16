@@ -59,6 +59,8 @@
     "react-typography": "^0.16.13",
     "react-youtube": "^7.9.0",
     "redux": "^4.0.4",
+    "twilio": "^3.39.4",
+    "twilio-video": "^2.1.0",
     "typography": "^0.16.17",
     "typography-theme-wordpress-2016": "^0.15.10",
     "yargs-parser": "^15.0.0"

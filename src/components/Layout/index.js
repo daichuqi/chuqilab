@@ -64,8 +64,8 @@ export default ({ overlay, hide, children }) => {
               )}
 
               {loggedIn && (
-                <Link className="nav-item" to="/app">
-                  App
+                <Link className="nav-item" to="/room">
+                  Chat
                 </Link>
               )}
 
