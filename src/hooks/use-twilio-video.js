@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react'
 import axios from 'axios'
 import { connect, createLocalVideoTrack } from 'twilio-video'
-import { TwilioVideoContext } from '../../wrap-with-provider'
+import { TwilioVideoContext } from '../wrap-with-provider'
 
 const handleRemoteParticipant = container => participant => {
   const id = participant.sid

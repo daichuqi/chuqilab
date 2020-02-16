@@ -8,11 +8,8 @@ const loginTemplate = path.resolve('./src/templates/login.js')
 const signupTemplate = path.resolve('./src/templates/signup.js')
 
 exports.onCreatePage = async ({ page, actions }) => {
-  console.log('page', page)
-
   if (page.path.match(/^\/room/)) {
     page.matchPath = '/room/*'
-
     actions.createPage(page)
   }
 }
