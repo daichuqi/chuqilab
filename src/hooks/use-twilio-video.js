@@ -19,9 +19,9 @@ const handleRemoteParticipant = container => participant => {
   el.id = id
   el.className = 'remote-participant'
 
-  const name = document.createElement('h4')
-  name.innerText = participant.identity
-  el.appendChild(name)
+  // const name = document.createElement('h4')
+  // name.innerText = participant.identity
+  // el.appendChild(name)
 
   // Attach the new element to the DOM.
   container.appendChild(el)

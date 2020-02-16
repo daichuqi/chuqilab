@@ -23,6 +23,18 @@
 }
 
 .local-video {
-  width: 300px;
+  width: 50%;
   display: inline-block;
+}
+
+.remote-participant {
+  display: inline-block;
+  width: 50%;
+  video {
+    width: 100%;
+  }
+}
+
+.chat {
+  position: relative;
 }
