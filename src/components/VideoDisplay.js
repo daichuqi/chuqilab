@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
+import { Button } from 'antd'
 import { navigate } from 'gatsby'
 import useTwilioVideo from '../hooks/use-twilio-video'
 
 const VideoDisplay = ({ roomID }) => {
-  console.log('!!!!')
-  console.log('roomID', roomID)
   const { token, videoRef, activeRoom, startVideo, leaveRoom } = useTwilioVideo()
 
   useEffect(() => {
@@ -31,11 +30,11 @@ const VideoDisplay = ({ roomID }) => {
 
   return (
     <>
-      <h1>Room: “{roomID}”</h1>
+      {/* <h1>Room: “{roomID}”</h1> */}
       {activeRoom && (
-        <button className="leave-room" onClick={leaveRoom}>
-          Leave Room
-        </button>
+        <Button className="leave-room" onClick={leaveRoom}>
+          Leave
+        </Button>
       )}
       <div className="chat" ref={videoRef} />
     </>

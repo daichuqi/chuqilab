@@ -14,12 +14,19 @@ const initialContext = {
 
 const reducer = (store, action) => {
   switch (action.type) {
+    case 'loading':
+      return {
+        ...store,
+        loading: action.loading,
+      }
+
     case 'join':
       return {
         ...store,
         token: action.token,
         room: action.room,
         identity: action.identity,
+        loading: action.loading,
       }
 
     case 'set-active-room':

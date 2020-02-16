@@ -48,16 +48,18 @@ const handleRemoteParticipant = container => participant => {
 const useTwilioVideo = () => {
   const [store, dispatch] = useContext(TwilioVideoContext)
   const videoRef = useRef()
-  const { room, token, activeRoom } = store
+  const { room, token, activeRoom, loading } = store
 
   const getParticipantToken = async ({ identity, room }) => {
+    dispatch({ type: 'loading', loading: true })
+
     const result = await axios({
       method: 'POST',
       url: 'https://desert-opossum-6666.twil.io/create-room-token',
       data: { identity, room },
     })
 
-    dispatch({ type: 'join', token: result.data, identity, room })
+    dispatch({ type: 'join', token: result.data, identity, room, loading: false })
   }
 
   const connectToRoom = async () => {
@@ -109,6 +111,7 @@ const useTwilioVideo = () => {
     room,
     token,
     videoRef,
+    loading,
   }
 }
 
