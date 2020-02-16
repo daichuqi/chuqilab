@@ -21,7 +21,7 @@ export default function Login(props) {
       setLoading(true)
       await Auth.signIn(username, password)
       const user = await Auth.currentAuthenticatedUser()
-      const res = await Api.todo.fetchUser(user.username)
+      const res = await Api.node.fetchOrCreateUser(user.username)
       console.log('Login', res)
       const userInfo = {
         ...res,
