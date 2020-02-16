@@ -1,9 +1,9 @@
-import React, { useReducer } from 'react'
+import React, { createContext, useReducer } from 'react'
 // import { Provider } from 'react-redux'
 // const store = createStore()
 // import createStore from './src/state/createStore'
 
-import { TwilioVideoContext } from './src/hooks/use-twilio-video'
+export const TwilioVideoContext = createContext()
 
 const initialContext = {
   identity: false,

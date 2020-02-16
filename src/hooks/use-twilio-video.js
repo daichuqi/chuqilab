@@ -1,51 +1,7 @@
-import React, { createContext, useContext, useReducer, useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import axios from 'axios'
 import { connect, createLocalVideoTrack } from 'twilio-video'
-
-export const TwilioVideoContext = createContext()
-
-// const initialContext = {
-//   identity: false,
-//   room: false,
-//   token: false,
-//   activeRoom: false,
-// }
-
-// const reducer = (store, action) => {
-//   switch (action.type) {
-//     case 'join':
-//       return {
-//         ...store,
-//         token: action.token,
-//         room: action.room,
-//         identity: action.identity,
-//       }
-
-//     case 'set-active-room':
-//       return {
-//         ...store,
-//         activeRoom: action.activeRoom,
-//       }
-
-//     case 'disconnect':
-//       store.activeRoom && store.activeRoom.disconnect()
-//       return initialContext
-
-//     default:
-//       console.error(`Unknown action type: ${action.type}`)
-//       return store
-//   }
-// }
-
-// export const TwilioVideoContext = createContext()
-
-// export const TwilioVideoProvider = ({ children }) => (
-//   <TwilioVideoContext.Provider value={useReducer(reducer, initialContext)}>
-//     {children}
-//   </TwilioVideoContext.Provider>
-// )
-
-// export const wrapRootElement = ({ element }) => <TwilioVideoProvider>{element}</TwilioVideoProvider>
+import { TwilioVideoContext } from '../../wrap-with-provider'
 
 const handleRemoteParticipant = container => participant => {
   const id = participant.sid
@@ -100,8 +56,6 @@ const useTwilioVideo = () => {
       url: 'https://desert-opossum-6666.twil.io/create-room-token',
       data: { identity, room },
     })
-
-    console.log('result', result)
 
     dispatch({ type: 'join', token: result.data, identity, room })
   }
