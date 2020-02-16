@@ -23,18 +23,27 @@
 }
 
 .local-video {
-  width: 50%;
+  width: 100%;
   display: inline-block;
+}
+
+.local-video-wrapper,
+.remote-participant-wrapper {
+  line-height: 0px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
 }
 
 .remote-participant {
   display: inline-block;
-  width: 50%;
+  width: 100%;
   video {
     width: 100%;
   }
 }
 
 .chat {
+  padding: 10px;
   position: relative;
 }

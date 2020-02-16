@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button } from 'antd'
+import { Button, Row, Col } from 'antd'
 import { navigate } from 'gatsby'
 import useTwilioVideo from '../hooks/use-twilio-video'
 
@@ -27,16 +27,24 @@ const VideoDisplay = ({ roomID }) => {
       window.removeEventListener('beforeunload', leaveRoom)
     }
   }, [token, roomID, activeRoom, startVideo, leaveRoom])
-
   return (
     <>
-      {/* <h1>Room: “{roomID}”</h1> */}
-      {activeRoom && (
-        <Button className="leave-room" onClick={leaveRoom}>
-          Leave
-        </Button>
-      )}
-      <div className="chat" ref={videoRef} />
+      <Row>
+        <Col xs={24} md={8}>
+          <div className="chat ant-row" ref={videoRef} />
+        </Col>
+
+        <Col xs={24} md={16}>
+          <div style={{ padding: 20 }}>
+            <div>Chat is coming soon!!</div>
+            {activeRoom && (
+              <Button className="leave-room" onClick={leaveRoom}>
+                Leave
+              </Button>
+            )}
+          </div>
+        </Col>
+      </Row>
     </>
   )
 }

@@ -17,11 +17,7 @@ const handleRemoteParticipant = container => participant => {
 
   const el = document.createElement('div')
   el.id = id
-  el.className = 'remote-participant'
-
-  // const name = document.createElement('h4')
-  // name.innerText = participant.identity
-  // el.appendChild(name)
+  el.className = 'remote-participant ant-col ant-col-xs-24 remote-participant-wrapper'
 
   // Attach the new element to the DOM.
   container.appendChild(el)
@@ -85,7 +81,13 @@ const useTwilioVideo = () => {
       const localEl = localTrack.attach()
       localEl.className = 'local-video'
 
-      videoRef.current.appendChild(localEl)
+      const el = document.createElement('div')
+      el.className = 'ant-col ant-col-xs-24 local-video-wrapper'
+      el.appendChild(localEl)
+      // Attach the new element to the DOM.
+      videoRef.current.appendChild(el)
+
+      // videoRef.current.appendChild(localEl)
     }
 
     // Currying! Delicious! 🍛
@@ -96,7 +98,6 @@ const useTwilioVideo = () => {
 
     // Handle participants who join *after* you’ve connected to the room.
     activeRoom.on('participantConnected', handleParticipant)
-
     dispatch({ type: 'set-active-room', activeRoom })
   }
 

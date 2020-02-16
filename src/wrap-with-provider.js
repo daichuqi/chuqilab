@@ -33,6 +33,7 @@ const reducer = (store, action) => {
       return {
         ...store,
         activeRoom: action.activeRoom,
+        loading: action.loading,
       }
 
     case 'disconnect':
