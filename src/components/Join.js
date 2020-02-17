@@ -5,28 +5,27 @@ import { navigate } from 'gatsby'
 import { getCurrentUser } from '../utils/auth'
 
 const Join = ({ location }) => {
-  const { getParticipantToken, room: roomName, token, loading } = useTwilioVideo()
+  const { getParticipantToken, room, token, loading } = useTwilioVideo()
 
   useEffect(() => {
-    if (token && roomName) {
-      navigate(`/room/${roomName}`)
+    if (token && room) {
+      console.log('token', token)
+      console.log('room', room)
+      navigate(`/room/${room}`)
     }
-  }, [token, roomName])
+  }, [token, room])
 
   const join = async () => {
     const user = getCurrentUser()
-    const room = 'default'
-    getParticipantToken({ identity: user.username, room })
+    getParticipantToken({ identity: user.username, room: 'default' })
   }
 
-  console.log('loading', loading)
-
   return (
-    <>
+    <div>
       <Button loading={loading} onClick={join}>
         Join Video Chat
       </Button>
-    </>
+    </div>
   )
 }
 

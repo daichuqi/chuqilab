@@ -4,7 +4,7 @@ import { navigate } from 'gatsby'
 import useTwilioVideo from '../hooks/use-twilio-video'
 
 const VideoDisplay = ({ roomID }) => {
-  const { token, videoRef, activeRoom, startVideo, leaveRoom } = useTwilioVideo()
+  const { token, videoRef, activeRoom, startVideo, leaveRoom, localTrack } = useTwilioVideo()
 
   useEffect(() => {
     if (!roomID) {
@@ -27,14 +27,19 @@ const VideoDisplay = ({ roomID }) => {
       window.removeEventListener('beforeunload', leaveRoom)
     }
   }, [token, roomID, activeRoom, startVideo, leaveRoom])
+
+  useEffect(() => {
+    return () => leaveRoom()
+  }, [])
+
   return (
     <>
       <Row>
-        <Col xs={24} md={8}>
+        <Col xs={24} sm={12} md={8}>
           <div className="chat ant-row" ref={videoRef} />
         </Col>
 
-        <Col xs={24} md={16}>
+        <Col xs={24} sm={12} md={16}>
           <div style={{ padding: 20 }}>
             <div>Chat is coming soon!!</div>
             {activeRoom && (

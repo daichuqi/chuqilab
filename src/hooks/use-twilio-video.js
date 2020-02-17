@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import axios from 'axios'
 import { connect, createLocalVideoTrack } from 'twilio-video'
 import { TwilioVideoContext } from '../wrap-with-provider'
@@ -45,6 +45,7 @@ const useTwilioVideo = () => {
   const [store, dispatch] = useContext(TwilioVideoContext)
   const videoRef = useRef()
   const { room, token, activeRoom, loading } = store
+  const [localTrack, setLocaltrack] = useState()
 
   const getParticipantToken = async ({ identity, room }) => {
     dispatch({ type: 'loading', loading: true })
@@ -66,7 +67,7 @@ const useTwilioVideo = () => {
     // Connect to the appropriate Twilio video chat room.
     const activeRoom = await connect(
       token,
-      { name: room, audio: true, video: { width: 640 }, logLevel: 'info' }
+      { name: room, audio: true, video: { width: 1200, height: 800 }, logLevel: 'info' }
     ).catch(error => {
       console.error(`Unable to join the room: ${error.message}`)
     })
@@ -76,7 +77,8 @@ const useTwilioVideo = () => {
       console.error(`Unable to create local tracks: ${error.message}`)
     })
 
-    // Attach the local video if it’s not already visible.
+    setLocaltrack(localTrack)
+
     if (!videoRef.current.hasChildNodes()) {
       const localEl = localTrack.attach()
       localEl.className = 'local-video'
@@ -105,6 +107,7 @@ const useTwilioVideo = () => {
   const leaveRoom = () => dispatch({ type: 'disconnect' })
 
   return {
+    localTrack,
     getParticipantToken,
     startVideo,
     leaveRoom,
