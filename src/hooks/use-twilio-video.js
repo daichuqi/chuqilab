@@ -72,25 +72,14 @@ const useTwilioVideo = () => {
       console.error(`Unable to join the room: ${error.message}`)
     })
 
-    // Add your own video and audio tracks so you can see yourself.
-    const localTrack = await createLocalVideoTrack().catch(error => {
-      console.error(`Unable to create local tracks: ${error.message}`)
-    })
+    // Get the camera track for your preview.
+    const cameraTrack = [...activeRoom.localParticipant.videoTracks.values()][0].track
+    const localEl = cameraTrack.attach()
+    localEl.className = 'local-video'
 
-    setLocaltrack(localTrack)
-
-    if (!videoRef.current.hasChildNodes()) {
-      const localEl = localTrack.attach()
-      localEl.className = 'local-video'
-
-      const el = document.createElement('div')
-      el.className = 'ant-col ant-col-xs-24 local-video-wrapper'
-      el.appendChild(localEl)
-      // Attach the new element to the DOM.
-      videoRef.current.appendChild(el)
-
-      // videoRef.current.appendChild(localEl)
-    }
+    // setLocaltrack(localEl)
+    const el = document.getElementById('local-video-wrapper')
+    el.appendChild(localEl)
 
     // Currying! Delicious! 🍛
     const handleParticipant = handleRemoteParticipant(videoRef.current)
@@ -100,11 +89,13 @@ const useTwilioVideo = () => {
 
     // Handle participants who join *after* you’ve connected to the room.
     activeRoom.on('participantConnected', handleParticipant)
-    dispatch({ type: 'set-active-room', activeRoom })
+    dispatch({ type: 'set-active-room', activeRoom, localTrack })
   }
 
   const startVideo = () => connectToRoom()
-  const leaveRoom = () => dispatch({ type: 'disconnect' })
+  const leaveRoom = () => {
+    dispatch({ type: 'disconnect' })
+  }
 
   return {
     localTrack,

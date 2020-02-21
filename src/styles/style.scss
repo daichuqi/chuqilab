@@ -36,6 +36,12 @@
   box-shadow: 1px 1px 10px -2px;
 }
 
+.local-video-wrapper {
+  video {
+    width: 100%;
+  }
+}
+
 .remote-participant {
   display: inline-block;
   width: 100%;

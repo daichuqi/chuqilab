@@ -10,6 +10,7 @@ const initialContext = {
   room: false,
   token: false,
   activeRoom: false,
+  localTrack: false,
 }
 
 const reducer = (store, action) => {
@@ -34,10 +35,15 @@ const reducer = (store, action) => {
         ...store,
         activeRoom: action.activeRoom,
         loading: action.loading,
+        localTrack: action.localTrack,
       }
 
     case 'disconnect':
-      store.activeRoom && store.activeRoom.disconnect()
+      if (store.activeRoom) {
+        store.activeRoom.disconnect()
+        const el = document.getElementById('local-video-wrapper')
+        el.innerHTML = ''
+      }
       return initialContext
 
     default:
