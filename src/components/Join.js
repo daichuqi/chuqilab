@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Button, Input, Row, Col } from 'antd'
+import { Icon } from '@ant-design/compatible'
 import classnames from 'classnames'
 
 import useTwilioVideo from '../hooks/use-twilio-video'
@@ -10,6 +11,8 @@ import socket from '../socket'
 import VideoDisplay from './VideoDisplay'
 
 import './Join.scss'
+
+const { Search } = Input
 
 const Join = ({ location }) => {
   const { getParticipantToken, leaveRoom, loading, token } = useTwilioVideo()
@@ -37,6 +40,9 @@ const Join = ({ location }) => {
     client.register(currentUser.username, hello => {
       client.join('default', () => {
         setJoined(true)
+        client.getAvailableUsers(users => {
+          console.log('users', users)
+        })
       })
     })
   }, [])
@@ -46,7 +52,7 @@ const Join = ({ location }) => {
   }
 
   const onPressEnter = () => {
-    if (inputValue) {
+    if (inputValue !== '' && inputValue !== undefined) {
       client.message('default', inputValue, () => {
         setInputValue(undefined)
       })
@@ -56,22 +62,13 @@ const Join = ({ location }) => {
   return (
     <div className="join-container">
       <Row>
-        <Col xs={24} sm={12} md={10} lg={8}>
-          <VideoDisplay />
-          <div style={{ padding: 10 }}>
-            {token ? (
-              <Button className="leave-room" onClick={leaveRoom}>
-                Turn Off Camera
-              </Button>
-            ) : (
-              <Button loading={loading} onClick={join}>
-                Turn On Camera
-              </Button>
-            )}
-          </div>
-        </Col>
+        {token && (
+          <Col xs={24} sm={12} md={10} lg={8}>
+            <VideoDisplay />
+          </Col>
+        )}
 
-        <Col xs={24} sm={12} md={14} lg={16}>
+        <Col xs={24} sm={token ? 12 : 24} md={token ? 14 : 24} lg={token ? 16 : 24}>
           <div className="chat-room">
             <div className="message-container">
               {messages.map(({ message, user }, i) => (
@@ -96,12 +93,26 @@ const Join = ({ location }) => {
               ))}
               <div ref={messagesEndRef} />
             </div>
+            <div className="tool-bar">
+              <div className="camera-button">
+                {token ? (
+                  <Button loading={loading} type="primary" onClick={leaveRoom}>
+                    <Icon type="video-camera" />
+                  </Button>
+                ) : (
+                  <Button loading={loading} onClick={join}>
+                    <Icon type="video-camera" />
+                  </Button>
+                )}
+              </div>
+            </div>
 
-            <Input
+            <Search
+              enterButton={<span style={{ fontSize: 18 }}>Send</span>}
               disabled={!joined}
               className="message-input"
               value={inputValue}
-              onPressEnter={onPressEnter}
+              onSearch={onPressEnter}
               onChange={({ target }) => setInputValue(target.value)}
             />
           </div>

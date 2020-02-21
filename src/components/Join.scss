@@ -3,25 +3,46 @@
 
   .chat-room {
     height: calc(100vh - 50px);
+    padding-top: 20px;
+    background-color: #bdbdbd24;
 
     .message-input {
       width: 100%;
-      padding: 10px;
       line-height: 42px;
       font-size: 24px;
+      .ant-input {
+        padding: 4px 20px;
+        font-size: 24px;
+        line-height: 54px;
+      }
+      .ant-input-search-button {
+        width: 82px;
+        height: 64px;
+      }
+    }
+    .tool-bar {
+      position: absolute;
+      padding: 10px;
+      text-align: right;
+      bottom: 60px;
+      left: 0px;
+      z-index: 10;
+      .camera-button {
+      }
     }
 
     .message-container {
-      height: calc(100% - 62px);
-      background-color: #bdbdbd24;
+      height: calc(100% - 60px);
       overflow: scroll;
-      padding: 20px 32px;
+      padding: 20px 0 32px;
+
       .message {
-        margin-bottom: 16px;
+        margin-bottom: 18px;
+        padding: 0 32px 0;
         &.self {
           text-align: right;
           .message-text {
-            background-color: rgb(178, 228, 112);
+            background-color: rgb(162, 231, 98);
           }
         }
         .user-profile {
@@ -35,7 +56,7 @@
           margin: 0 10px;
           display: inline-block;
           background-color: #fff;
-          padding: 6px 12px;
+          padding: 7px 12px;
           max-width: calc(100% - 64px);
           color: #000;
           border-radius: 4px;
