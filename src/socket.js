@@ -1,6 +1,6 @@
 const io = require('socket.io-client')
 
-const URL = 'http://chengyuhan.me'
+const URL = 'https://chengyuhan.me'
 // const URL = 'localhost:3000'
 
 export default function() {
