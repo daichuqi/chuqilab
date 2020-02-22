@@ -29,7 +29,7 @@ export default () => {
             <div className="about">About</div>
             <div className="text">Richie is a dreamer.</div>
             <div className="text">
-              He is currently work for <Icon type="apple" /> in SPG.
+              He is currently working for <Icon type="apple" /> in SPG.
               <br />
               LOVE design, art and tech.
             </div>

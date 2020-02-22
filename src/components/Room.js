@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { Button, Input, Row, Col } from 'antd'
 import { Icon } from '@ant-design/compatible'
 import classnames from 'classnames'
+import moment from 'moment'
 
 import useTwilioVideo from '../hooks/use-twilio-video'
 import { getCurrentUser } from '../utils/auth'
@@ -9,9 +10,10 @@ import { getCurrentUser } from '../utils/auth'
 import socket from '../socket'
 import VideoDisplay from './VideoDisplay'
 
-import './Join.scss'
+import './Room.scss'
 
 const { Search } = Input
+const ROOM_NAME = 'chatroom'
 
 function useClient() {
   const [client, setClient] = useState(undefined)
@@ -21,7 +23,7 @@ function useClient() {
     setClient(client)
 
     return () => {
-      client.disconnect()
+      client.leave(ROOM_NAME, () => client.disconnect())
     }
   }, [])
 
@@ -38,8 +40,6 @@ const Join = ({ location }) => {
   const client = useClient()
   const [onlineUsers, setOnlineUsers] = useState([])
 
-  const ROOM_NAME = 'chatroom'
-
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
   }
@@ -49,18 +49,17 @@ const Join = ({ location }) => {
   useEffect(() => {
     if (client) {
       client.registerHandler(newMessage => {
+        console.log('newMessage', newMessage)
         setMessages(messages => [...messages, newMessage])
-
         client.getAvailableUsers((_, users) => setOnlineUsers(users))
       })
 
-      client.register(currentUser.username, hello => {
+      client.register(currentUser.username, () => {
         client.join(ROOM_NAME, (_, chatHistory) => {
+          console.log('chatHistory', chatHistory)
           setMessages(chatHistory)
           setJoined(true)
-          client.getAvailableUsers((_, users) => {
-            setOnlineUsers(users)
-          })
+          client.getAvailableUsers((_, users) => setOnlineUsers(users))
         })
       })
     }
@@ -95,34 +94,37 @@ const Join = ({ location }) => {
                   <img key={index} className="online-user" src={profile_image} />
                 ))}
               </div>
-              {messages.map(({ message, user, event }, i) => (
-                <div
-                  key={i}
-                  className={classnames('message', {
-                    self: user.username === currentUser.username,
-                  })}
-                >
-                  {event && (
-                    <div className="event-message">
-                      {user.name} {event}
-                    </div>
-                  )}
+              {messages.map(
+                ({ profile_image, username, name, content, entry_type, timestamp }, i) => (
+                  <div
+                    key={i}
+                    className={classnames('message', {
+                      self: username === currentUser.username,
+                    })}
+                  >
+                    {entry_type === 'event' && (
+                      <div className="event-message">
+                        {name} {content}
+                        <div>{moment(timestamp).format('h:mm:ss a')}</div>
+                      </div>
+                    )}
 
-                  {user.username === currentUser.username
-                    ? message && (
-                        <>
-                          <div className="message-text">{message}</div>
-                          <img className="user-profile" src={user.profile_image} />
-                        </>
-                      )
-                    : message && (
-                        <>
-                          <img className="user-profile" src={user.profile_image} />
-                          <div className="message-text">{message}</div>
-                        </>
-                      )}
-                </div>
-              ))}
+                    {username === currentUser.username
+                      ? entry_type === 'message' && (
+                          <>
+                            <div className="message-text">{content}</div>
+                            <img className="user-profile" src={profile_image} />
+                          </>
+                        )
+                      : entry_type === 'message' && (
+                          <>
+                            <img className="user-profile" src={profile_image} />
+                            <div className="message-text">{content}</div>
+                          </>
+                        )}
+                  </div>
+                )
+              )}
               <div ref={messagesEndRef} />
             </div>
             <div className="tool-bar">
