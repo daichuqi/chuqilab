@@ -1,0 +1,9 @@
+.chat {
+  z-index: 100;
+  position: absolute;
+  .local-video-wrapper {
+    filter: contrast(1.2);
+    .local-video {
+    }
+  }
+}

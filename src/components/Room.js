@@ -51,15 +51,15 @@ const Join = ({ location }) => {
       client.registerHandler(newMessage => {
         console.log('newMessage', newMessage)
         setMessages(messages => [...messages, newMessage])
-        client.getAvailableUsers((_, users) => setOnlineUsers(users))
+        client.getAvailableUsers(setOnlineUsers)
       })
 
       client.register(currentUser.username, () => {
-        client.join(ROOM_NAME, (_, chatHistory) => {
+        client.join(ROOM_NAME, chatHistory => {
           console.log('chatHistory', chatHistory)
           setMessages(chatHistory)
           setJoined(true)
-          client.getAvailableUsers((_, users) => setOnlineUsers(users))
+          client.getAvailableUsers(setOnlineUsers)
         })
       })
     }
@@ -127,31 +127,33 @@ const Join = ({ location }) => {
               )}
               <div ref={messagesEndRef} />
             </div>
-            <div className="tool-bar">
-              <div className="camera-button">
-                {token ? (
-                  <Button loading={loading} type="primary" onClick={leaveRoom}>
-                    <Icon type="video-camera" />
-                  </Button>
-                ) : (
-                  <Button loading={loading} onClick={join}>
-                    <Icon type="video-camera" />
-                  </Button>
-                )}
-              </div>
-            </div>
-
-            <Search
-              enterButton={<span style={{ fontSize: 18 }}>Send</span>}
-              disabled={!joined}
-              className="message-input"
-              value={inputValue}
-              onSearch={onPressEnter}
-              onChange={({ target }) => setInputValue(target.value)}
-            />
           </div>
         </Col>
+        <Col span={24}>
+          <Search
+            enterButton={<span style={{ fontSize: 18 }}>Send</span>}
+            disabled={!joined}
+            className="message-input"
+            value={inputValue}
+            onSearch={onPressEnter}
+            onChange={({ target }) => setInputValue(target.value)}
+          />
+        </Col>
       </Row>
+
+      <div className="tool-bar">
+        <div className="camera-button">
+          {token ? (
+            <Button loading={loading} type="primary" onClick={leaveRoom}>
+              <Icon type="video-camera" />
+            </Button>
+          ) : (
+            <Button loading={loading} onClick={join}>
+              <Icon type="video-camera" />
+            </Button>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import useTwilioVideo from '../hooks/use-twilio-video'
 
+import './VideoDisplay.scss'
+
 const VideoDisplay = ({ roomID }) => {
   const { token, videoRef, activeRoom, startVideo, leaveRoom, localTrack } = useTwilioVideo()
 
@@ -23,11 +25,9 @@ const VideoDisplay = ({ roomID }) => {
   // console.log('localTrack', localTrack)
 
   return (
-    <>
-      <div className="chat ant-row" ref={videoRef}>
-        <div id="local-video-wrapper" className="ant-col ant-col-xs-24 local-video-wrapper"></div>
-      </div>
-    </>
+    <div className="chat ant-row" ref={videoRef}>
+      <div id="local-video-wrapper" className="ant-col ant-col-xs-24 local-video-wrapper"></div>
+    </div>
   )
 }
 
