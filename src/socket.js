@@ -1,7 +1,7 @@
 const io = require('socket.io-client')
 
-const URL = 'https://chengyuhan.me'
-// const URL = 'localhost:3001'
+// const URL = 'https://chengyuhan.me'
+const URL = 'localhost:3001'
 
 export default function() {
   const socket = io.connect(URL)
@@ -39,17 +39,6 @@ export default function() {
     socket.disconnect()
   }
 
-  function getChatrooms() {
-    return new Promise((resolve, reject) => {
-      socket.emit('chatrooms', null, (err, chatrooms) => {
-        if (err) {
-          reject(err)
-        }
-        resolve(chatrooms)
-      })
-    })
-  }
-
   function getAvailableUsers(cb) {
     socket.emit('availableUsers', null, cb)
   }
@@ -60,7 +49,6 @@ export default function() {
     join,
     leave,
     message,
-    getChatrooms,
     getAvailableUsers,
     registerHandler,
     unregisterHandler,
