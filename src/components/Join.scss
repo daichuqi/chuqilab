@@ -3,7 +3,6 @@
 
   .chat-room {
     height: calc(100vh - 50px);
-    padding-top: 20px;
     background-color: #bdbdbd24;
 
     .message-input {
@@ -34,11 +33,28 @@
     .message-container {
       height: calc(100% - 60px);
       overflow: scroll;
-      padding: 20px 0 32px;
+      padding: 0px 0 32px;
+
+      .online-users-container {
+        padding: 10px;
+        text-align: center;
+
+        .online-user {
+          margin-right: 5px;
+          border-radius: 2px;
+          width: 20px;
+          height: 20px;
+          display: inline-block;
+        }
+      }
 
       .message {
         margin-bottom: 18px;
         padding: 0 32px 0;
+        .event-message {
+          text-align: center;
+          font-size: 12px;
+        }
         &.self {
           text-align: right;
           .message-text {
