@@ -56,7 +56,6 @@ const Join = ({ location }) => {
 
       client.register(currentUser.username, () => {
         client.join(ROOM_NAME, chatHistory => {
-          console.log('chatHistory', chatHistory)
           setMessages(chatHistory)
           setJoined(true)
           client.getAvailableUsers(setOnlineUsers)
@@ -65,7 +64,7 @@ const Join = ({ location }) => {
     }
   }, [client])
 
-  const join = async () => {
+  const joinVideoChannel = () => {
     getParticipantToken({ identity: currentUser.username, room: ROOM_NAME })
   }
 
@@ -95,33 +94,27 @@ const Join = ({ location }) => {
                 ))}
               </div>
               {messages.map(
-                ({ profile_image, username, name, content, entry_type, timestamp }, i) => (
+                ({ profile_image, username, name, content, entry_type, created_at }, i) => (
                   <div
                     key={i}
-                    className={classnames('message', {
-                      self: username === currentUser.username,
-                    })}
+                    className={classnames('message', { self: username === currentUser.username })}
                   >
-                    {entry_type === 'event' && (
+                    {entry_type === 'event' ? (
                       <div className="event-message">
                         {name} {content}
-                        <div>{moment(timestamp).format('h:mm:ss a')}</div>
+                        <div>{moment(created_at).format('h:mm:ss a')}</div>
                       </div>
+                    ) : username === currentUser.username ? (
+                      <>
+                        <div className="message-text">{content}</div>
+                        <img className="user-profile" src={profile_image} />
+                      </>
+                    ) : (
+                      <>
+                        <img className="user-profile" src={profile_image} />
+                        <div className="message-text">{content}</div>
+                      </>
                     )}
-
-                    {username === currentUser.username
-                      ? entry_type === 'message' && (
-                          <>
-                            <div className="message-text">{content}</div>
-                            <img className="user-profile" src={profile_image} />
-                          </>
-                        )
-                      : entry_type === 'message' && (
-                          <>
-                            <img className="user-profile" src={profile_image} />
-                            <div className="message-text">{content}</div>
-                          </>
-                        )}
                   </div>
                 )
               )}
@@ -144,11 +137,11 @@ const Join = ({ location }) => {
       <div className="tool-bar">
         <div className="camera-button">
           {token ? (
-            <Button loading={loading} type="primary" onClick={leaveRoom}>
+            <Button size="large" loading={loading} type="primary" onClick={leaveRoom}>
               <Icon type="video-camera" />
             </Button>
           ) : (
-            <Button loading={loading} onClick={join}>
+            <Button size="large" loading={loading} onClick={joinVideoChannel}>
               <Icon type="video-camera" />
             </Button>
           )}

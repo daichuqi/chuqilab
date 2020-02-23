@@ -1,9 +1,11 @@
 .chat {
   z-index: 100;
   position: absolute;
+  max-width: 360px;
   .local-video-wrapper {
     filter: contrast(1.2);
-    .local-video {
-    }
+  }
+  .remote-participant {
+    filter: contrast(1.2);
   }
 }
