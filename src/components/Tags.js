@@ -1,7 +1,7 @@
 import React from 'react'
 import { Tag } from 'antd'
 
-export default ({ tags, style }) => {
+export default function Tags({ tags, style }) {
   if (tags && tags.length > 0) {
     return (
       <div style={style}>

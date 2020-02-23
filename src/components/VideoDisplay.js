@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import useTwilioVideo from '../hooks/use-twilio-video'
+import Draggable from 'react-draggable'
+import _ from 'lodash'
 
 import './VideoDisplay.scss'
 
-const VideoDisplay = ({ roomID }) => {
-  const { token, videoRef, activeRoom, startVideo, leaveRoom, localTrack } = useTwilioVideo()
+export default function VideoDisplay({ onlineUsers = [] }) {
+  const { token, videoRef, activeRoom, startVideo, leaveRoom } = useTwilioVideo()
 
   useEffect(() => {
     if (!activeRoom && token) {
@@ -12,23 +14,24 @@ const VideoDisplay = ({ roomID }) => {
       window.addEventListener('beforeunload', leaveRoom)
     }
 
-    // Add a window listener to disconnect if the tab is closed. This works
-    // around a looooong lag before Twilio catches that the video is gone.
-
     return () => {
       window.removeEventListener('beforeunload', leaveRoom)
     }
-  }, [token, roomID, activeRoom, startVideo, leaveRoom])
+  }, [token, activeRoom, startVideo, leaveRoom])
 
   useEffect(() => leaveRoom, [])
 
-  // console.log('localTrack', localTrack)
-
   return (
     <div className="chat ant-row" ref={videoRef}>
-      <div id="local-video-wrapper" className="ant-col ant-col-xs-24 local-video-wrapper"></div>
+      <Draggable>
+        <div id="local-video-wrapper" className="local-video-wrapper"></div>
+      </Draggable>
+
+      {_.uniqBy(onlineUsers, 'username').map(user => (
+        <Draggable>
+          <div id={user.username} className="remote-participant-wrapper"></div>
+        </Draggable>
+      ))}
     </div>
   )
 }
-
-export default VideoDisplay

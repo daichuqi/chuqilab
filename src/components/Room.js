@@ -3,6 +3,7 @@ import { Button, Input, Row, Col } from 'antd'
 import { Icon } from '@ant-design/compatible'
 import classnames from 'classnames'
 import moment from 'moment'
+import { Picker } from 'emoji-mart'
 
 import useTwilioVideo from '../hooks/use-twilio-video'
 import { getCurrentUser } from '../utils/auth'
@@ -11,6 +12,7 @@ import socket from '../socket'
 import VideoDisplay from './VideoDisplay'
 
 import './Room.scss'
+import 'emoji-mart/css/emoji-mart.css'
 
 const { Search } = Input
 const ROOM_NAME = 'chatroom'
@@ -20,10 +22,14 @@ function useClient() {
 
   useEffect(() => {
     const client = socket()
+    const cleanUp = () => client.leave(ROOM_NAME, client.disconnect)
+
     setClient(client)
+    window.addEventListener('beforeunload', cleanUp)
 
     return () => {
-      client.leave(ROOM_NAME, () => client.disconnect())
+      cleanUp()
+      window.removeEventListener('beforeunload', cleanUp)
     }
   }, [])
 
@@ -36,25 +42,25 @@ const Join = ({ location }) => {
   const [inputValue, setInputValue] = useState('')
   const [joined, setJoined] = useState(false)
   const messagesEndRef = useRef(null)
-  const currentUser = getCurrentUser()
+  const inputRef = useRef(null)
+  const { username } = getCurrentUser()
   const client = useClient()
   const [onlineUsers, setOnlineUsers] = useState([])
+  const [showPicker, setShowPicker] = useState(false)
 
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
-  }
+  const scrollToBottom = () => messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+  const joinVideoChannel = () => getParticipantToken({ identity: username, room: ROOM_NAME })
 
   useEffect(scrollToBottom, [messages])
 
   useEffect(() => {
     if (client) {
       client.registerHandler(newMessage => {
-        console.log('newMessage', newMessage)
         setMessages(messages => [...messages, newMessage])
         client.getAvailableUsers(setOnlineUsers)
       })
 
-      client.register(currentUser.username, () => {
+      client.register(username, () => {
         client.join(ROOM_NAME, chatHistory => {
           setMessages(chatHistory)
           setJoined(true)
@@ -64,15 +70,9 @@ const Join = ({ location }) => {
     }
   }, [client])
 
-  const joinVideoChannel = () => {
-    getParticipantToken({ identity: currentUser.username, room: ROOM_NAME })
-  }
-
   const onPressEnter = () => {
     if (inputValue !== '' && inputValue !== undefined) {
-      client.message(ROOM_NAME, inputValue, () => {
-        setInputValue(undefined)
-      })
+      client.message(ROOM_NAME, inputValue, setInputValue)
     }
   }
 
@@ -80,12 +80,12 @@ const Join = ({ location }) => {
     <div className="join-container">
       <Row>
         {token && (
-          <Col xs={24} sm={12} md={10} lg={8}>
-            <VideoDisplay />
+          <Col xs={24} sm={24} md={24} lg={8}>
+            <VideoDisplay onlineUsers={onlineUsers} />
           </Col>
         )}
 
-        <Col xs={24} sm={token ? 12 : 24} md={token ? 14 : 24} lg={token ? 16 : 24}>
+        <Col xs={24} sm={24} md={24} lg={token ? 16 : 24}>
           <div className="chat-room">
             <div className="message-container">
               <div className="online-users-container">
@@ -93,37 +93,39 @@ const Join = ({ location }) => {
                   <img key={index} className="online-user" src={profile_image} />
                 ))}
               </div>
-              {messages.map(
-                ({ profile_image, username, name, content, entry_type, created_at }, i) => (
-                  <div
-                    key={i}
-                    className={classnames('message', { self: username === currentUser.username })}
-                  >
-                    {entry_type === 'event' ? (
-                      <div className="event-message">
-                        {name} {content}
-                        <div>{moment(created_at).format('h:mm:ss a')}</div>
-                      </div>
-                    ) : username === currentUser.username ? (
-                      <>
-                        <div className="message-text">{content}</div>
-                        <img className="user-profile" src={profile_image} />
-                      </>
-                    ) : (
-                      <>
-                        <img className="user-profile" src={profile_image} />
-                        <div className="message-text">{content}</div>
-                      </>
-                    )}
-                  </div>
-                )
-              )}
+              {messages.map((message, i) => (
+                <div
+                  key={i}
+                  className={classnames('message', {
+                    self: message.username === username,
+                  })}
+                >
+                  {message.entry_type === 'event' ? (
+                    <div className="event-message">
+                      {message.name} {message.content}
+                      <div>{moment(message.created_at).format('h:mm:ss a')}</div>
+                    </div>
+                  ) : message.username === username ? (
+                    <>
+                      <div className="message-text">{message.content}</div>
+                      <img className="user-profile" src={message.profile_image} />
+                    </>
+                  ) : (
+                    <>
+                      <img className="user-profile" src={message.profile_image} />
+                      <div className="message-text">{message.content}</div>
+                    </>
+                  )}
+                </div>
+              ))}
               <div ref={messagesEndRef} />
             </div>
           </div>
         </Col>
+
         <Col span={24}>
           <Search
+            ref={inputRef}
             enterButton={<span style={{ fontSize: 18 }}>Send</span>}
             disabled={!joined}
             className="message-input"
@@ -144,6 +146,27 @@ const Join = ({ location }) => {
             <Button size="large" loading={loading} onClick={joinVideoChannel}>
               <Icon type="video-camera" />
             </Button>
+          )}
+        </div>
+
+        <div className="emoji-button">
+          <Button
+            size="large"
+            type={showPicker ? 'primary' : ''}
+            onClick={() => setShowPicker(!showPicker)}
+          >
+            <Icon type="smile" />
+          </Button>
+          {showPicker && (
+            <Picker
+              onSelect={emoji => {
+                setInputValue(`${inputValue ? inputValue : ''}${emoji.native}`)
+                inputRef.current.focus()
+              }}
+              showPreview={false}
+              showSkinTones={false}
+              darkMode={false}
+            />
           )}
         </div>
       </div>

@@ -1,32 +1,22 @@
-import React, { useContext, useRef, useState } from 'react'
+import { useContext, useRef } from 'react'
 import axios from 'axios'
-import { connect, createLocalVideoTrack } from 'twilio-video'
+import { connect } from 'twilio-video'
 import { TwilioVideoContext } from '../wrap-with-provider'
 
-const handleRemoteParticipant = container => participant => {
-  const id = participant.sid
+const handleParticipant = participant => {
+  const id = participant.identity
 
   const addTrack = track => {
     const container = document.getElementById(id)
-
     // Create an HTML element to show the track (e.g. <audio> or <video>).
     const media = track.attach()
 
-    container.appendChild(media)
+    if (container) container.appendChild(media)
   }
-
-  const el = document.createElement('div')
-  el.id = id
-  el.className = 'remote-participant ant-col ant-col-xs-24 remote-participant-wrapper'
-
-  // Attach the new element to the DOM.
-  container.appendChild(el)
 
   // Attach existing participant audio and video tracks to the DOM.
   participant.tracks.forEach(publication => {
-    if (publication.isSubscribed) {
-      addTrack(publication.track)
-    }
+    if (publication.isSubscribed) addTrack(publication.track)
   })
 
   // If new tracks get added later, add those, too.
@@ -45,7 +35,6 @@ const useTwilioVideo = () => {
   const [store, dispatch] = useContext(TwilioVideoContext)
   const videoRef = useRef()
   const { room, token, activeRoom, loading } = store
-  const [localTrack, setLocaltrack] = useState()
 
   const getParticipantToken = async ({ identity, room }) => {
     dispatch({ type: 'loading', loading: true })
@@ -73,32 +62,29 @@ const useTwilioVideo = () => {
     })
 
     // Get the camera track for your preview.
-    const cameraTrack = [...activeRoom.localParticipant.videoTracks.values()][0].track
-    const localEl = cameraTrack.attach()
-    localEl.className = 'local-video'
-
-    // setLocaltrack(localEl)
-    const el = document.getElementById('local-video-wrapper')
-    el.appendChild(localEl)
+    if (activeRoom && activeRoom.localParticipant && activeRoom.localParticipant.videoTracks) {
+      const cameraTrack = [...activeRoom.localParticipant.videoTracks.values()][0].track
+      const localEl = cameraTrack.attach()
+      localEl.className = 'local-video'
+      const el = document.getElementById('local-video-wrapper')
+      el.appendChild(localEl)
+    }
 
     // Currying! Delicious! 🍛
-    const handleParticipant = handleRemoteParticipant(videoRef.current)
+    // const handleParticipant = handleRemoteParticipant(videoRef.current)
 
     // Handle any participants who are *already* connected to this room.
     activeRoom.participants.forEach(handleParticipant)
 
     // Handle participants who join *after* you’ve connected to the room.
     activeRoom.on('participantConnected', handleParticipant)
-    dispatch({ type: 'set-active-room', activeRoom, localTrack })
+    dispatch({ type: 'set-active-room', activeRoom })
   }
 
   const startVideo = () => connectToRoom()
-  const leaveRoom = () => {
-    dispatch({ type: 'disconnect' })
-  }
+  const leaveRoom = () => dispatch({ type: 'disconnect' })
 
   return {
-    localTrack,
     getParticipantToken,
     startVideo,
     leaveRoom,
