@@ -4,6 +4,7 @@ import { connect } from 'twilio-video'
 import { TwilioVideoContext } from '../wrap-with-provider'
 
 const handleParticipant = participant => {
+  console.log('participant', participant)
   const id = participant.identity
 
   const addTrack = track => {
@@ -26,8 +27,8 @@ const handleParticipant = participant => {
   participant.on('trackUnsubscribed', track => {
     // Get a list of elements from detach and remove them from the DOM.
     track.detach().forEach(el => el.remove())
-    const container = document.getElementById(id)
-    if (container) container.remove()
+    // const container = document.getElementById(id)
+    // if (container) container.remove()
   })
 }
 
@@ -69,9 +70,6 @@ const useTwilioVideo = () => {
       const el = document.getElementById('local-video-wrapper')
       el.appendChild(localEl)
     }
-
-    // Currying! Delicious! 🍛
-    // const handleParticipant = handleRemoteParticipant(videoRef.current)
 
     // Handle any participants who are *already* connected to this room.
     activeRoom.participants.forEach(handleParticipant)

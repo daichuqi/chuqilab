@@ -28,7 +28,7 @@ export default function VideoDisplay({ onlineUsers = [] }) {
       </Draggable>
 
       {_.uniqBy(onlineUsers, 'username').map(user => (
-        <Draggable>
+        <Draggable key={user.username}>
           <div id={user.username} className="remote-participant-wrapper"></div>
         </Draggable>
       ))}
