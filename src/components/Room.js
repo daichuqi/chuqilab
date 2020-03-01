@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Button, Input, Row, Col } from 'antd'
-import { Icon } from '@ant-design/compatible'
+import { VideoCameraOutlined, SmileOutlined } from '@ant-design/icons'
 import classnames from 'classnames'
 import moment from 'moment'
 import { Picker } from 'emoji-mart'
 
-import useTwilioVideo from '../hooks/use-twilio-video'
+import useTwilioVideo from '../hooks/useTwilioVideo'
 import { getCurrentUser } from '../utils/auth'
 
 import socket from '../socket'
@@ -36,7 +36,7 @@ function useClient() {
   return client
 }
 
-const Join = ({ location }) => {
+export default function Join() {
   const { getParticipantToken, leaveRoom, loading, token } = useTwilioVideo()
   const [messages, setMessages] = useState([])
   const [inputValue, setInputValue] = useState('')
@@ -140,11 +140,11 @@ const Join = ({ location }) => {
         <div className="camera-button">
           {token ? (
             <Button size="large" loading={loading} type="primary" onClick={leaveRoom}>
-              <Icon type="video-camera" />
+              <VideoCameraOutlined />
             </Button>
           ) : (
             <Button size="large" loading={loading} onClick={joinVideoChannel}>
-              <Icon type="video-camera" />
+              <VideoCameraOutlined />
             </Button>
           )}
         </div>
@@ -155,7 +155,7 @@ const Join = ({ location }) => {
             type={showPicker ? 'primary' : ''}
             onClick={() => setShowPicker(!showPicker)}
           >
-            <Icon type="smile" />
+            <SmileOutlined />
           </Button>
           {showPicker && (
             <Picker
@@ -173,5 +173,3 @@ const Join = ({ location }) => {
     </div>
   )
 }
-
-export default Join

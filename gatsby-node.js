@@ -2,10 +2,10 @@ const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
 
-const blogListTemplate = path.resolve('./src/templates/blog-list.js')
-const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
-const loginTemplate = path.resolve('./src/templates/login.js')
-const signupTemplate = path.resolve('./src/templates/signup.js')
+const blogListTemplate = path.resolve('./src/templates/BlogList.js')
+const blogPostTemplate = path.resolve('./src/templates/BlogPost.js')
+const loginTemplate = path.resolve('./src/templates/Login.js')
+const signupTemplate = path.resolve('./src/templates/Signup.js')
 
 exports.onCreatePage = async ({ page, actions }) => {
   if (page.path.match(/^\/room/)) {

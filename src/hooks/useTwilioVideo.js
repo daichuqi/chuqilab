@@ -4,7 +4,6 @@ import { connect } from 'twilio-video'
 import { TwilioVideoContext } from '../wrap-with-provider'
 
 const handleParticipant = participant => {
-  console.log('participant', participant)
   const id = participant.identity
 
   const addTrack = track => {

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Icon } from '@ant-design/compatible'
-import { graphql, useStaticQuery } from 'gatsby'
+import { AppleFilled } from '@ant-design/icons'
 import Helmet from 'react-helmet'
+import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 
 import Layout from '../components/Layout'
@@ -29,7 +29,11 @@ export default () => {
             <div className="about">About</div>
             <div className="text">Richie is a dreamer.</div>
             <div className="text">
-              He is currently working for <Icon type="apple" /> in SPG.
+              He is currently working for
+              <span style={{ margin: '0 5px' }}>
+                <AppleFilled />
+              </span>
+              in Sunnyvale CA.
               <br />
               LOVE design, art and tech.
             </div>

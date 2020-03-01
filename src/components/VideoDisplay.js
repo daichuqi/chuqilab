@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import useTwilioVideo from '../hooks/use-twilio-video'
+import useTwilioVideo from '../hooks/useTwilioVideo'
 import Draggable from 'react-draggable'
 import _ from 'lodash'
 

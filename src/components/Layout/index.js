@@ -1,9 +1,9 @@
 import React from 'react'
 import { Avatar, Menu, Dropdown } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 import { Link } from 'gatsby'
 import Amplify, { Auth } from 'aws-amplify'
 import { navigate } from '@reach/router'
-import { Icon } from '@ant-design/compatible'
 
 import { logout, isLoggedIn, getCurrentUser } from '../../utils/auth'
 
@@ -75,7 +75,7 @@ export default ({ overlay, hide, children }) => {
                     <Avatar
                       shape="square"
                       src={currentUser.profile_image}
-                      icon={<Icon type="user" />}
+                      icon={<UserOutlined />}
                     />
                   </Dropdown>
                 </span>

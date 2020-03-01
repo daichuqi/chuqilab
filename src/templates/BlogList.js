@@ -29,7 +29,7 @@ const NavLink = ({ text, pageCount, show, style }) => (
   </Link>
 )
 
-export default props => {
+export default function BlogList(props) {
   const posts = get(props, 'data.allContentfulBlogPost.edges') || []
   const { currentPage, numPages } = props.pageContext
   const prevPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString()

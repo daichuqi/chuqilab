@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import Helmet from 'react-helmet'
 import { Button } from 'antd'
-import { Icon } from '@ant-design/compatible'
+import { PauseOutlined, CaretRightOutlined } from '@ant-design/icons'
 import get from 'lodash/get'
 import { graphql, navigate } from 'gatsby'
 import ReactAudioPlayer from 'react-audio-player'
@@ -16,7 +16,7 @@ import { isLoggedIn } from '../utils/auth'
 import { useInterval } from '../utils/customHooks'
 import '../styles/blog-post.scss'
 
-export default props => {
+export default function BlogPost(props) {
   const { prev, next } = props.pageContext
   const post = get(props, 'data.contentfulBlogPost')
   const { title, heroImage, publishDate, body, tags, music } = post
@@ -53,7 +53,7 @@ export default props => {
             <Button
               size="large"
               shape="circle"
-              icon={playing ? <Icon type="pause" /> : <Icon type="caret-right" />}
+              icon={playing ? <PauseOutlined /> : <CaretRightOutlined />}
               disabled={!ready}
               onClick={onVideoButtonClick}
             />
