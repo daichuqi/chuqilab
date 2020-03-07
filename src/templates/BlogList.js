@@ -44,7 +44,7 @@ export default function BlogList(props) {
     <Layout>
       <Helmet title={`Page ${currentPage} | Chuqi`} />
       <div className="template-wrapper blog-pages">
-        <Columns queries={queries}>
+        <Columns queries={queries} rootStyles={{ overflowX: 'visible' }} gap={2}>
           {posts.map(({ node }) => (
             <BlogItem key={node.slug} node={node} />
           ))}
