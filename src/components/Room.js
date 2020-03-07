@@ -1,40 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Button, Input, Row, Col } from 'antd'
-import { VideoCameraOutlined, SmileOutlined } from '@ant-design/icons'
+import { VideoCameraOutlined, SmileOutlined, GlobalOutlined } from '@ant-design/icons'
 import classnames from 'classnames'
 import moment from 'moment'
 import { Picker } from 'emoji-mart'
+import InnerHTML from 'dangerously-set-html-content'
 
 import useTwilioVideo from '../hooks/useTwilioVideo'
 import { getCurrentUser } from '../utils/auth'
-
-import socket from '../socket'
 import VideoDisplay from './VideoDisplay'
+import useClient from '../hooks/useClient'
 
 import './Room.scss'
 import 'emoji-mart/css/emoji-mart.css'
 
 const { Search } = Input
 const ROOM_NAME = 'chatroom'
-
-function useClient() {
-  const [client, setClient] = useState(undefined)
-
-  useEffect(() => {
-    const client = socket()
-    const cleanUp = () => client.leave(ROOM_NAME, client.disconnect)
-
-    setClient(client)
-    window.addEventListener('beforeunload', cleanUp)
-
-    return () => {
-      cleanUp()
-      window.removeEventListener('beforeunload', cleanUp)
-    }
-  }, [])
-
-  return client
-}
 
 export default function Join() {
   const { getParticipantToken, leaveRoom, loading, token } = useTwilioVideo()
@@ -47,6 +28,7 @@ export default function Join() {
   const client = useClient()
   const [onlineUsers, setOnlineUsers] = useState([])
   const [showPicker, setShowPicker] = useState(false)
+  const [shareLocation, setShareLocation] = useState(false)
 
   const scrollToBottom = () => messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
   const joinVideoChannel = () => getParticipantToken({ identity: username, room: ROOM_NAME })
@@ -73,6 +55,30 @@ export default function Join() {
   const onPressEnter = () => {
     if (inputValue !== '' && inputValue !== undefined) {
       client.message(ROOM_NAME, inputValue, setInputValue)
+    }
+  }
+
+  const shareMyLocation = () => {
+    if (shareLocation) {
+      setShareLocation(false)
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          console.log('coords', coords)
+          const { latitude, longitude } = coords
+
+          client.shareLocation(ROOM_NAME, { longitude, latitude }, users => {
+            console.log('hello', users)
+          })
+          setShareLocation(true)
+        },
+        () => {},
+        {
+          // enableHighAccuracy: true,
+          // timeout: 5000,
+          // maximumAge: 0,
+        }
+      )
     }
   }
 
@@ -107,13 +113,17 @@ export default function Join() {
                     </div>
                   ) : message.username === username ? (
                     <>
-                      <div className="message-text">{message.content}</div>
+                      <div className="message-text">
+                        <InnerHTML html={message.content} />
+                      </div>
                       <img className="user-profile" src={message.profile_image} />
                     </>
                   ) : (
                     <>
                       <img className="user-profile" src={message.profile_image} />
-                      <div className="message-text">{message.content}</div>
+                      <div className="message-text">
+                        <InnerHTML html={message.content} />
+                      </div>
                     </>
                   )}
                 </div>
@@ -168,6 +178,12 @@ export default function Join() {
               darkMode={false}
             />
           )}
+        </div>
+
+        <div className="location-button">
+          <Button size="large" type={shareLocation ? 'primary' : ''} onClick={shareMyLocation}>
+            <GlobalOutlined />
+          </Button>
         </div>
       </div>
     </div>

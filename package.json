@@ -20,6 +20,7 @@
     "chalk": "^2.4.2",
     "classnames": "^2.2.6",
     "contentful-import": "^7.6.0",
+    "dangerously-set-html-content": "^1.0.3",
     "emoji-mart": "^2.11.2",
     "gatsby": "^2.18.14",
     "gatsby-image": "^2.2.29",

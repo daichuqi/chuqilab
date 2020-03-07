@@ -1,9 +1,12 @@
+import { useEffect, useState } from 'react'
 const io = require('socket.io-client')
+
+const ROOM_NAME = 'chatroom'
 
 const URL = 'https://chengyuhan.me'
 // const URL = 'localhost:3001'
 
-export default function() {
+function socket() {
   const socket = io.connect(URL)
 
   function registerHandler(onMessageReceived) {
@@ -35,6 +38,10 @@ export default function() {
     socket.emit('message', { chatroomName, message: msg }, cb)
   }
 
+  function shareLocation(chatroomName, location, cb) {
+    socket.emit('location', { chatroomName, location }, cb)
+  }
+
   function disconnect() {
     socket.disconnect()
   }
@@ -44,6 +51,7 @@ export default function() {
   }
 
   return {
+    shareLocation,
     disconnect,
     register,
     join,
@@ -53,4 +61,23 @@ export default function() {
     registerHandler,
     unregisterHandler,
   }
+}
+
+export default function useClient() {
+  const [client, setClient] = useState(undefined)
+
+  useEffect(() => {
+    const client = socket()
+    const cleanUp = () => client.leave(ROOM_NAME, client.disconnect)
+
+    setClient(client)
+    window.addEventListener('beforeunload', cleanUp)
+
+    return () => {
+      cleanUp()
+      window.removeEventListener('beforeunload', cleanUp)
+    }
+  }, [])
+
+  return client
 }
