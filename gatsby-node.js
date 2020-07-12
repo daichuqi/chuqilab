@@ -7,6 +7,21 @@ const blogPostTemplate = path.resolve('./src/templates/BlogPost.js')
 const loginTemplate = path.resolve('./src/templates/Login.js')
 const signupTemplate = path.resolve('./src/templates/Signup.js')
 
+// exports.onCreateWebpackConfig = ({ stage, rules, loaders, plugins, actions }) => {
+//   if (stage === 'build-html') {
+//     actions.setWebpackConfig({
+//       module: {
+//         rules: [
+//           {
+//             test: /canvas/,
+//             use: loaders.null(),
+//           },
+//         ],
+//       },
+//     })
+//   }
+// }
+
 exports.onCreatePage = async ({ page, actions }) => {
   if (page.path.match(/^\/room/)) {
     page.matchPath = '/room/*'

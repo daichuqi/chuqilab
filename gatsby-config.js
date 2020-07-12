@@ -41,16 +41,16 @@ module.exports = {
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
-    {
-      resolve: 'gatsby-source-pg',
-      options: {
-        rejectUnauthorized: true,
-        connectionString:
-          'postgres://lqhhxtvqjyoelj:3cf9d9dbe3d17600ce0d88a547c0e8e434d32152f3160e84de3cb303d295aa0b@ec2-54-163-233-103.compute-1.amazonaws.com:5432/dbrqrug3hi4oud?ssl=1',
-        schema: 'public',
-        refetchInterval: 300, // Refetch data every 60 seconds
-      },
-    },
+    // {
+    //   resolve: 'gatsby-source-pg',
+    //   options: {
+    //     rejectUnauthorized: true,
+    //     connectionString:
+    //       'postgres://lqhhxtvqjyoelj:3cf9d9dbe3d17600ce0d88a547c0e8e434d32152f3160e84de3cb303d295aa0b@ec2-54-163-233-103.compute-1.amazonaws.com:5432/dbrqrug3hi4oud?ssl=1',
+    //     schema: 'public',
+    //     refetchInterval: 300, // Refetch data every 60 seconds
+    //   },
+    // },
     'gatsby-plugin-sass',
     {
       resolve: `gatsby-source-filesystem`,

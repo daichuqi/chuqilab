@@ -111,8 +111,8 @@ export default function() {
   return (
     <canvas
       style={{ backgroundColor: 'black' }}
-      width={window.innerWidth}
-      height={window.innerHeight}
+      width={typeof window !== 'undefined' && window.innerWidth}
+      height={typeof window !== 'undefined' && window.innerHeight}
       ref={canvasRef}
       onClick={e => {
         // render.play()
