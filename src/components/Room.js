@@ -36,13 +36,16 @@ export default function Join() {
   useEffect(scrollToBottom, [messages])
 
   useEffect(() => {
+    console.log('client', client)
     if (client) {
       client.registerHandler(newMessage => {
         setMessages(messages => [...messages, newMessage])
         client.getAvailableUsers(setOnlineUsers)
       })
+      console.log('username', username)
 
       client.register(username, () => {
+        console.log('username', username)
         client.join(ROOM_NAME, chatHistory => {
           setMessages(chatHistory)
           setJoined(true)

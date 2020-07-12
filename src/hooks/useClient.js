@@ -3,11 +3,11 @@ const io = require('socket.io-client')
 
 const ROOM_NAME = 'chatroom'
 
-const URL = 'https://chengyuhan.me'
-// const URL = 'localhost:3001'
+// const BASE_URL = 'https://chuqi-node.herokuapp.com'
+const BASE_URL = 'localhost:3001'
 
 function socket() {
-  const socket = io.connect(URL)
+  const socket = io.connect(BASE_URL)
 
   function registerHandler(onMessageReceived) {
     socket.on('message', onMessageReceived)
@@ -23,6 +23,7 @@ function socket() {
   })
 
   function register(name, cb) {
+    console.log('register!')
     socket.emit('register', name, cb)
   }
 

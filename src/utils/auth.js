@@ -4,8 +4,8 @@ export const setUser = user => (window.localStorage.gatsbyUser = JSON.stringify(
 
 const getUser = () => {
   if (window.localStorage.gatsbyUser) {
-    let user = JSON.parse(window.localStorage.gatsbyUser)
-    return user ? user : {}
+    let loginInfo = JSON.parse(window.localStorage.gatsbyUser)
+    return loginInfo ? loginInfo.user : {}
   }
   return {}
 }
@@ -14,6 +14,7 @@ export const isLoggedIn = () => {
   if (!isBrowser) return false
 
   const user = getUser()
+  console.log('user', user)
   if (user) return !!user.username
 }
 

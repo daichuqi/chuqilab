@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Input, Button } from 'antd'
 import { Link, navigate, graphql } from 'gatsby'
-import { Auth } from 'aws-amplify'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
 
@@ -19,16 +18,9 @@ export default function Login(props) {
   const login = async ({ username, password }) => {
     try {
       setLoading(true)
-      await Auth.signIn(username, password)
-      const user = await Auth.currentAuthenticatedUser()
-      const res = await Api.node.fetchOrCreateUser(user.username)
-      console.log('Login', res)
-      const userInfo = {
-        ...res,
-        ...user.attributes,
-        username: user.username,
-      }
-      setUser(userInfo)
+      const loginInfo = await Api.node.login({ username, password })
+
+      setUser(loginInfo)
       navigate('/')
     } catch (err) {
       console.log('err', err)
