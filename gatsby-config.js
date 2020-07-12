@@ -46,7 +46,7 @@ module.exports = {
       options: {
         rejectUnauthorized: false,
         connectionString:
-          'postgres://daichuqi:123456789@chuqilab.c2ls2eak4iwb.us-west-2.rds.amazonaws.com:5432/mydb?ssl=1',
+          'postgres://lqhhxtvqjyoelj:3cf9d9dbe3d17600ce0d88a547c0e8e434d32152f3160e84de3cb303d295aa0b@ec2-54-221-217-204.compute-1.amazonaws.com:5432/dbrqrug3hi4oud?ssl=1',
         schema: 'public',
         refetchInterval: 300, // Refetch data every 60 seconds
       },
