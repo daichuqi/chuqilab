@@ -77,6 +77,9 @@ const UserDetails = props => {
         />
 
         <Upload
+          customRequest={request => {
+            setImage(request.file)
+          }}
           showUploadList={false}
           onChange={info => {
             if (info.file.status === 'done') {
