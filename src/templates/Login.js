@@ -20,6 +20,8 @@ export default function Login(props) {
       setLoading(true)
       const loginInfo = await Api.node.login({ username, password })
 
+      console.log('loginInfo', loginInfo)
+
       setUser(loginInfo)
       navigate('/')
     } catch (err) {

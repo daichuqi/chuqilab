@@ -2,6 +2,10 @@ var proxy = require('http-proxy-middleware')
 
 let contentfulConfig
 
+// require('dotenv').config({
+//   path: `.env.development`,
+// })
+
 try {
   // Load the Contentful config from the .contentful.json
   contentfulConfig = require('./.contentful')
@@ -28,6 +32,7 @@ module.exports = {
       url: 'https://chuqi-node.herokuapp.com',
     },
   ],
+
   developMiddleware: app => {
     app.use(
       '/.netlify/functions/',
@@ -48,6 +53,10 @@ module.exports = {
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/users/*`] },
+    },
     // {
     //   resolve: 'gatsby-source-pg',
     //   options: {

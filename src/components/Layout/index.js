@@ -1,8 +1,7 @@
 import React from 'react'
 import { Avatar, Menu, Dropdown } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import { Link } from 'gatsby'
-import { navigate } from '@reach/router'
+import { navigate, Link } from '@reach/router'
 
 import { logout, isLoggedIn, getCurrentUser } from '../../utils/auth'
 import { DEFAULT_IMAGE } from '../../constant'
@@ -16,7 +15,9 @@ import '../../styles/form.scss'
 
 export default ({ overlay, hide, children }) => {
   const loggedIn = isLoggedIn()
-  const currentUser = getCurrentUser()
+  const currentUser = getCurrentUser() || {}
+
+  console.log('currentUser', currentUser)
 
   const sigunout = async () => {
     try {
@@ -28,6 +29,12 @@ export default ({ overlay, hide, children }) => {
 
   const menu = (
     <Menu size="large">
+      <Menu.Item>
+        <Link to={`/users/${currentUser.id}`} className="nav-item">
+          Profile
+        </Link>
+      </Menu.Item>
+
       <Menu.Item>
         <span className="nav-item" onClick={sigunout}>
           Logout
@@ -65,7 +72,7 @@ export default ({ overlay, hide, children }) => {
                   <Dropdown overlay={menu} placement="bottomLeft">
                     <Avatar
                       shape="square"
-                      src={currentUser.profile_image || DEFAULT_IMAGE}
+                      src={currentUser.profile_image_url || DEFAULT_IMAGE}
                       icon={<UserOutlined />}
                     />
                   </Dropdown>

@@ -79,3 +79,4 @@ amplifyconfiguration.json
 amplify-gradle-config.json
 amplifyxc.config
 .DS_Store
+.env*
