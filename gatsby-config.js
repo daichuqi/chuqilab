@@ -21,6 +21,13 @@ if (!spaceId || !accessToken) {
 }
 
 module.exports = {
+  proxy: [
+    {
+      prefix: '/api',
+      // url: 'https://localhost:3001',
+      url: 'https://chuqi-node.herokuapp.com',
+    },
+  ],
   developMiddleware: app => {
     app.use(
       '/.netlify/functions/',

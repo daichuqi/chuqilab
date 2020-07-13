@@ -3,14 +3,6 @@
   "description": "CQ Blog",
   "version": "1.0.0",
   "author": "Richie Dai <daichuqi@gmail.com>",
-  "proxy": {
-    "/.netlify/functions": {
-      "target": "http://localhost:9000",
-      "pathRewrite": {
-        "^/\\.netlify/functions": ""
-      }
-    }
-  },
   "dependencies": {
     "@reach/router": "^1.3.3",
     "@types/react": "^16.9.23",

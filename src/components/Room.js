@@ -10,6 +10,7 @@ import useTwilioVideo from '../hooks/useTwilioVideo'
 import { getCurrentUser } from '../utils/auth'
 import VideoDisplay from './VideoDisplay'
 import useClient from '../hooks/useClient'
+import { DEFAULT_IMAGE } from '../constant'
 
 import './Room.scss'
 import 'emoji-mart/css/emoji-mart.css'
@@ -42,7 +43,6 @@ export default function Join() {
         setMessages(messages => [...messages, newMessage])
         client.getAvailableUsers(setOnlineUsers)
       })
-      console.log('username', username)
 
       client.register(username, () => {
         console.log('username', username)
@@ -99,7 +99,7 @@ export default function Join() {
             <div className="message-container">
               <div className="online-users-container">
                 {onlineUsers.map(({ profile_image }, index) => (
-                  <img key={index} className="online-user" src={profile_image} />
+                  <img key={index} className="online-user" src={profile_image || DEFAULT_IMAGE} />
                 ))}
               </div>
               {messages.map((message, i) => (
@@ -119,11 +119,17 @@ export default function Join() {
                       <div className="message-text">
                         <InnerHTML html={message.content} />
                       </div>
-                      <img className="user-profile" src={message.profile_image} />
+                      <img
+                        className="user-profile"
+                        src={message.profile_image_url || DEFAULT_IMAGE}
+                      />
                     </>
                   ) : (
                     <>
-                      <img className="user-profile" src={message.profile_image} />
+                      <img
+                        className="user-profile"
+                        src={message.profile_image_url || DEFAULT_IMAGE}
+                      />
                       <div className="message-text">
                         <InnerHTML html={message.content} />
                       </div>

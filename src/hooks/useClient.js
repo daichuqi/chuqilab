@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-const io = require('socket.io-client')
+import io from 'socket.io-client'
 
 const ROOM_NAME = 'chatroom'
 

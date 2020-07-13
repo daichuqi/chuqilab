@@ -5,6 +5,7 @@ import { Link } from 'gatsby'
 import { navigate } from '@reach/router'
 
 import { logout, isLoggedIn, getCurrentUser } from '../../utils/auth'
+import { DEFAULT_IMAGE } from '../../constant'
 
 import './Navbar.scss'
 import 'antd/dist/antd.css'
@@ -64,7 +65,7 @@ export default ({ overlay, hide, children }) => {
                   <Dropdown overlay={menu} placement="bottomLeft">
                     <Avatar
                       shape="square"
-                      src={currentUser.profile_image}
+                      src={currentUser.profile_image || DEFAULT_IMAGE}
                       icon={<UserOutlined />}
                     />
                   </Dropdown>

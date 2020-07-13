@@ -1,9 +1,7 @@
 import Axios from 'axios'
 
-const BASE_URL = 'https://chuqi-node.herokuapp.com'
-
 export const signup = async ({ username, password, email }) => {
-  const res = await Axios.post(`${BASE_URL}/users/signup`, {
+  const res = await Axios.post(`https://chuqi-node.herokuapp.com/api/users/signup`, {
     username,
     password,
     email,
@@ -12,7 +10,7 @@ export const signup = async ({ username, password, email }) => {
 }
 
 export const login = async ({ username, password }) => {
-  const res = await Axios.post(`${BASE_URL}/users/login`, {
+  const res = await Axios.post(`https://chuqi-node.herokuapp.com/api/users/login`, {
     username,
     password,
   })
