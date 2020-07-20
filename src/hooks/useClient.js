@@ -23,7 +23,6 @@ function socket() {
   })
 
   function register(name, cb) {
-    console.log('register!')
     socket.emit('register', name, cb)
   }
 

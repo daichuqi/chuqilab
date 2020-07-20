@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Button, Input, Row, Col } from 'antd'
+import { Button, Input, Row, Col, Tooltip } from 'antd'
 import { VideoCameraOutlined, SmileOutlined, GlobalOutlined } from '@ant-design/icons'
 import classnames from 'classnames'
 import moment from 'moment'
@@ -37,7 +37,6 @@ export default function Join() {
   useEffect(scrollToBottom, [messages])
 
   useEffect(() => {
-    console.log('client', client)
     if (client) {
       client.registerHandler(newMessage => {
         setMessages(messages => [...messages, newMessage])
@@ -45,7 +44,6 @@ export default function Join() {
       })
 
       client.register(username, () => {
-        console.log('username', username)
         client.join(ROOM_NAME, chatHistory => {
           setMessages(chatHistory)
           setJoined(true)
@@ -67,9 +65,7 @@ export default function Join() {
     } else {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
-          console.log('coords', coords)
           const { latitude, longitude } = coords
-
           client.shareLocation(ROOM_NAME, { longitude, latitude }, users => {
             console.log('hello', users)
           })
@@ -98,10 +94,13 @@ export default function Join() {
           <div className="chat-room">
             <div className="message-container">
               <div className="online-users-container">
-                {onlineUsers.map(({ profile_image }, index) => (
-                  <img key={index} className="online-user" src={profile_image || DEFAULT_IMAGE} />
+                {onlineUsers.map(({ user }, index) => (
+                  <Tooltip placement="bottom" title={user.username} key={index}>
+                    <img className="online-user" src={user.profile_image_url || DEFAULT_IMAGE} />
+                  </Tooltip>
                 ))}
               </div>
+
               {messages.map((message, i) => (
                 <div
                   key={i}

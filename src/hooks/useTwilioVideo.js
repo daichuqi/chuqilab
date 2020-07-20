@@ -54,10 +54,12 @@ const useTwilioVideo = () => {
     }
 
     // Connect to the appropriate Twilio video chat room.
-    const activeRoom = await connect(
-      token,
-      { name: room, audio: true, video: { width: 1200, height: 800 }, logLevel: 'info' }
-    ).catch(error => {
+    const activeRoom = await connect(token, {
+      name: room,
+      audio: true,
+      video: { width: 1200, height: 800 },
+      logLevel: 'info',
+    }).catch(error => {
       console.error(`Unable to join the room: ${error.message}`)
     })
 

@@ -5,6 +5,7 @@ export const setUser = user => (window.localStorage.gatsbyUser = JSON.stringify(
 const getUser = () => {
   if (window.localStorage.gatsbyUser) {
     let loginInfo = JSON.parse(window.localStorage.gatsbyUser)
+
     return loginInfo ? loginInfo.user : {}
   }
   return {}

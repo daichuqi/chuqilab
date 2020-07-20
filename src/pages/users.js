@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Form, Input, Button, Select, Upload, Slider } from 'antd'
+import { Row, Col, Input, Button, Select, Upload, Slider } from 'antd'
 import { Link, navigate, graphql } from 'gatsby'
 import { Router } from '@reach/router'
 import Img from 'gatsby-image'
@@ -13,6 +13,8 @@ import FourOFour from './404'
 import { setUser, getCurrentUser } from '../utils/auth'
 const { Option } = Select
 
+const DEFAULT_SCALE = 1.2
+
 const UserDetails = props => {
   const currentUser = getCurrentUser() || {}
 
@@ -20,11 +22,10 @@ const UserDetails = props => {
   const editorRef = useRef()
   const [image, setImage] = useState()
   const [loading, setLoading] = useState(false)
-  const [scale, setScale] = useState(1)
+  const [scale, setScale] = useState(DEFAULT_SCALE)
 
   const onClickSave = () => {
     if (editorRef) {
-      const img = new Image()
       // This returns a HTMLCanvasElement, it can be made into a data URL or a blob,
       // drawn on another canvas, or added to the DOM.
       // const canvas = editorRef.current.getImage()
@@ -49,8 +50,8 @@ const UserDetails = props => {
   }
 
   return (
-    <div style={{ padding: 20 }}>
-      <div style={{ width: 500 }}>
+    <Row gutter={[16, 16]}>
+      <Col flex="200px">
         <AvatarEditor
           ref={editorRef}
           image={
@@ -58,8 +59,6 @@ const UserDetails = props => {
             currentUser.profile_image_url ||
             'https://chuqi-gatsby.s3-us-west-1.amazonaws.com/default-avatar.png'
           }
-          width={400}
-          height={400}
           border={50}
           color={[255, 255, 255, 0.6]} // RGBA
           scale={scale}
@@ -68,7 +67,7 @@ const UserDetails = props => {
 
         <Slider
           style={{ width: '100%' }}
-          defaultValue={1}
+          defaultValue={DEFAULT_SCALE}
           max={5}
           min={1}
           onChange={setScale}
@@ -92,11 +91,11 @@ const UserDetails = props => {
           <Button>Upload</Button>
         </Upload>
 
-        <Button loading={loading} disabled={!image} onClick={onClickSave}>
+        <Button type="primary" loading={loading} disabled={!image} onClick={onClickSave}>
           Save
         </Button>
-      </div>
-    </div>
+      </Col>
+    </Row>
   )
 }
 

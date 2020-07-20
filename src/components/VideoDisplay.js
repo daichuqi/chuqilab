@@ -8,6 +8,8 @@ import './VideoDisplay.scss'
 export default function VideoDisplay({ onlineUsers = [] }) {
   const { token, videoRef, activeRoom, startVideo, leaveRoom } = useTwilioVideo()
 
+  console.log('onlineUsers', onlineUsers)
+
   useEffect(() => {
     if (!activeRoom && token) {
       startVideo()
@@ -27,7 +29,7 @@ export default function VideoDisplay({ onlineUsers = [] }) {
         <div id="local-video-wrapper" className="local-video-wrapper"></div>
       </Draggable>
 
-      {_.uniqBy(onlineUsers, 'username').map(user => (
+      {_.uniqBy(onlineUsers, ['user', 'username']).map(({ user }) => (
         <Draggable key={user.username}>
           <div id={user.username} className="remote-participant-wrapper"></div>
         </Draggable>
