@@ -6,7 +6,11 @@ const PROD_URL = 'https://chuqi-node.herokuapp.com'
 const DEV_URL = 'http://localhost:3001'
 
 export const signup = async ({ username, password, email }) => {
-  const res = await Axios.post(`/api/users/signup`, { username, password, email })
+  const res = await Axios.post(`${isDev ? DEV_URL : PROD_URL}/api/users/signup`, {
+    username,
+    password,
+    email,
+  })
   return res.data
 }
 
