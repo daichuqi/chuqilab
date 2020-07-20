@@ -8,8 +8,6 @@ import './VideoDisplay.scss'
 export default function VideoDisplay({ onlineUsers = [] }) {
   const { token, videoRef, activeRoom, startVideo, leaveRoom } = useTwilioVideo()
 
-  console.log('onlineUsers', onlineUsers)
-
   useEffect(() => {
     if (!activeRoom && token) {
       startVideo()
@@ -23,15 +21,17 @@ export default function VideoDisplay({ onlineUsers = [] }) {
 
   useEffect(() => leaveRoom, [])
 
+  const currentUsers = _.uniqBy(onlineUsers, 'user.username').map(({ user }) => user.username)
+
   return (
     <div className="chat ant-row" ref={videoRef}>
       <Draggable>
         <div id="local-video-wrapper" className="local-video-wrapper"></div>
       </Draggable>
 
-      {_.uniqBy(onlineUsers, ['user', 'username']).map(({ user }) => (
-        <Draggable key={user.username}>
-          <div id={user.username} className="remote-participant-wrapper"></div>
+      {currentUsers.map(username => (
+        <Draggable key={username}>
+          <div id={username} className="remote-participant-wrapper"></div>
         </Draggable>
       ))}
     </div>
